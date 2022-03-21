@@ -18,6 +18,9 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 
+export RANGER_LOAD_DEFAULT_RC=false
+export EDITOR="nvim"
+
 #-----------------------------------------------------
 #		        plugins
 #-----------------------------------------------------
