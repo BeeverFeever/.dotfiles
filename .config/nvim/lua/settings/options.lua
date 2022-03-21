@@ -13,3 +13,5 @@ set.termguicolors = true
 set.background = 'dark'
 set.belloff = 'all'
 set.ruler = false
+
+vim.cmd("colorscheme kanagawa")
