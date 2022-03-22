@@ -1,4 +1,4 @@
-require('settings.options')
-require('plugins.pluginmanager')
-
--- vim.cmd("colorscheme kanagawa")
+require('user.options')
+require('user.keymaps')
+require('user.colorscheme')
+require('plugins.manager')
