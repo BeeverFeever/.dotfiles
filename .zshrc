@@ -47,7 +47,6 @@ alias shutn="sudo shutdown now"
 
 # neovim because im extra lzy lmao
 alias v="nvim"
-alias vim="nvim"
 #-----------------------------------------------------
 #		       keybings
 #----------------------------------------------------
