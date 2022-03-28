@@ -12,11 +12,13 @@ packer.startup(function(use)
     use { 'nvim-lua/popup.nvim' }           -- idek lmao
     use { 'nvim-lua/plenary.nvim' }         -- idek again lmao
 
+    use { 'kyazdani42/nvim-web-devicons' }  -- some cool icons i think
+
     -- Colorschemes
-    use { 'rebelot/kanagawa.nvim' }         -- this one is my colorscheme
+    use { 'rebelot/kanagawa.nvim' }              -- literally the best colour scheme in the world
 
     -- cmp plugins
-    use {                                   -- auto completions 
+    use {                                   -- auto completions
         'hrsh7th/nvim-cmp',
         config = function()
             require("plugins.plugins.cmp")
@@ -38,7 +40,7 @@ packer.startup(function(use)
     use { 'williamboman/nvim-lsp-installer' } -- i think it just insatalls the lang servers
 
     -- Telescope
-    use {                                   -- its just telescope (you can like search files with it) 
+    use {                                   -- its just telescope (you can like search files with it)
         'nvim-telescope/telescope.nvim',
         config = function ()
            require('plugins.plugins.telescope')
@@ -55,7 +57,7 @@ packer.startup(function(use)
     }
     use { 'p00f/nvim-ts-rainbow' }          -- yay prrrrrty colours
 
-    -- OOOOO autopairs *fancy*
+    -- ooooo autopairs *fancy*
     use {
         'windwp/nvim-autopairs',
         config = function ()
@@ -73,10 +75,32 @@ packer.startup(function(use)
     }
 
     -- Git signs
-    use { 
+    use {
         'lewis6991/gitsigns.nvim',
         config = function ()
             require('plugins.plugins.gitsigns')
+        end
+    }
+
+    -- its a tree
+    use {
+        'kyazdani42/nvim-tree.lua',
+        config = function ()
+            require('plugins.plugins.nvim-tree')
+        end
+    }
+
+    use {
+        'akinsho/bufferline.nvim',
+        config = function()
+            require('plugins.plugins.bufferline')
+        end
+    }
+
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        config = function ()
+            require('plugins.plugins.null-ls')
         end
     }
 end)

@@ -19,7 +19,8 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 export RANGER_LOAD_DEFAULT_RC=false
-export EDITOR="nvim"
+export EDITOR="/usr/bin/nvim"                           # making it point to this path makes it so that i can use my config when using nvim as root usr
+export DATA="/media/data"
 
 #-----------------------------------------------------
 #		        plugins
