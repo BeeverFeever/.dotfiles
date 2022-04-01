@@ -5,7 +5,7 @@ local options = {
     completeopt = { "menuone", "noselect" }, -- mostly just for cmp
     conceallevel = 0,                        -- so that `` is visible in markdown files
     fileencoding = "utf-8",                  -- the encoding written to a file
-    hlsearch = true,                         -- highlight all matches on previous search pattern
+    hlsearch = false,                         -- highlight all matches on previous search pattern
     ignorecase = true,                       -- ignore case in search patterns
     mouse = "a",                             -- allow the mouse to be used in neovim
     pumheight = 10,                          -- pop up menu height
@@ -33,10 +33,20 @@ local options = {
     scrolloff = 8,                           -- is one of my fav
     sidescrolloff = 8,
     guifont = "Hack_Regular_Nerd_Font_Complete_Mono:h17",               -- the font used in graphical neovim applications
+    laststatus = 3,
 }
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 vim.opt.shortmess:append "c"
+-- vim.opt.fillchars:append({
+--     horiz = '━',
+--     horizup = '┻',
+--     horizdown = '┳',
+--     vert = '┃',
+--     vertleft = '┨',
+--     vertright = '┣',
+--     verthoriz = '╋',
+-- })
 
 for k, v in pairs(options) do
 	vim.opt[k] = v

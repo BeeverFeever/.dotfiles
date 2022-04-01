@@ -5,10 +5,12 @@ if not status_ok then
     return
 end
 
+--- kanagawa config
 if colorscheme == "kanagawa" then
     kanagawa.setup({
         transparent = true,
         dimInactive = true,
+        globalstatus = true,
     })
 end
 

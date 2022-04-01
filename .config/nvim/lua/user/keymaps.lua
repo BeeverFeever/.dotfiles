@@ -68,3 +68,6 @@ keymap("n", "<C-t>", "<cmd>Telescope life_grep<CR>", opts)
 
 -- Nvim-tree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
+-- Format
+-- keymap("n", "<leader>m", ":Format<CR>", opts)

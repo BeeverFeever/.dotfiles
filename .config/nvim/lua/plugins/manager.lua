@@ -103,4 +103,18 @@ packer.startup(function(use)
             require('plugins.plugins.null-ls')
         end
     }
+
+    use {
+        'akinsho/toggleterm.nvim',
+        config = function ()
+            require('plugins.plugins.toggleterm')
+        end
+    }
+
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = function ()
+            require('plugins.plugins.lualine')
+        end
+    }
 end)

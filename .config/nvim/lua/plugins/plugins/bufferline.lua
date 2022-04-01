@@ -6,7 +6,7 @@ end
 bufferline.setup {
   options = {
     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    close_command = "bd|bp", -- can be a string | function, see "Mouse actions"
+    close_command = "bp<shift>l", -- can be a string | function, see "Mouse actions"
     -- right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     -- left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
     -- middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
@@ -55,7 +55,7 @@ bufferline.setup {
     --     return true
     --   end
     -- end,
-    offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+    offsets = { { filetype = "NvimTree", text = "Its a tree :)", padding = 1, highlight = "Directory" } },
     show_buffer_icons = true,
     show_buffer_close_icons = false,
     show_close_icon = false,
@@ -95,7 +95,7 @@ bufferline.setup {
       guifg = { attribute = "fg", highlight = "TabLine" },
       guibg = { attribute = "bg", highlight = "TabLine" },
     },
-   close_button_visible = {
+    close_button_visible = {
       guifg = { attribute = "fg", highlight = "TabLine" },
       guibg = { attribute = "bg", highlight = "TabLine" },
     },
@@ -103,7 +103,6 @@ bufferline.setup {
     --   guifg = {attribute='fg',highlight='TabLineSel'},
     --   guibg ={attribute='bg',highlight='TabLineSel'}
     --   },
-
     tab_selected = {
       guifg = { attribute = "fg", highlight = "Normal" },
       guibg = { attribute = "bg", highlight = "Normal" },
@@ -117,7 +116,6 @@ bufferline.setup {
       guifg = { attribute = "fg", highlight = "TabLineSel" },
       guibg = { attribute = "bg", highlight = "Normal" },
     },
-
     duplicate_selected = {
       guifg = { attribute = "fg", highlight = "TabLineSel" },
       guibg = { attribute = "bg", highlight = "TabLineSel" },
@@ -133,7 +131,6 @@ bufferline.setup {
       guibg = { attribute = "bg", highlight = "TabLine" },
       gui = "italic",
     },
-
     modified = {
       guifg = { attribute = "fg", highlight = "TabLine" },
       guibg = { attribute = "bg", highlight = "TabLine" },
@@ -146,7 +143,6 @@ bufferline.setup {
       guifg = { attribute = "fg", highlight = "TabLine" },
       guibg = { attribute = "bg", highlight = "TabLine" },
     },
-
     separator = {
       guifg = { attribute = "bg", highlight = "TabLine" },
       guibg = { attribute = "bg", highlight = "TabLine" },
