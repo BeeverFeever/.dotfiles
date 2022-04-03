@@ -14,7 +14,7 @@ packer.startup(function(use)
 
     use { 'kyazdani42/nvim-web-devicons' }  -- some cool icons i think
 
-    -- Colorschemes
+    -- Colorschemes 
     use { 'rebelot/kanagawa.nvim' }              -- literally the best colour scheme in the world
 
     -- cmp plugins
@@ -115,6 +115,13 @@ packer.startup(function(use)
         'nvim-lualine/lualine.nvim',
         config = function ()
             require('plugins.plugins.lualine')
+        end
+    }
+
+    use {
+        'Furkanzmc/zettelkasten.nvim',
+        config = function ()
+            require('plugins.plugins.zettelkasten')
         end
     }
 end)
