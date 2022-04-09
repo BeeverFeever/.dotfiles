@@ -89,7 +89,8 @@ packer.startup(function(use)
         'akinsho/bufferline.nvim',
         config = function()
             require('plugins.plugins.bufferline')
-        end
+        end,
+        branch = 'main'
     }
 
     use {
@@ -103,7 +104,8 @@ packer.startup(function(use)
         'akinsho/toggleterm.nvim',
         config = function ()
             require('plugins.plugins.toggleterm')
-        end
+        end,
+        branch = 'main'
     }
 
     use {
