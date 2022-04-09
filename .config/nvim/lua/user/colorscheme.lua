@@ -1,3 +1,6 @@
+-- kanagawa
+-- monochrome
+
 local colorscheme = "kanagawa"
 
 local status_ok, kanagawa = pcall(require, "kanagawa")

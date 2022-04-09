@@ -64,3 +64,9 @@ bindkey '^[l' clear-screen
 bindkey '^[k' up-line-or-history 
 
 eval "$(starship init zsh)"
+
+# >>> xmake >>>
+[[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
+# <<< xmake <<<
+
+[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env
