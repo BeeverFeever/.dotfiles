@@ -17,6 +17,8 @@ packer.startup(function(use)
     -- Colorschemes
     use { 'rebelot/kanagawa.nvim' }              -- literally the best colour scheme in the world
     use { 'kdheepak/monochrome.nvim' }
+    use { 'navarasu/onedark.nvim' }
+    use { 'tiagovla/tokyodark.nvim' }
 
     -- cmp plugins
     use {                                   -- auto completions
@@ -114,4 +116,6 @@ packer.startup(function(use)
             require('plugins.plugins.lualine')
         end
     }
+
+    use { 'Pocco81/TrueZen.nvim' }
 end)

@@ -1,10 +1,21 @@
 -- COLOURSCHEMES --
 -- kanagawa
--- monochrome
+-- tokyodark
+-- onedark
 
-local colorscheme = "kanagawa"
+local colorscheme = "onedark"
 
 local status_ok, kanagawa = pcall(require, "kanagawa")
+if not status_ok then
+    return
+end
+
+local status_ok, onedark = pcall(require, "onedark")
+if not status_ok then
+    return
+end
+
+local status_ok, tokyodark = pcall(require, "tokyodark")
 if not status_ok then
     return
 end
@@ -15,6 +26,12 @@ if colorscheme == "kanagawa" then
         transparent = true,
         dimInactive = true,
         globalstatus = true,
+    })
+end
+
+if colorscheme == "onedark" then
+    onedark.setup({
+        style = 'warmer'
     })
 end
 
