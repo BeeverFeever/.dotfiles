@@ -3,7 +3,7 @@
 -- tokyodark
 -- onedark
 
-local colorscheme = "onedark"
+local colorscheme = "kanagawa"
 
 local status_ok, kanagawa = pcall(require, "kanagawa")
 if not status_ok then

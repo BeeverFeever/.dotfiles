@@ -20,6 +20,9 @@ packer.startup(function(use)
     use { 'navarasu/onedark.nvim' }
     use { 'tiagovla/tokyodark.nvim' }
 
+    use { 'Pocco81/TrueZen.nvim' }
+    use { 'edluffy/hologram.nvim' }
+
     -- cmp plugins
     use {                                   -- auto completions
         'hrsh7th/nvim-cmp',
@@ -117,5 +120,5 @@ packer.startup(function(use)
         end
     }
 
-    use { 'Pocco81/TrueZen.nvim' }
+    use { 'elkowar/yuck.vim' }
 end)

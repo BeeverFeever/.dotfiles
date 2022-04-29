@@ -70,3 +70,5 @@ eval "$(starship init zsh)"
 # <<< xmake <<<
 
 [ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env
+
+neofetch
