@@ -1,124 +1,80 @@
-local packer = require("plugins.packer-init")
+local packer = require('packer')
 
 vim.cmd [[
     augroup packer_user_config
         autocmd!
-        autocmd BufWritePost manager.lua source <afile> | PackerSync
+        autocmd BufWritePost plug.lua source <afile> | PackerSync
     augroup end
 ]]
 
-packer.startup(function(use)
-    use { 'wbthomason/packer.nvim' }        -- well its the plugin manager
-    use { 'nvim-lua/popup.nvim' }           -- idek lmao
-    use { 'nvim-lua/plenary.nvim' }         -- idek again lmao
+packer.startup({
+    function(use)
+        -- packer self management and general purpose plugins
+        use { 'wbthomason/packer.nvim' }
+        use { 'nvim-lua/popup.nvim' }
+        use { 'nvim-lua/plenary.nvim' }
+        use { 'kyazdani42/nvim-web-devicons' }
 
-    use { 'kyazdani42/nvim-web-devicons' }  -- some cool icons i think
+        --  lsp/autocompletion/snippets
+        -- lsp plugins
+        use { 'neovim/nvim-lspconfig' }
 
-    -- Colorschemes
-    use { 'rebelot/kanagawa.nvim' }              -- literally the best colour scheme in the world
-    use { 'kdheepak/monochrome.nvim' }
-    use { 'navarasu/onedark.nvim' }
-    use { 'tiagovla/tokyodark.nvim' }
+        -- autocompletion
+        use { 'hrsh7th/cmp-nvim-lsp' }
+        use { 'hrsh7th/cmp-path' }
+        use { 'hrsh7th/cmp-buffer' }
+        use { 'hrsh7th/nvim-cmp' }
 
-    use { 'Pocco81/TrueZen.nvim' }
-    use { 'edluffy/hologram.nvim' }
+        -- snippets
+        use { 'dcampos/nvim-snippy' }
+        -- 
 
-    -- cmp plugins
-    use {                                   -- auto completions
-        'hrsh7th/nvim-cmp',
-        config = function()
-            require("plugins.plugins.cmp")
-        end
-    }
-    use { 'hrsh7th/cmp-buffer' }            -- buffer completions
-    use { 'hrsh7th/cmp-path' }              -- path completions
-    use { 'hrsh7th/cmp-cmdline' }           -- cmdline completions
-    use { 'hrsh7th/cmp-nvim-lsp' }          -- lsp completions
-    use { 'saadparwaiz1/cmp_luasnip' }      -- completion for luasnip
-    use { 'hrsh7th/cmp-nvim-lua' }          -- completions for nvim lua api n shit
+        --  utility plugins
+        -- these plugins are all realted to editor configs
+        use { 'nvim-lualine/lualine.nvim' }
+        use { 'kdheepak/tabline.nvim' }
+        use { 'nvim-telescope/telescope.nvim' }
+        
+        use { 
+            'nvim-telescope/telescope-fzf-native.nvim', 
+            run = 'make' 
+        }
+        
+        use { 
+	    'kyazdani42/nvim-tree.lua',
+	    config = function()
+	    	require("configs.nvimtree")
+	    end
+	}
+	
+        use { 'windwp/nvim-autopairs' }
+        use { 'terrortylor/nvim-comment' }
+        use { 'sbdchd/neoformat' }
+        use { 'lewis6991/gitsigns.nvim' }
+        -- 
 
-    -- snippets
-    use { 'L3MON4D3/LuaSnip' }              -- hmm well its snippets for lua
-    use { 'rafamadriz/friendly-snippets' }  -- some more randim snippets
+        --  imporved syntax plugins
+        -- these add in a bit more bling and flair to nvim
+        use { 
+            'nvim-treesitter/nvim-treesitter', 
+            run = ':TSUpdate' 
+        }
+        use { 'goolord/alpha-nvim' }
+        use { 'norcalli/nvim-colorizer.lua' }
+        -- 
 
-    -- LSP
-    use { 'neovim/nvim-lspconfig' }         -- makes it easy to config lsp ig
-    use { 'williamboman/nvim-lsp-installer' } -- i think it just insatalls the lang servers
+        --  themes
+        -- popular themes incoming
+        use { 'rebelot/kanagawa.nvim' }
+        use { 'tiagovla/tokyodark.nvim' }
+        use { 'navarasu/onedark.nvim'}
 
-    -- Telescope
-    use {                                   -- its just telescope (you can like search files with it)
-        'nvim-telescope/telescope.nvim',
-        config = function ()
-           require('plugins.plugins.telescope')
-        end
-    }
-
-    -- sitting on that tree ya know
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        config = function ()
-            require('plugins.plugins.treesitter')
-        end
-    }
-    use { 'p00f/nvim-ts-rainbow' }          -- yay prrrrrty colours
-
-    -- ooooo autopairs *fancy*
-    use {
-        'windwp/nvim-autopairs',
-        config = function ()
-            require('plugins.plugins.autopairs')
-        end
-    }
-
-    -- COMMENTSSSSS!!! woooooooo
-    use { 'numToStr/Comment.nvim' }
-
-    -- Git signs
-    use {
-        'lewis6991/gitsigns.nvim',
-        config = function ()
-            require('plugins.plugins.gitsigns')
-        end
-    }
-
-    -- its a tree
-    use {
-        'kyazdani42/nvim-tree.lua',
-        config = function ()
-            require('plugins.plugins.nvim-tree')
-        end
-    }
-
-    use {
-        'akinsho/bufferline.nvim',
-        config = function()
-            require('plugins.plugins.bufferline')
-        end,
-        branch = 'main'
-    }
-
-    use {
-        'jose-elias-alvarez/null-ls.nvim',
-        config = function ()
-            require('plugins.plugins.null-ls')
-        end
-    }
-
-    use {
-        'akinsho/toggleterm.nvim',
-        config = function ()
-            require('plugins.plugins.toggleterm')
-        end,
-        branch = 'main'
-    }
-
-    use {
-        'nvim-lualine/lualine.nvim',
-        config = function ()
-            require('plugins.plugins.lualine')
-        end
-    }
-
-    use { 'elkowar/yuck.vim' }
-end)
+        --
+    end,
+    -- display packer dialouge in the center in a floating window
+    config = {
+        display = {
+            open_fn = require('packer.util').float,
+        },
+    },
+})
