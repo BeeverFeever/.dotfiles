@@ -1,5 +1,5 @@
 local options = {
-    relativenumber = false,			-- relative line numbers
+    relativenumber = true,			-- relative line numbers
     number = true,         	-- line numbers
     mouse = 'a',       	-- mouse controls
     cursorline = true, 	-- highlight line cursor is in
@@ -7,7 +7,7 @@ local options = {
 
     errorbells = false, 	-- auditory stimulation annoying
     ignorecase = true,
-    scrolloff = 8,  	-- buffer starts scrolling 8 lines from the end of view
+    scrolloff = 22,  	-- buffer starts scrolling 8 lines from the end of view
 
 -- Tab settings
     tabstop = 4,			-- 4 tabstop
@@ -28,6 +28,7 @@ local options = {
 
     termguicolors = true,
 
+    showmode = false,
     conceallevel = 0,
     fileencoding = "utf-8",
     hlsearch = false,
@@ -35,8 +36,9 @@ local options = {
     timeoutlen = 1000,
     updatetime = 300,
     signcolumn = "yes",
-    wrap = false,
+    wrap = true,
     sidescrolloff = 8,
+    clipboard = "unnamedplus",
 }
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"

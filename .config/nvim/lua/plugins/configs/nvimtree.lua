@@ -65,7 +65,7 @@ require'nvim-tree'.setup {
         timeout = 500,
     },
     view = {
-        hide_root_folder = false,
+        hide_root_folder = true,
         width = 30,
         height = 30,
         side = 'left',
@@ -95,10 +95,10 @@ require'nvim-tree'.setup {
             global = true,
         },
         open_file = {
+            window_picker = {
+                enable = false,
+            },
             resize_window = true,
-        },
-        window_picker = {
-            enable = false,
         },
     }
 }

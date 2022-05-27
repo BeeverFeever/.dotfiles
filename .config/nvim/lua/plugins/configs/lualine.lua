@@ -1,17 +1,24 @@
--- lualine setup config
 require('lualine').setup({
 	options = {
-        
-		-- section_separators = { left = scheme.lualine_style_left, right = scheme.lualine_style_right },
-		-- component_separators = { left = scheme.lualine_seperator_left, right = scheme.lualine_seperator_right },
-		theme = 'auto',
+		section_separators = { left = '', right = ''},
+		component_separators = { left = '', right = ''},
+	    disabled_filetypes = {"NvimTree", "Outline", "dashboard"},	
+        theme = 'auto',
 	},
 	sections = {
 		lualine_a = { 'mode' },
-		lualine_b = { 'branch' },
 		lualine_c = { 'filename' },
-		lualine_x = { 'encoding', 'fileformat', 'filetype' },
-		lualine_y = { 'progress' },
-		lualine_z = { 'location' },
+		lualine_b = { 'branch', 'diagnostics' },
+		lualine_x = {},
+		lualine_y = { 'filetype' },
+		lualine_z = { 'location', 'progress' },
 	},
+    inactive_sections = {
+		lualine_a = { 'filename' },
+		lualine_b = {},
+		lualine_c = {},
+		lualine_x = {}, 
+		lualine_y = {},
+		lualine_z = { 'location' },
+    },
 })

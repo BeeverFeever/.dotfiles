@@ -25,8 +25,8 @@ vim.g.maplocalleader = " "
 --  term = "t"
 --  command = "c"
 
-map('', '<C-c>', ':CommentToggle<CR>', opts) -- toggle comment on current line or selection
-map('n', '<leader>t', ':NvimTreeToggle<CR>', opts) -- toggle nvimtree
+map('', '<leader>cc', ':CommentToggle<CR>', opts) -- toggle comment on current line or selection
+map('n', '<leader>e', ':NvimTreeToggle<CR>', opts) -- toggle nvimtree
 map('n', '<leader>nf', ':Neoformat<CR>', opts) -- format current buffer with neoformat
 map('n', '<leader>~', ':Dashboard<CR>', opts) -- map show dashboard
 
@@ -82,8 +82,8 @@ map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
 -- move text up and down
-map("v", "<A-j>", ":m .+1<CR>==", opts)
-map("v", "<A-k>", ":m .-2<CR>==", opts)
+map("v", "<A-j>", ":m .+1<CR>gv-gv", opts)
+map("v", "<A-k>", ":m .-2<CR>gv-gv", opts)
 map("v", "p", "_dp", opts)
 
 --==visual block==--
@@ -94,7 +94,7 @@ map("x", "K", ":move '<-2<CR>gv-gv", opts)
 -- buffer management
 map("n", "<S-l>", ":bnext<CR>", opts)
 map("n", "<S-h>", ":bprevious<CR>", opts)
-map('n', '<leader>bd', ':bd<CR>', opts)
+map('n', '<leader>bd', ":Bdelete<CR>", opts)
 --
 
 -- window navigation

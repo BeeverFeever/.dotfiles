@@ -1,5 +1,6 @@
 require('bufferline').setup({
 	options = {
+        numbers = "none",
 		indicator_icon = '▎',
 		buffer_close_icon = '',
 		modified_icon = '●',
@@ -8,15 +9,17 @@ require('bufferline').setup({
 		right_trunc_marker = '',
 		numbers = 'none',
 		-- mappings = true,
-		close_command = 'bdelete! %d',
-		right_mouse_command = 'bdelete! %d',
+		close_command = function(bufnum)
+            require('bufdelete').bufdelete(bufnum, true)
+        end,
+		right_mouse_command = close_command,
 		left_mouse_command = 'buffer %d',
 		middle_mouse_command = nil,
-		show_close_icon = 'false',
-		seperator_style = 'padded_slant',
+	    show_buffer_icons = true,
+        show_buffer_close_icons = false,
+        show_close_icon = false,
 		diagnostics = 'nvim_lsp',
-		diagnostics_indicator = function(count, level, diagnostics_dict, context)
-			return '(' .. count .. ')'
-		end,
+        offsets = {{filetype = "NvimTree", text = "Its a tree :)", padding = 1, highlight = "Directory"}},
+        always_show_bufferline = true,
 	},
 })

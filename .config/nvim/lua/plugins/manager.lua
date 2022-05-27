@@ -3,7 +3,7 @@ local packer = require('packer')
 vim.cmd [[
     augroup packer_user_config
         autocmd!
-        autocmd BufWritePost plug.lua source <afile> | PackerSync
+        autocmd BufWritePost manager.lua source <afile> | PackerSync
     augroup end
 ]]
 
@@ -18,53 +18,99 @@ packer.startup({
         --  lsp/autocompletion/snippets
         -- lsp plugins
         use { 'neovim/nvim-lspconfig' }
+        use { 'williamboman/nvim-lsp-installer' }
+        use { 'jose-elias-alvarez/null-ls.nvim' }
 
         -- autocompletion
+        use { 
+            'hrsh7th/nvim-cmp',
+            config = function()
+                require('plugins.configs.cmp')
+            end
+        }
         use { 'hrsh7th/cmp-nvim-lsp' }
         use { 'hrsh7th/cmp-path' }
         use { 'hrsh7th/cmp-buffer' }
-        use { 'hrsh7th/nvim-cmp' }
 
         -- snippets
         use { 'dcampos/nvim-snippy' }
-        -- 
+        use { 'dcampos/cmp-snippy' }
 
         --  utility plugins
         -- these plugins are all realted to editor configs
-        use { 'nvim-lualine/lualine.nvim' }
-        use { 'kdheepak/tabline.nvim' }
-        use { 'nvim-telescope/telescope.nvim' }
-        
+        use { 'famiu/bufdelete.nvim'} 
+        use { 
+            'akinsho/bufferline.nvim',
+            config = function()
+                require('plugins.configs.bufferline')
+            end
+        }
+        use { 
+            'nvim-lualine/lualine.nvim',
+            config = function()
+                require('plugins.configs.lualine')
+            end
+        }
+        use { 
+            'nvim-telescope/telescope.nvim',
+            config = function()
+                require('plugins.configs.telescope')
+            end
+        }
         use { 
             'nvim-telescope/telescope-fzf-native.nvim', 
             run = 'make' 
         }
         
         use { 
-	    'kyazdani42/nvim-tree.lua',
-	    config = function()
-	    	require("configs.nvimtree")
-	    end
-	}
+            'kyazdani42/nvim-tree.lua',
+            config = function()
+                require("plugins.configs.nvimtree")
+            end
+	    }
 	
-        use { 'windwp/nvim-autopairs' }
-        use { 'terrortylor/nvim-comment' }
+        use { 
+            'windwp/nvim-autopairs',
+            config = function()
+                require("plugins.configs.autopairs")
+            end
+        }
+        use { 
+            'terrortylor/nvim-comment',
+            config = function()
+                require("plugins.configs.nvimcomment")
+            end
+        }
         use { 'sbdchd/neoformat' }
-        use { 'lewis6991/gitsigns.nvim' }
+        use { 
+            'lewis6991/gitsigns.nvim',
+            config = function()
+                require("plugins.configs.gitsigns")
+            end
+        }
         -- 
 
         --  imporved syntax plugins
         -- these add in a bit more bling and flair to nvim
         use { 
             'nvim-treesitter/nvim-treesitter', 
-            run = ':TSUpdate' 
+            run = ':TSUpdate',
+            config = function()
+                require("plugins.configs.treesitter")
+            end
         }
         use { 'goolord/alpha-nvim' }
-        use { 'norcalli/nvim-colorizer.lua' }
         -- 
 
         --  themes
         -- popular themes incoming
+        use { 
+            'norcalli/nvim-colorizer.lua',
+            config = function()
+                require("plugins.configs.colorizer")
+            end 
+        } 
+
         use { 'rebelot/kanagawa.nvim' }
         use { 'tiagovla/tokyodark.nvim' }
         use { 'navarasu/onedark.nvim'}

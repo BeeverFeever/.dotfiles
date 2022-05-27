@@ -42,7 +42,8 @@ alias ls="ls -p --color"
 alias l="ls -Ap --color"
 alias ll="ls -Ap1 --color"
 
-alias cb="cd .."
+alias ..="cd ../"
+alias ...="cd ../../"
 
 alias shutn="sudo shutdown now"
 
@@ -52,6 +53,7 @@ alias v="nvim"
 #		       keybings
 #----------------------------------------------------
 
+
 # set vim style keybinds
 # bindkey -v
 
@@ -60,7 +62,7 @@ bindkey '^[[Z' autosuggest-accept
 
 # some keybinds for ease of use (very slightly inspired by vim keybinds)
 bindkey '^[ ' backward-kill-word
-bindkey '^[l' clear-screen
+bindkey '^[l' clear-screen() { clear }
 bindkey '^[k' up-line-or-history 
 
 eval "$(starship init zsh)"
