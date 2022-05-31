@@ -38,9 +38,10 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # constant use commands
-alias ls="ls -p --color"
-alias l="ls -Ap --color"
-alias ll="ls -Ap1 --color"
+alias ls="lsd -AF"
+alias l="lsd -AF1"
+alias ll="lsd -AlF --total-size"
+alias lt="lsd --tree"
 
 alias ..="cd ../"
 alias ...="cd ../../"
