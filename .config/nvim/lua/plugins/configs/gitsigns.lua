@@ -1,4 +1,4 @@
-local keymap = require('keymap')
+-- local keymap = require('keymap')
 require('gitsigns').setup({
 	signs = {
 		add = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
@@ -12,7 +12,7 @@ require('gitsigns').setup({
 	linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
 	word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
 
-	keymaps = keymap.gitsigns_mappings,
+	-- keymaps = keymap.gitsigns_mappings,
 
 	watch_gitdir = {
 		interval = 1000,

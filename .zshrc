@@ -21,6 +21,7 @@ autoload -Uz _zinit
 export RANGER_LOAD_DEFAULT_RC=false
 export EDITOR="/usr/bin/nvim"                           # making it point to this path makes it so that i can use my config when using nvim as root usr
 export DATA="/media/data"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 #-----------------------------------------------------
 #		        plugins
@@ -33,6 +34,10 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 # -----------------------------------------------------
 # 			aliases
 # -----------------------------------------------------
+
+fzfb() {
+    fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'
+}
 
 # git
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -50,10 +55,10 @@ alias shutn="sudo shutdown now"
 
 # neovim because im extra lzy lmao
 alias v="nvim"
+
 #-----------------------------------------------------
 #		       keybings
 #----------------------------------------------------
-
 
 # set vim style keybinds
 # bindkey -v
@@ -62,9 +67,9 @@ alias v="nvim"
 bindkey '^[[Z' autosuggest-accept
 
 # some keybinds for ease of use (very slightly inspired by vim keybinds)
-bindkey '^[ ' backward-kill-word
-bindkey '^[l' clear-screen() { clear }
-bindkey '^[k' up-line-or-history 
+bindkey '^H' backward-kill-word
+bindkey '^l' clearscreen() { clear }
+bindkey '^k' up-line-or-history 
 
 eval "$(starship init zsh)"
 

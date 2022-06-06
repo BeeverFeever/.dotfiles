@@ -31,6 +31,14 @@ packer.startup({
         use { 'hrsh7th/cmp-nvim-lsp' }
         use { 'hrsh7th/cmp-path' }
         use { 'hrsh7th/cmp-buffer' }
+        use { 
+            'mickael-menu/zk-nvim',
+            config = function ()
+                require('plugins.configs.zk-nvim')
+            end
+        }
+        use { 'evanleck/vim-svelte' }
+        use { 'othree/html5.vim' } -- needed for vim-svelte
 
         -- snippets
         use { 'dcampos/nvim-snippy' }
