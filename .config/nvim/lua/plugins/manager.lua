@@ -22,7 +22,7 @@ packer.startup({
         use { 'jose-elias-alvarez/null-ls.nvim' }
 
         -- autocompletion
-        use { 
+        use {
             'hrsh7th/nvim-cmp',
             config = function()
                 require('plugins.configs.cmp')
@@ -31,97 +31,118 @@ packer.startup({
         use { 'hrsh7th/cmp-nvim-lsp' }
         use { 'hrsh7th/cmp-path' }
         use { 'hrsh7th/cmp-buffer' }
-        use { 
+        use { 'dcampos/cmp-snippy' }
+        use {
             'mickael-menu/zk-nvim',
-            config = function ()
+            config = function()
                 require('plugins.configs.zk-nvim')
             end
         }
+        use { 'folke/trouble.nvim' } -- config it
+
+        -- webdev
+        use { 'othree/html5.vim' }
+        use { 'pangloss/vim-javascript' }
         use { 'evanleck/vim-svelte' }
-        use { 'othree/html5.vim' } -- needed for vim-svelte
 
         -- snippets
         use { 'dcampos/nvim-snippy' }
-        use { 'dcampos/cmp-snippy' }
 
         --  utility plugins
         -- these plugins are all realted to editor configs
-        use { 'famiu/bufdelete.nvim'} 
-        use { 
+        use { 'famiu/bufdelete.nvim' }
+        use {
             'akinsho/bufferline.nvim',
             config = function()
                 require('plugins.configs.bufferline')
             end
         }
-        use { 
+        use {
             'nvim-lualine/lualine.nvim',
             config = function()
                 require('plugins.configs.lualine')
             end
         }
-        use { 
+
+        -- Telescope stuffs
+        use {
             'nvim-telescope/telescope.nvim',
             config = function()
                 require('plugins.configs.telescope')
             end
         }
-        use { 
-            'nvim-telescope/telescope-fzf-native.nvim', 
-            run = 'make' 
+        use {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            run = 'make'
         }
-        
-        use { 
+
+        use {
             'kyazdani42/nvim-tree.lua',
             config = function()
                 require("plugins.configs.nvimtree")
             end
-	    }
-	
-        use { 
+        }
+
+        use {
             'windwp/nvim-autopairs',
             config = function()
                 require("plugins.configs.autopairs")
             end
         }
-        use { 
+        use {
             'terrortylor/nvim-comment',
             config = function()
                 require("plugins.configs.nvimcomment")
             end
         }
-        use { 'sbdchd/neoformat' }
-        use { 
+        use {
             'lewis6991/gitsigns.nvim',
             config = function()
                 require("plugins.configs.gitsigns")
             end
         }
-        -- 
+        --
 
         --  imporved syntax plugins
         -- these add in a bit more bling and flair to nvim
-        use { 
-            'nvim-treesitter/nvim-treesitter', 
+        use {
+            'nvim-treesitter/nvim-treesitter',
             run = ':TSUpdate',
             config = function()
                 require("plugins.configs.treesitter")
             end
         }
-        use { 'goolord/alpha-nvim' }
-        -- 
+        use {
+            'goolord/alpha-nvim',
+            config = function()
+                require("plugins.configs.alpha")
+            end
+        }
 
-        --  themes
+        -- colourthemes
         -- popular themes incoming
-        use { 
+        use {
             'norcalli/nvim-colorizer.lua',
             config = function()
                 require("plugins.configs.colorizer")
-            end 
-        } 
+            end
+        }
 
-        use { 'rebelot/kanagawa.nvim' }
+        use {
+            'srcery-colors/srcery-vim',
+            config = function()
+                require("plugins.configs.srcery")
+            end
+        }
+        use {
+            'rebelot/kanagawa.nvim',
+            config = function()
+                require("plugins.configs.kanagawa")
+            end
+        }
         use { 'tiagovla/tokyodark.nvim' }
-        use { 'navarasu/onedark.nvim'}
+        use { 'navarasu/onedark.nvim' }
+        use { 'mcchrish/zenbones.nvim' }
 
         --
     end,

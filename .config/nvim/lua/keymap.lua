@@ -108,7 +108,11 @@ map('n', '<leader>zf', '<Cmd>ZkNotes { sort = { "modified" }, match = vim.fn.inp
 map('n', '<leader>zb', '<Cmd>ZkBacklinks<CR>', opts) -- Open notes linking to the current buffer.
 map('n', '<leader>zl', '<Cmd>ZkLinks<CR>', opts) -- Open notes linked by the current buffer.
 
+-- alpha(dashsboard)
+map('n', '<leader>a', ':Alpha<CR>', opts)
+
 -- exit insert mode fast
+map('i', '<C-l>', '<ESC>', opts)
 map('i', 'jk', '<ESC>', opts)
 
 return M

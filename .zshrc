@@ -23,6 +23,8 @@ export EDITOR="/usr/bin/nvim"                           # making it point to thi
 export DATA="/media/data"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+DISABLE_AUTO_TITLE="true"
+
 #-----------------------------------------------------
 #		        plugins
 #-----------------------------------------------------
@@ -77,6 +79,26 @@ eval "$(starship init zsh)"
 [[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
 # <<< xmake <<<
 
-[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env
+#[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env
+
+
+
+# Functions 
+
+function pomo() {
+    arg1=$1
+    shift
+    args="$*"
+
+    min=${arg1:?Example: pomo 15 Take a break}
+    sec=$((min * 60))
+    msg="${args:?Example: pomo 15 Take a break}"
+
+    while true; do
+        date '+%H:%M' && sleep "${sec:?}" && notify-send -u critical -t 0 -a pomo "${msg:?}"
+    done
+}
 
 neofetch
+
+[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env

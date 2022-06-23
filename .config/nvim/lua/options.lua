@@ -1,27 +1,27 @@
 local options = {
-    relativenumber = true,			-- relative line numbers
-    number = true,         	-- line numbers
-    mouse = 'a',       	-- mouse controls
-    cursorline = true, 	-- highlight line cursor is in
+    relativenumber = true, -- relative line numbers
+    number = true, -- line numbers
+    mouse = 'a', -- mouse controls
+    cursorline = true, -- highlight line cursor is in
     numberwidth = 1,
 
-    errorbells = false, 	-- auditory stimulation annoying
+    errorbells = false, -- auditory stimulation annoying
     ignorecase = true,
-    scrolloff = 22,  	-- buffer starts scrolling 8 lines from the end of view
+    scrolloff = 22, -- buffer starts scrolling 8 lines from the end of view
 
--- Tab settings
-    tabstop = 4,			-- 4 tabstop
+    -- Tab settings
+    tabstop = 4, -- 4 tabstop
     shiftwidth = 4,
-    expandtab = true,		-- tabs -> spaces
-    smartindent = true,    -- nice indenting
+    expandtab = true, -- tabs -> spaces
+    smartindent = true, -- nice indenting
 
     foldmethod = 'marker', -- set fold method to marker
 
--- backup/swap files
-    swapfile = false, 	-- have files saved to swap
-    undofile = true,		-- file undo history preserved outside current session
+    -- backup/swap files
+    swapfile = false, -- have files saved to swap
+    undofile = true, -- file undo history preserved outside current session
 
--- new win split options
+    -- new win split options
     splitbelow = true,
     splitright = true,
     completeopt = 'menuone,noselect',
