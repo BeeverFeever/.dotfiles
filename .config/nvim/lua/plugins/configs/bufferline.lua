@@ -1,6 +1,5 @@
 require('bufferline').setup({
 	options = {
-        numbers = "none",
 		indicator_icon = '▎',
 		buffer_close_icon = '',
 		modified_icon = '●',
@@ -9,10 +8,9 @@ require('bufferline').setup({
 		right_trunc_marker = '',
 		numbers = 'none',
 		-- mappings = true,
-		close_command = function(bufnum)
+		right_mouse_command = function(bufnum)
             require('bufdelete').bufdelete(bufnum, true)
         end,
-		right_mouse_command = close_command,
 		left_mouse_command = 'buffer %d',
 		middle_mouse_command = nil,
 	    show_buffer_icons = true,

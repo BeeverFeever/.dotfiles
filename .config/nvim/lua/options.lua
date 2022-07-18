@@ -33,12 +33,17 @@ local options = {
     fileencoding = "utf-8",
     hlsearch = false,
     pumheight = 10,
-    timeoutlen = 1000,
+    timeoutlen = 500,
     updatetime = 300,
     signcolumn = "yes",
     wrap = true,
+    wrapmargin = 80,
+    linebreak = true,
+    breakindent = true,
+    showbreak = "    ",
     sidescrolloff = 8,
     clipboard = "unnamedplus",
+    showcmd = false,
 }
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"

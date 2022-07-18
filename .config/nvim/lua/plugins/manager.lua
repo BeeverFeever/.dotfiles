@@ -40,11 +40,6 @@ packer.startup({
         }
         use { 'folke/trouble.nvim' } -- config it
 
-        -- webdev
-        use { 'othree/html5.vim' }
-        use { 'pangloss/vim-javascript' }
-        use { 'evanleck/vim-svelte' }
-
         -- snippets
         use { 'dcampos/nvim-snippy' }
 
@@ -62,6 +57,9 @@ packer.startup({
             config = function()
                 require('plugins.configs.lualine')
             end
+        }
+        use {
+            'simrat39/symbols-outline.nvim'
         }
 
         -- Telescope stuffs

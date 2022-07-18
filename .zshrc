@@ -18,7 +18,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 
-export RANGER_LOAD_DEFAULT_RC=false
+export LD_LIBRARY_PATH="/usr/local/lib/"
 export EDITOR="/usr/bin/nvim"                           # making it point to this path makes it so that i can use my config when using nvim as root usr
 export DATA="/media/data"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -70,35 +70,8 @@ bindkey '^[[Z' autosuggest-accept
 
 # some keybinds for ease of use (very slightly inspired by vim keybinds)
 bindkey '^H' backward-kill-word
-bindkey '^l' clearscreen() { clear }
-bindkey '^k' up-line-or-history 
 
 eval "$(starship init zsh)"
 
-# >>> xmake >>>
-[[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
-# <<< xmake <<<
-
-#[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env
-
-
-
-# Functions 
-
-function pomo() {
-    arg1=$1
-    shift
-    args="$*"
-
-    min=${arg1:?Example: pomo 15 Take a break}
-    sec=$((min * 60))
-    msg="${args:?Example: pomo 15 Take a break}"
-
-    while true; do
-        date '+%H:%M' && sleep "${sec:?}" && notify-send -u critical -t 0 -a pomo "${msg:?}"
-    done
-}
-
 neofetch
 
-[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env

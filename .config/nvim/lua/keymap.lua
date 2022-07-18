@@ -23,7 +23,7 @@ vim.g.maplocalleader = " "
 
 map('', '<leader>cc', ':CommentToggle<CR>', opts) -- toggle comment on current line or selection
 map('n', '<leader>e', ':NvimTreeToggle<CR>', opts) -- toggle nvimtree
-map('n', '<leader>nf', ':Neoformat<CR>', opts) -- format current buffer with neoformat
+map('n', '<leader>nf', ':Format<CR>', opts) -- format current buffer with neoformat
 map('n', '<leader>~', ':Dashboard<CR>', opts) -- map show dashboard
 map('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 
@@ -92,10 +92,10 @@ map('t', '<C-esc>', '<C-\\><C-n>', opts)
 --
 
 -- telescope pullup
-map('n', '<leader>ff', ':Telescope find_files<CR>', opts)
-map('n', '<leader>fw', ':Telescope live_grep<CR>', opts)
-map('n', '<leader>fg', ':Telescope git_commits<CR>', opts)
-map('n', '<leader>fG', ':Telescope git_branches<CR>', opts)
+map('n', '<leader>tf', ':Telescope find_files<CR>', opts)
+map('n', '<leader>tw', ':Telescope live_grep<CR>', opts)
+map('n', '<leader>tg', ':Telescope git_commits<CR>', opts)
+map('n', '<leader>tG', ':Telescope git_branches<CR>', opts)
 --
 
 map('n', '<leader>s', ':Telescope buffers<CR>', opts)

@@ -6,14 +6,15 @@ require('telescope').setup({
 		-- borderchars = { '═', '│', '═', '│', '╒', '╕', '╛', '╘' },
 		sorting_strategy = "ascending",
 
-		layout_strategy = 'bottom_pane',
+		layout_strategy = 'flex',
 		layout_config = {
-			height = 25,
+			height = 30,
 		},
 		borderchars = {
-			prompt = { '═', ' ', ' ', ' ', '═', '═', ' ', ' ' },
-			results = { ' ' },
-			preview = { ' ', ' ', ' ', '│', '│', ' ', ' ', '│' },
+		    '═', '│', '═', '│', '╒', '╕', '╛', '╘',
+			-- results = { ' ' },
+			-- prompt = { '═', ' ', ' ', ' ', '═', '═', ' ', ' ' },
+			-- preview = { ' ', ' ', ' ', '│', '│', ' ', ' ', '│' },
 		},
 	},
 	extensions = {
