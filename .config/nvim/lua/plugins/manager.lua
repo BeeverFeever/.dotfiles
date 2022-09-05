@@ -73,7 +73,6 @@ packer.startup({
             'nvim-telescope/telescope-fzf-native.nvim',
             run = 'make'
         }
-
         use {
             'kyazdani42/nvim-tree.lua',
             config = function()
@@ -125,13 +124,6 @@ packer.startup({
                 require("plugins.configs.colorizer")
             end
         }
-
-        use {
-            'srcery-colors/srcery-vim',
-            config = function()
-                require("plugins.configs.srcery")
-            end
-        }
         use {
             'rebelot/kanagawa.nvim',
             config = function()
@@ -139,9 +131,9 @@ packer.startup({
             end
         }
         use { 'tiagovla/tokyodark.nvim' }
-        use { 'navarasu/onedark.nvim' }
-        use { 'mcchrish/zenbones.nvim' }
 
+        use { 'gpanders/nvim-parinfer' }
+        use { 'elkowar/yuck.vim' }
         --
     end,
     -- display packer dialouge in the center in a floating window

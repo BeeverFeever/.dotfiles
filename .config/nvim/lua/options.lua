@@ -7,15 +7,16 @@ local options = {
 
     errorbells = false, -- auditory stimulation annoying
     ignorecase = true,
-    scrolloff = 22, -- buffer starts scrolling 8 lines from the end of view
+    scrolloff = 22, -- buffer starts scrolling 22 lines from the end of view
 
     -- Tab settings
     tabstop = 4, -- 4 tabstop
     shiftwidth = 4,
     expandtab = true, -- tabs -> spaces
-    smartindent = true, -- nice indenting
+    -- smartindent = true, -- nice indenting
 
     foldmethod = 'marker', -- set fold method to marker
+    -- foldexpr = 'nvim_treesitter#foldexpr()',
 
     -- backup/swap files
     swapfile = false, -- have files saved to swap
@@ -28,7 +29,7 @@ local options = {
 
     termguicolors = true,
 
-    showmode = false,
+    showmode = true,
     conceallevel = 0,
     fileencoding = "utf-8",
     hlsearch = false,
@@ -37,8 +38,10 @@ local options = {
     updatetime = 300,
     signcolumn = "yes",
     wrap = true,
-    wrapmargin = 80,
+    -- wrapmargin = 80,
     linebreak = true,
+    textwidth = 80,
+    breakat = " !;:,.?",
     breakindent = true,
     showbreak = "    ",
     sidescrolloff = 8,

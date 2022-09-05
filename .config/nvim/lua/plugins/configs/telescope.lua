@@ -1,32 +1,3 @@
-require('telescope').setup({
-	defaults = {
-		prompt_prefix = '=> ',
-		selection_caret = ' > ',
-		entry_prefix = '   ',
-		-- borderchars = { '═', '│', '═', '│', '╒', '╕', '╛', '╘' },
-		sorting_strategy = "ascending",
-
-		layout_strategy = 'flex',
-		layout_config = {
-			height = 30,
-		},
-		borderchars = {
-		    '═', '│', '═', '│', '╒', '╕', '╛', '╘',
-			-- results = { ' ' },
-			-- prompt = { '═', ' ', ' ', ' ', '═', '═', ' ', ' ' },
-			-- preview = { ' ', ' ', ' ', '│', '│', ' ', ' ', '│' },
-		},
-	},
-	extensions = {
-		fzf = {
-			fuzzy = true,
-			override_genearic_sorter = false,
-			override_file_sorter = true,
-			case_mode = 'smart_case',
-		},
-	},
-})
-
 -- ignore files that are larger than a certain size
 local previewers = require('telescope.previewers')
 local new_maker = function(filepath, bufnr, opts)
@@ -47,7 +18,38 @@ end
 
 require('telescope').setup({
 	defaults = {
+		prompt_prefix = '=> ',
+		selection_caret = ' > ',
+		entry_prefix = '   ',
+		-- borderchars = { '═', '│', '═', '│', '╒', '╕', '╛', '╘' },
+		sorting_strategy = "ascending",
+
+		layout_strategy = 'flex',
+		layout_config = {
+			height = 30,
+		},
+		borderchars = {
+		    '═', '│', '═', '│', '╒', '╕', '╛', '╘',
+			-- results = { ' ' },
+			-- prompt = { '═', ' ', ' ', ' ', '═', '═', ' ', ' ' },
+			-- preview = { ' ', ' ', ' ', '│', '│', ' ', ' ', '│' },
+		},
 		buffer_previewer_maker = new_maker,
+        file_ignore_patterns = { "^.git/" },
+        hidden = true,
+	},
+    pickers = {
+        find_files = {
+            hidden = true,
+        },
+    },
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_genearic_sorter = false,
+			override_file_sorter = true,
+			case_mode = 'smart_case',
+		},
 	},
 })
 

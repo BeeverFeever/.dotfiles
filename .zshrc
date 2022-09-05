@@ -58,6 +58,9 @@ alias shutn="sudo shutdown now"
 # neovim because im extra lzy lmao
 alias v="nvim"
 
+alias dp="cd $HOME/dev/projects/"
+alias data="cd /media/data/"
+
 #-----------------------------------------------------
 #		       keybings
 #----------------------------------------------------
@@ -68,10 +71,8 @@ alias v="nvim"
 # zsh-autosuggestions
 bindkey '^[[Z' autosuggest-accept
 
-# some keybinds for ease of use (very slightly inspired by vim keybinds)
 bindkey '^H' backward-kill-word
 
 eval "$(starship init zsh)"
 
 neofetch
-

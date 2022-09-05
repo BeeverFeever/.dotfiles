@@ -58,8 +58,8 @@ require'nvim-tree'.setup {
         },
     },
     filters = {
-        dotfiles = true,
-        custom = {}
+        dotfiles = false,
+        custom = { "^.git$" }
     },
     trash = {
         cmd = "trash",
