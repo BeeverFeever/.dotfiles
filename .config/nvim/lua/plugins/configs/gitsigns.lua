@@ -1,5 +1,9 @@
--- local keymap = require('keymap')
-require('gitsigns').setup({
+local present, gitsigns = pcall(require, "gitsigns")
+if not present then
+  return
+end
+
+gitsigns.setup({
 	signs = {
 		add = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
 		change = { hl = 'GitSignsChange', text = '│', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
@@ -11,9 +15,6 @@ require('gitsigns').setup({
 	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
 	linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
 	word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-
-	-- keymaps = keymap.gitsigns_mappings,
-
 	watch_gitdir = {
 		interval = 1000,
 		follow_files = true,
@@ -22,7 +23,7 @@ require('gitsigns').setup({
 	current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
 	current_line_blame_opts = {
 		virt_text = true,
-		virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+		virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
 		delay = 1000,
 	},
 	current_line_blame_formatter_opts = {
@@ -43,4 +44,8 @@ require('gitsigns').setup({
 	yadm = {
 		enable = false,
 	},
+    -- keymapping
+    on_attach = {
+        require("mapping").gitsigns
+    },
 })

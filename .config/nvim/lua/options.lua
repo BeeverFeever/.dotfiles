@@ -1,60 +1,66 @@
-local options = {
-    relativenumber = true, -- relative line numbers
-    number = true, -- line numbers
-    mouse = 'a', -- mouse controls
-    cursorline = true, -- highlight line cursor is in
-    numberwidth = 1,
+local opt = vim.opt
+local g = vim.g
 
-    errorbells = false, -- auditory stimulation annoying
-    ignorecase = true,
-    scrolloff = 22, -- buffer starts scrolling 22 lines from the end of view
+g.vim_version = vim.version().minor
 
-    -- Tab settings
-    tabstop = 4, -- 4 tabstop
-    shiftwidth = 4,
-    expandtab = true, -- tabs -> spaces
-    -- smartindent = true, -- nice indenting
-
-    foldmethod = 'marker', -- set fold method to marker
-    -- foldexpr = 'nvim_treesitter#foldexpr()',
-
-    -- backup/swap files
-    swapfile = false, -- have files saved to swap
-    undofile = true, -- file undo history preserved outside current session
-
-    -- new win split options
-    splitbelow = true,
-    splitright = true,
-    completeopt = 'menuone,noselect',
-
-    termguicolors = true,
-
-    showmode = true,
-    conceallevel = 0,
-    fileencoding = "utf-8",
-    hlsearch = false,
-    pumheight = 10,
-    timeoutlen = 500,
-    updatetime = 300,
-    signcolumn = "yes",
-    wrap = true,
-    -- wrapmargin = 80,
-    linebreak = true,
-    textwidth = 80,
-    breakat = " !;:,.?",
-    breakindent = true,
-    showbreak = "    ",
-    sidescrolloff = 8,
-    clipboard = "unnamedplus",
-    showcmd = false,
-}
-
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
-vim.opt.shortmess:append "c"
-
-for k, v in pairs(options) do
-    vim.opt[k] = v
+-- use filetype.lua instead of filetype.vim. it's enabled by default in neovim 0.8 (nightly) 
+if g.vim_version < 8 then
+  g.did_load_filetypes = 0
+  g.do_filetype_lua = 1
 end
 
-vim.cmd "set whichwrap+=<,>,[,]"
-vim.cmd [[set iskeyword+=-]]
+opt.laststatus = 3 -- global statusline
+opt.showmode = true
+
+opt.title = true
+opt.clipboard = "unnamedplus"
+opt.cursorline = true
+
+opt.swapfile = false
+
+-- Indenting
+opt.expandtab = true
+opt.shiftwidth = 4
+opt.smartindent = true
+opt.tabstop = 4
+opt.softtabstop = 4
+
+-- opt.fillchars = { eob = " " }
+opt.ignorecase = true
+opt.smartcase = true
+opt.mouse = "a"
+
+-- Numbers
+opt.number = true
+opt.relativenumber = true
+opt.numberwidth = 2
+opt.ruler = false
+
+-- disable nvim intro
+opt.shortmess:append "sI"
+
+opt.signcolumn = "yes"
+opt.splitbelow = true
+opt.splitright = true
+opt.termguicolors = true
+opt.timeoutlen = 400
+opt.undofile = true
+
+opt.showtabline = 0
+
+-- interval for writing swap file to disk, also used by gitsigns
+opt.updatetime = 250
+
+-- go to previous/next line with h,l,left arrow and right arrow
+-- when cursor reaches end/beginning of line
+opt.whichwrap:append "<>[]hl"
+
+opt.breakat = "!;:,.?"
+opt.breakindent = true
+opt.linebreak = true
+opt.showbreak = "   "
+
+opt.textwidth = 80
+opt.scrolloff = 20
+
+g.mapleader = " "

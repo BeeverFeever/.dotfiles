@@ -17,7 +17,8 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
-
+#
+export PATH=/home/beever/.local/bin:$PATH
 export LD_LIBRARY_PATH="/usr/local/lib/"
 export EDITOR="/usr/bin/nvim"                           # making it point to this path makes it so that i can use my config when using nvim as root usr
 export DATA="/media/data"
@@ -25,6 +26,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 DISABLE_AUTO_TITLE="true"
 
+ 
 #-----------------------------------------------------
 #		        plugins
 #-----------------------------------------------------
@@ -57,6 +59,7 @@ alias shutn="sudo shutdown now"
 
 # neovim because im extra lzy lmao
 alias v="nvim"
+alias vn="$HOME/thirdparty/nvim-linux64/bin/nvim"
 
 alias dp="cd $HOME/dev/projects/"
 alias data="cd /media/data/"
@@ -73,6 +76,8 @@ bindkey '^[[Z' autosuggest-accept
 
 bindkey '^H' backward-kill-word
 
+# setup starship prompt
 eval "$(starship init zsh)"
 
+# autorun neofetch
 neofetch

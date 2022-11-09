@@ -10,13 +10,21 @@ super + ctrl + alt + t
 # wm independent hotkeys
 #
 
+
+# super + shift + Return
+#     ~/.scripts/scratchpad.sh title terminal-scratchpad kitty tmux
+
 # terminal emulator
 super + Return
     kitty
 
+super + shift + Return
+    kitty tmux attach
+
 # program launcher
 super + @space
-    rofi -show run
+    $HOME/.config/rofi/launcher/launcher
+#    rofi -show run
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -34,7 +42,6 @@ super + shift + s
 
 super + shift + d
     discord
-
 
 #
 # bspwm hotkeys
@@ -66,7 +73,7 @@ super + y
 
 # set the window state I would keep the fullscreen one here however i dont need
 # it just use monacle
-super + {t,shift + f , f}
+super + {t,u,f}
     bspc node -t {tiled,floating ,fullscreen}
 
 # set the node flags
