@@ -30,6 +30,11 @@ end
 -- toggle numbers (with relative line numbers)
 map('n', '<leader>n', '<cmd>lua require("keymaps").toggle_nums()<CR>', opts)
 
+-- use j and k to move through wrapped lines
+-- gotten from https://stackoverflow.com/questions/20975928/moving-the-cursor-through-long-soft-wrapped-lines-in-vim
+map('n', 'k', 'v:count ? "k" : "gk"', { silent = true, expr = true})
+map('n', 'j', 'v:count ? "j" : "gj"', { silent = true, expr = true})
+
 -- does some pasting magic got it from NvChad
 map('v', 'p', 'p:let @+=@0<CR>:let @"=@0<CR>', opts)
 

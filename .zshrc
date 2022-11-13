@@ -81,3 +81,5 @@ eval "$(starship init zsh)"
 
 # autorun neofetch
 neofetch
+
+[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env

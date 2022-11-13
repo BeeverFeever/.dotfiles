@@ -156,7 +156,12 @@ packer.startup({
         }
 
         -- colorschemes 
-        use { "rebelot/kanagawa.nvim" }
+        use {
+            "rebelot/kanagawa.nvim",
+            config = function ()
+                require("plugins.configs.kanagawa")
+            end
+        }
     end,
 
     config = {
