@@ -26,9 +26,9 @@ vim.cmd [[
 
 packer.startup({
     function(use)
+        use { "wbthomason/packer.nvim" }
         -- some random things that are like should be in every config
         use { "nvim-lua/plenary.nvim", module = "plenary" }
-        use { "wbthomason/packer.nvim" }
         use { "kyazdani42/nvim-web-devicons" }
 
         use { "nvim-treesitter/nvim-treesitter",
@@ -48,54 +48,54 @@ packer.startup({
 
         -- lsp stuff
 
-        use { "williamboman/mason.nvim",
-            config = function()
-                require "plugins.configs.mason"
-            end,
-        }
-
-        use { "williamboman/mason-lspconfig.nvim",
-            after = "mason.nvim",
-        }
-
-        use {"neovim/nvim-lspconfig",
-            after = "mason-lspconfig.nvim",
-            config = function()
-              -- require "plugins.configs.lspconfig"
-              require "lsp"
-            end,
+        -- mason-lspconfig and nvim-lspconfig are setup when the lsp is setup
+        -- with a call from the main init.lua file
+        use { {
+                "williamboman/mason.nvim",
+                config = function()
+                    require "plugins.configs.mason"
+                end,
+            },{
+                "williamboman/mason-lspconfig.nvim",
+                -- after = "mason.nvim",
+            },{
+                "neovim/nvim-lspconfig",
+                -- after = "mason-lspconfig.nvim",
+            }
         }
 
         -- load snippets + cmp related in insert mode only
         use {"dcampos/nvim-snippy",}
 
-        use {"hrsh7th/nvim-cmp",
-          config = function()
-            require "plugins.configs.cmp"
-          end,
+        use {
+            "hrsh7th/nvim-cmp",
+            config = function()
+                require "plugins.configs.cmp"
+            end,
         }
 
-        use {"dcampos/cmp-snippy",
-            after = "nvim-cmp",
+        use { {
+                "hrsh7th/cmp-nvim-lsp",
+                after = "nvim-cmp",
+            },{
+                "dcampos/cmp-snippy",
+                after = "nvim-cmp",
+            },{
+                "hrsh7th/cmp-nvim-lua",
+                after = "nvim-cmp",
+            },{
+                "hrsh7th/cmp-buffer",
+                after = "nvim-cmp",
+            },{
+                "hrsh7th/cmp-path",
+                after = "nvim-cmp",
+            },{
+                "jose-elias-alvarez/null-ls.nvim",
+                config = function ()
+                    require("plugins.lsp.null-ls")
+                end,
+            },
         }
-
-        use {"hrsh7th/cmp-nvim-lua",
-            after = "cmp-snippy",
-        }
-
-        use {"hrsh7th/cmp-nvim-lsp",
-            after = "cmp-nvim-lua",
-        }
-
-        use {"hrsh7th/cmp-buffer",
-            after = "cmp-nvim-lsp",
-        }
-
-        use {"hrsh7th/cmp-path",
-            after = "cmp-buffer",
-        }
-
-        use { "jose-elias-alvarez/null-ls.nvim" }
 
         -- misc plugins
         use {"windwp/nvim-autopairs",
@@ -143,24 +143,36 @@ packer.startup({
         }
 
         -- breadcrumb stuff (i think, i dont really know what breadcrumbs are)
-        use { "SmiteshP/nvim-navic",
-            config = function ()
-                require("plugins.configs.navic")
-            end,
-        }
-
-        use { "fgheng/winbar.nvim",
-            config = function ()
-                require("plugins.configs.winbar")
-            end
+        use { {
+                "SmiteshP/nvim-navic",
+                config = function ()
+                    require("plugins.configs.navic")
+                end,
+            },{
+                "fgheng/winbar.nvim",
+                config = function ()
+                    require("plugins.configs.winbar")
+                end,
+            },
         }
 
         -- colorschemes 
-        use {
-            "rebelot/kanagawa.nvim",
-            config = function ()
-                require("plugins.configs.kanagawa")
-            end
+        use { {
+                "rebelot/kanagawa.nvim",
+                config = function ()
+                    require("plugins.configs.colourschemes.kanagawa")
+                end,
+            },{
+                "EdenEast/nightfox.nvim",
+            },{
+                "tiagovla/tokyodark.nvim",
+            },{
+                "kvrohit/mellow.nvim",
+            },{
+                "yashguptaz/calvera-dark.nvim",
+            },{
+                "shaunsingh/moonlight.nvim",
+            },
         }
     end,
 

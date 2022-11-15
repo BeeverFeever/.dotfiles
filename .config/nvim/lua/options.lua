@@ -15,7 +15,7 @@ opt.showmode = true
 opt.title = true
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
--- opt.background = "dark"
+opt.background = "dark"
 
 opt.swapfile = false
 

@@ -34,6 +34,8 @@ map('n', '<leader>n', '<cmd>lua require("keymaps").toggle_nums()<CR>', opts)
 -- gotten from https://stackoverflow.com/questions/20975928/moving-the-cursor-through-long-soft-wrapped-lines-in-vim
 map('n', 'k', 'v:count ? "k" : "gk"', { silent = true, expr = true})
 map('n', 'j', 'v:count ? "j" : "gj"', { silent = true, expr = true})
+-- map('n', 'k', 'gk', opts);
+-- map('n', 'j', 'gj', opts);
 
 -- does some pasting magic got it from NvChad
 map('v', 'p', 'p:let @+=@0<CR>:let @"=@0<CR>', opts)
