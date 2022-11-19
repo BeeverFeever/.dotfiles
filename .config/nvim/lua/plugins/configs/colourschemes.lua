@@ -1,7 +1,9 @@
-require("kanagawa").setup({
+local kanagawa = require("utils").get_package("kanagawa")
+
+kanagawa.setup({
     undercurl = true,           -- enable undercurls
     commentStyle = { italic = true },
-    functionStyle = { italic = true, bold = true },
+    functionStyle = { bold = true },
     keywordStyle = { italic = true},
     statementStyle = { bold = true },
     typeStyle = {},
@@ -14,5 +16,8 @@ require("kanagawa").setup({
     terminalColors = true,      -- define vim.g.terminal_color_{0,17}
     colors = {},
     overrides = {},
-    theme = "light"           -- Load "default" theme or the experimental "light" theme
+    theme = "default"           -- Load "default" theme or the experimental "light" theme
 })
+
+vim.cmd("colorscheme kanagawa")
+-- require("custom-hl-groups").kanagawa_completion()

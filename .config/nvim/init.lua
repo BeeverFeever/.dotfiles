@@ -1,6 +1,13 @@
-require("options")
-require("plugins.manager")
-require("keymaps")
-require("plugins.lsp")
+if require ("first-run")() then
+    return
+end
 
-vim.cmd("colorscheme kanagawa")
+require("options")
+require("keymaps")
+require("plugins.manager")
+require("lsp")
+
+require("auto-cmds")
+
+require("custom-hl-groups").float_titles()
+require("custom-hl-groups").kanagawa_completion()

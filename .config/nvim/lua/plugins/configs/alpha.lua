@@ -1,7 +1,8 @@
-local present, alpha = pcall(require, "alpha")
-if not present then
-  return
-end
+-- local present, alpha = pcall(require, "alpha")
+-- if not present then
+--   return
+-- end
+local alpha = require("utils").get_package("alpha")
 
 local function button(sc, txt, keybind)
   local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")

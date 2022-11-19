@@ -1,28 +1,4 @@
-local present, packer = pcall(require, "packer")
-if not present then
-    print("could not get packer")
-    return
-end
-
--- make sure packer is installed and if not install it
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
-local packer_bootstrap = ensure_packer()
-
-vim.cmd [[
-    augroup packer_user_config
-        autocmd!
-        autocmd bufwritepost manager.lua source <afile> | 
-    augroup end
-]]
+local packer = require("utils").get_package("packer")
 
 packer.startup({
     function(use)
@@ -31,12 +7,6 @@ packer.startup({
         use { "nvim-lua/plenary.nvim", module = "plenary" }
         use { "kyazdani42/nvim-web-devicons" }
 
-        use { "nvim-treesitter/nvim-treesitter",
-            run = ":tsupdate",
-            config = function()
-              require("plugins.configs.treesitter")
-            end,
-        }
 
         -- git stuff
         use { "lewis6991/gitsigns.nvim",
@@ -52,31 +22,22 @@ packer.startup({
         -- with a call from the main init.lua file
         use { {
                 "williamboman/mason.nvim",
-                config = function()
-                    require "plugins.configs.mason"
-                end,
             },{
                 "williamboman/mason-lspconfig.nvim",
-                -- after = "mason.nvim",
             },{
                 "neovim/nvim-lspconfig",
-                -- after = "mason-lspconfig.nvim",
             }
         }
 
         -- load snippets + cmp related in insert mode only
-        use {"dcampos/nvim-snippy",}
-
-        use {
-            "hrsh7th/nvim-cmp",
-            config = function()
-                require "plugins.configs.cmp"
-            end,
-        }
 
         use { {
+                "hrsh7th/nvim-cmp",
+                config = function()
+                    require "plugins.configs.cmp"
+                end,
+            },{
                 "hrsh7th/cmp-nvim-lsp",
-                after = "nvim-cmp",
             },{
                 "dcampos/cmp-snippy",
                 after = "nvim-cmp",
@@ -90,77 +51,89 @@ packer.startup({
                 "hrsh7th/cmp-path",
                 after = "nvim-cmp",
             },{
+                "dcampos/nvim-snippy",
+            },{
                 "jose-elias-alvarez/null-ls.nvim",
-                config = function ()
-                    require("plugins.lsp.null-ls")
-                end,
             },
         }
 
         -- misc plugins
-        use {"windwp/nvim-autopairs",
-            after = "nvim-cmp",
-            config = function()
-                require("plugins.configs.autopairs")
-            end,
+        use { {
+                "windwp/nvim-autopairs",
+                after = "nvim-cmp",
+                config = function()
+                    require("plugins.configs.autopairs")
+                end,
+            },{"numToStr/Comment.nvim",
+                keys = { "gc", "gb" },
+                config = function()
+                    require("plugins.configs.comment")
+                end,
+            },--[[ {
+                "j-hui/fidget.nvim",
+                config = function ()
+                    require("plugins.configs.fidget")
+                end
+            },{
+                "goolord/alpha-nvim",
+                config = function()
+                    require "plugins.configs.alpha"
+                end,
+            },{ 
+                "famiu/bufdelete.nvim",
+            }, ]]
         }
-
-        use {"goolord/alpha-nvim",
-            disable = true,
-          config = function()
-            require "plugins.configs.alpha"
-          end,
-        }
-
-        use {"numToStr/Comment.nvim",
-          keys = { "gc", "gb" },
-          config = function()
-              require("plugins.configs.comment")
-          end,
-        }
-
-        use { 'j-hui/fidget.nvim',
-            config = function ()
-                require("plugins.configs.fidget")
-            end
-        }
-
-        use { 'famiu/bufdelete.nvim' }
 
         -- file managing , picker etc
-        use {"kyazdani42/nvim-tree.lua",
-          cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-          config = function()
-              require("plugins.configs.nvimtree")
-          end,
+        use { {
+                "kyazdani42/nvim-tree.lua",
+                cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+                config = function()
+                    require("plugins.configs.nvimtree")
+                end,
+            },{
+                "nvim-telescope/telescope.nvim",
+                cmd = "Telescope",
+                config = function()
+                    require "plugins.configs.telescope"
+                end,
+            },{
+                "nvim-treesitter/nvim-treesitter",
+                run = ":tsupdate",
+                config = function()
+                    require("plugins.configs.treesitter")
+                end,
+            },--[[ {
+                -- I'm undecided on this. just like with null-ls. Idk if I
+                -- really need it.
+                "mhartington/formatter.nvim",
+                config = function ()
+                    require("plugins.configs.formatter")
+                end, 
+            }, ]]
         }
 
-        use {"nvim-telescope/telescope.nvim",
-          cmd = "Telescope",
-          config = function()
-              require "plugins.configs.telescope"
-          end,
-        }
-
-        -- breadcrumb stuff (i think, i dont really know what breadcrumbs are)
+        -- breadcrumb stuff 
         use { {
                 "SmiteshP/nvim-navic",
                 config = function ()
                     require("plugins.configs.navic")
                 end,
             },{
-                "fgheng/winbar.nvim",
+                -- TODO: change this back once he merges the pr for navic integration
+                --"fgheng/winbar.nvim",
+                "BeeverFeever/winbar.nvim",
                 config = function ()
                     require("plugins.configs.winbar")
                 end,
             },
         }
 
-        -- colorschemes 
+        -- colorschemes
         use { {
                 "rebelot/kanagawa.nvim",
                 config = function ()
-                    require("plugins.configs.colourschemes.kanagawa")
+                    require("plugins.configs.colourschemes")
                 end,
             },{
                 "EdenEast/nightfox.nvim",

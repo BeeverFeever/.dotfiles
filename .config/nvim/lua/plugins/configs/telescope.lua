@@ -1,8 +1,9 @@
-local present, telescope = pcall(require, "telescope")
+-- local present, telescope = pcall(require, "telescope")
 
-if not present then
-  return
-end
+-- if not present then
+--   return
+-- end
+local telescope = require("utils").get_package("telescope")
 
 local options = {
   defaults = {

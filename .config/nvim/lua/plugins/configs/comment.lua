@@ -1,7 +1,8 @@
-local present, nvim_comment = pcall(require, "Comment")
-if not present then
-    return
-end
+-- local present, nvim_comment = pcall(require, "Comment")
+-- if not present then
+--     return
+-- end
+local nvim_comment = require("utils").get_package("Comment")
 
 nvim_comment.setup {
     padding = true,

@@ -1,0 +1,28 @@
+-- I got this file from TJ's config
+local download_packer = function()
+    if vim.fn.input("Download packer? (y/n)") ~= "y" then
+        return
+    end
+
+    local directory = string.format("%s/site/pack/packer/start/", vim.fn.stdpath("data"))
+
+    vim.fn.mkdir(directory, "p")
+
+    local out = vim.fn.system(string.format("git clone --depth 1 https://github.com/wbthomason/packer.nvim %s", directory .. "packer.nvim"))
+
+    print(out)
+    print("Downloading packer.nvim...")
+    print("( You'll need to restart now )")
+    vim.cmd[[qa]]
+end
+
+return function()
+    if not pcall(require, "packer") then
+	print("testing")
+        download_packer()
+
+        return true
+    end
+
+    return false
+end

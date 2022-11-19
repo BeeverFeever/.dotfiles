@@ -1,16 +1,14 @@
-local present1, autopairs = pcall(require, "nvim-autopairs")
-local present2, cmp = pcall(require, "cmp")
+local autopairs = require("utils").get_package("nvim-autopairs")
+local cmp_autopairs = require("utils").get_package("nvim-autopairs.completion.cmp")
+local cmp = require("utils").get_package("cmp")
 
-if not (present1 and present2) then
-    return
-end
-
-local options = {
+autopairs.setup({
+    check_ts = true,
     fast_wrap = {},
     disable_filetype = { "TelescopePrompt", "vim" },
-}
+})
 
-autopairs.setup(options)
-
-local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+cmp.event:on(
+    "confirm_done",
+    cmp_autopairs.on_confirm_done()
+)

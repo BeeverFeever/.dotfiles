@@ -1,7 +1,4 @@
-local ready, navic = pcall(require, "nvim-navic")
-if not ready then
-    return
-end
+local navic = require("utils").get_package("nvim-navic")
 
 navic.setup {
     -- TODO: setup the icons

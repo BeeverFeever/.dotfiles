@@ -15,7 +15,7 @@ opt.showmode = true
 opt.title = true
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
-opt.background = "dark"
+-- opt.background = "dark"
 
 opt.swapfile = false
 
@@ -40,12 +40,19 @@ opt.ruler = false
 -- disable nvim intro
 opt.shortmess:append "sI"
 
+opt.cmdheight = 1
+
 opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true
 opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
+
+-- folding
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- opt.foldenable = true
 
 opt.showtabline = 0
 
@@ -60,6 +67,9 @@ opt.breakat = "!;:,.?"
 opt.breakindent = true
 opt.linebreak = true
 opt.showbreak = "   "
+
+-- c file stuffs
+
 
 opt.textwidth = 80
 opt.scrolloff = 20

@@ -1,7 +1,4 @@
-local ready, winbar = pcall(require, "winbar")
-if not ready then
-    return 
-end
+local winbar = require("utils").get_package("winbar")
 
 winbar.setup({
     enabled = true,
