@@ -18,8 +18,16 @@ mason_lspconfig.setup_handlers {
         }
     end,
 
+    -- ["clangd"] = function ()
+    --     lspconfig.clangd.setup({
+    --         capabilities = handlers.capabilities,
+    --         on_attach = handlers.on_attach,
+
+    --         offset_encoding = "utf-32",
+    --     })
+    -- end,
     ["sumneko_lua"] = function ()
-        require("lspconfig")["sumneko_lua"].setup {
+        lspconfig.sumneko_lua.setup {
             capabilities = handlers.capabilities,
             on_attach = handlers.on_attach,
             settings = {

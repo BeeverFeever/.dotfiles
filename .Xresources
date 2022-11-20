@@ -1,10 +1,10 @@
-Xft.antialias: 1
-Xft.hinting: 1
-Xft.autohint: 0
-Xft.hintstyle: hintslight
+Xft.dpi: 92x93
+Xft.antialias: true
+Xft.hinting: true
+Xft.autohint: true
+Xft.hintstyle: hintfull
 Xft.rgba: rgba
 Xft.lcdfilter: lcddefault
-Xft.dpi: 92x93
 
 
 ! kanagawa colours

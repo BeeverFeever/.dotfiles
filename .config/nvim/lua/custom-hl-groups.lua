@@ -2,10 +2,12 @@ local M = {}
 
 -- get access to kanagawa colours, this setup only works for kanagawa and I will
 -- have to set this up for other colourschemes
-M.kanagawa_completion = function()
-    if (vim.g.colors_name == "kanagawa") then
+M.kanagawa_colours = function()
+    if vim.g.colors_name == "kanagawa" then
         local colours = require("kanagawa.colors").setup()
         local custom_hl = {
+
+            -- CMP COMPLETION WINDOW --
             PmenuSel = { bg = colours.waveBlue2, fg = "NONE" },
             Pmenu = { fg = colours.fujiWhite, bg = colours.waveBlue1 },
 
@@ -46,6 +48,40 @@ M.kanagawa_completion = function()
             CmpItemKindInterface = { bg = colours.springViolet2, fg = colours.fujiWhite },
             CmpItemKindColor = { bg = colours.springViolet2, fg = colours.fujiWhite },
             CmpItemKindTypeParameter = { bg = colours.springViolet2, fg = colours.fujiWhite },
+
+            -- NAVIC -- 
+            -- the only reason these are here is because it was in the navic
+            -- repo somewhere and i thought why not, if i want to change the
+            -- colour of something i can have it here
+
+            -- NavicIconsFile = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsModule = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsNamespace = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsPackage = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsClass = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsMethod = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsProperty = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsField = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsConstructor = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsEnum = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsInterface = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsFunction = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsVariable = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsConstant = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsString = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsNumber = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsBoolean = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsArray = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsObject = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsKey = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsNull = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsEnumMember = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsStruct = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsEvent = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsOperator = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicIconsTypeParameter = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicText = { default = true, bg = "#000000", fg = "#ffffff" },
+            -- NavicSeparator = { default = true, bg = "#000000", fg = "#ffffff" },
         }
         for group, config in pairs(custom_hl) do
             vim.api.nvim_set_hl(0, group, config)
@@ -53,11 +89,11 @@ M.kanagawa_completion = function()
     end
 end
 
-M.float_titles = function ()
+M.float_titles = function()
     -- to my knowledge there isn't any lua based function to update a hl group
     -- only to completely override them
     -- TODO: fix this when a lua function comes to update hl groups
-    vim.cmd("hi FloatTitle gui=bold,italic")
+    vim.cmd("hi FloatTitle guifg=#FF9E3B gui=italic")
 end
 
 return M

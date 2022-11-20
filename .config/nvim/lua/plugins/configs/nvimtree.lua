@@ -3,10 +3,12 @@ local nvimtree_config = require("utils").get_package("nvim-tree.config")
 local nvimtree_api = require("utils").get_package("nvim-tree.api")
 local tree_cb = nvimtree_config.nvim_tree_callback
 
+local diagnostics_icons = require("utils").get_package("my-globals").diagnostics_icons
+
 local gwidth = vim.api.nvim_list_uis()[1].width
 local gheight = vim.api.nvim_list_uis()[1].height
 local min_width = 20
-local min_height = 40
+local min_height = 20
 
 -- there might be a nicer solution to this but i cant be bothered to think about
 -- it right now
@@ -21,7 +23,7 @@ local new_height = function()
     if (gheight / 2) < min_height then
         return min_height
     else
-        return math.floor(gheight / 2)
+        return math.floor(gheight / 1.5)
     end
 end
 local col = (gwidth / 2) - (new_width() / 2)
@@ -37,8 +39,7 @@ nvimtree.setup({
     create_in_closed_folder = true,
     disable_netrw = true,
     hijack_cursor = false,
-    hijack_netrw = true,
-    hijack_unnamed_buffer_when_opening = false,
+    hijack_netrw = true, hijack_unnamed_buffer_when_opening = false,
     ignore_buffer_on_setup = false,
     open_on_setup = false,
     open_on_setup_file = false,
@@ -83,6 +84,7 @@ nvimtree.setup({
                 row = row,
                 col = col,
                 title = "It's a tree :)",
+                title_pos = "right"
             },
         },
     },
@@ -167,10 +169,10 @@ nvimtree.setup({
         show_on_dirs = true,
         debounce_delay = 50,
         icons = {
-            hint = "H",
-            info = "I",
-            warning = "W",
-            error = "E",
+            hint = diagnostics_icons.hint,
+            info = diagnostics_icons.info,
+            warning = diagnostics_icons.warn,
+            error = diagnostics_icons.error,
         },
     },
     filters = {

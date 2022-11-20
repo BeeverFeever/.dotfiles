@@ -4,33 +4,7 @@ local cmp = require("utils").get_package("cmp")
 vim.opt.completeopt = "menuone,noselect"
 vim.opt.pumheight = 20
 
-local icons = {
-    Text = "",
-    Method = "",
-    Function = "",
-    Constructor = "",
-    Field = "ﰠ",
-    Variable = "",
-    Class = "ﴯ",
-    Interface = "",
-    Module = "",
-    Property = "ﰠ",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "פּ",
-    Event = "",
-    Operator = "",
-    TypeParameter = "",
-}
+local icons = require("utils").get_package("my-globals").icons
 
 -- local has_words_before = function()
 --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))

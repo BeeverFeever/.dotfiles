@@ -12,12 +12,13 @@ end
 opt.laststatus = 3 -- global statusline
 opt.showmode = true
 
-opt.title = true
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 -- opt.background = "dark"
+opt.winblend = require("utils").get_package("my-globals").winblend
 
 opt.swapfile = false
+opt.fileencoding = "utf-8"
 
 -- Indenting
 opt.expandtab = true
@@ -40,8 +41,6 @@ opt.ruler = false
 -- disable nvim intro
 opt.shortmess:append "sI"
 
-opt.cmdheight = 1
-
 opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true
@@ -57,7 +56,7 @@ opt.undofile = true
 opt.showtabline = 0
 
 -- interval for writing swap file to disk, also used by gitsigns
-opt.updatetime = 250
+opt.updatetime = 2000
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
@@ -67,9 +66,6 @@ opt.breakat = "!;:,.?"
 opt.breakindent = true
 opt.linebreak = true
 opt.showbreak = "   "
-
--- c file stuffs
-
 
 opt.textwidth = 80
 opt.scrolloff = 20

@@ -1,11 +1,15 @@
-import XMonad
 import Data.Monoid
 import System.Exit
+
+import XMonad
+import XMonad.Util.Run
+import XMonad.Util.SpawnOnce
+import XMonad.Hooks.ManageDocks
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "kitty"
+myTerminal = "kitty"
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -34,13 +38,10 @@ myFocusedBorderColor = "#ff0000"
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    [ ((modm,               xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run")
-
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -67,7 +68,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_m     ), windows W.focusMaster  )
 
     -- Swap the focused window and the master window
-    , ((modm,               xK_Return), windows W.swapMaster)
+    -- , ((modm,               xK_Return), windows W.swapMaster)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
@@ -155,7 +156,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -188,7 +189,8 @@ myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    , resource  =? "kdesktop"       --> doIgnore 
+    , appName   =? "Toolkit"        --> doFloat ]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -219,17 +221,18 @@ myLogHook = return ()
 -- By default, do nothing.
 -- myStartupHook = return ()
 myStartupHook = do
-    
-picom -b --experimental-backends --config $HOME/.config/picom/picom.conf &
-nitrogen --set-zoom-fill --random --head=0 $HOME/wallpapers/ 
-nitrogen --set-zoom-fill --random --head=1 $HOME/wallpapers/ 
+    spawn "nitrogen --set-zoom-fill --random --head=0 $HOME/wallpapers/"
+    spawn "nitrogen --set-zoom-fill --random --head=1 $HOME/wallpapers/"
+    spawn "picom -b --experimental-backends --config $HOME/.config/picom/picom.conf &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = do 
+    xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"
+    xmonad $ docks defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will

@@ -52,9 +52,9 @@ packer.startup({
                 after = "nvim-cmp",
             },{
                 "dcampos/nvim-snippy",
-            },{
+            },--[[ {
                 "jose-elias-alvarez/null-ls.nvim",
-            },
+            }, ]]
         }
 
         -- misc plugins
@@ -92,12 +92,6 @@ packer.startup({
                     require("plugins.configs.nvimtree")
                 end,
             },{
-                "nvim-telescope/telescope.nvim",
-                cmd = "Telescope",
-                config = function()
-                    require "plugins.configs.telescope"
-                end,
-            },{
                 "nvim-treesitter/nvim-treesitter",
                 run = ":tsupdate",
                 config = function()
@@ -111,6 +105,22 @@ packer.startup({
                     require("plugins.configs.formatter")
                 end, 
             }, ]]
+        }
+
+        -- telescope stuffs
+        use { {
+                "nvim-telescope/telescope.nvim",
+                branch = "0.1.x",
+                -- cmd = "Telescope",
+                config = function()
+                    require "plugins.configs.telescope"
+                end,
+            },{
+                "BurntSushi/ripgrep",
+            },{
+                "nvim-telescope/telescope-fzf-native.nvim",
+                run = 'make',
+            },
         }
 
         -- breadcrumb stuff 
@@ -137,14 +147,19 @@ packer.startup({
                 end,
             },{
                 "EdenEast/nightfox.nvim",
+                disable = true,
             },{
                 "tiagovla/tokyodark.nvim",
+                disable = true,
             },{
                 "kvrohit/mellow.nvim",
+                disable = true,
             },{
                 "yashguptaz/calvera-dark.nvim",
+                disable = true,
             },{
                 "shaunsingh/moonlight.nvim",
+                disable = true,
             },
         }
     end,
@@ -152,6 +167,7 @@ packer.startup({
     config = {
         display = {
             open_fn = require("packer.util").float,
+            prompt_border = "single",
         },
     },
 })

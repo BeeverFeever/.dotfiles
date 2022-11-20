@@ -9,5 +9,8 @@ require("lsp")
 
 require("auto-cmds")
 
-require("custom-hl-groups").float_titles()
-require("custom-hl-groups").kanagawa_completion()
+-- idk why but this doesnt edit the hl group, it only works when being called in
+-- the nvim-tree config file. maybe it only works once nvim-tree has been
+-- required?? but it should be here, if someone by any chance reads this and is
+-- able to figure it out please tell me
+-- require("utils").get_package("custom-hl-groups").float_titles()

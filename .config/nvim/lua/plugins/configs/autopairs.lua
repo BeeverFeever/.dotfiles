@@ -12,3 +12,5 @@ cmp.event:on(
     "confirm_done",
     cmp_autopairs.on_confirm_done()
 )
+
+autopairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
