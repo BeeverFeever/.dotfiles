@@ -1,40 +1,12 @@
 local navic = require("utils").get_package("nvim-navic")
 
 navic.setup {
-    -- TODO: setup the icons
-    highlight = false,
+    highlight = true,
     separator = ">",
     depth_limit = 0,
     depth_limit_indicator = "..",
     safe_output = true,
-    icons = {
-        File = ' ',
-        Module = ' ',
-        Namespace = ' ',
-        Package = ' ',
-        Class = ' ',
-        Method = ' ',
-        Property = ' ',
-        Field = ' ',
-        Constructor = ' ',
-        Enum = ' ',
-        Interface = ' ',
-        Function = ' ',
-        Variable = ' ',
-        Constant = ' ',
-        String = ' ',
-        Number = ' ',
-        Boolean = ' ',
-        Array = ' ',
-        Object = ' ',
-        Key = ' ',
-        Null = ' ',
-        EnumMember = ' ',
-        Struct = ' ',
-        Event = ' ',
-        Operator = ' ',
-        TypeParameter = ' '
-    }
+    icons = require("utils").get_package("my-globals").icons
 }
 
 -- just what the fuck is this?????

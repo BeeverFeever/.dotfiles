@@ -5,27 +5,6 @@ local diagnostics_icons = require("utils").get_package("my-globals")
 
 local M = {}
 
-local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-M.capabilities = cmp_nvim_lsp.default_capabilities(client_capabilities)
-M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-M.capabilities.textDocument.completion.completionItem = {
-    documentationFormat = { "markdown", "plaintext" },
-    snippetSupport = true,
-    preselectSupport = true,
-    insertReplaceSupport = true,
-    labelDetailsSupport = true,
-    deprecatedSupport = true,
-    commitCharactersSupport = true,
-    tagSupport = { valueSet = { 1 } },
-    resolveSupport = {
-        properties = {
-            "documentation",
-            "detail",
-            "additionalTextEdits",
-        },
-    },
-}
 
 M.setup = function()
     local signs = {
@@ -39,8 +18,7 @@ M.setup = function()
     for _, sign in ipairs(signs) do
         vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
     end
-
-    local config = {
+local config = {
         virtual_text = {
             prefix = "",
             --     source = true,
@@ -52,17 +30,17 @@ M.setup = function()
             --     end
         },
         signs = true,
-        update_in_insert = false,
+        update_in_insert = true,
         severity_sort = true,
         underline = true,
-        -- float = {
-        --     focusable = true,
-        --     style = "minimal",
-        --     border = "none",
-        --     source = "always",
-        --     header = "",
-        --     prefix = "",
-        -- }
+        float = {
+            focusable = true,
+            style = "minimal",
+            border = require("utils").get_package("my-globals").border_style,
+            source = "always",
+            header = "",
+            prefix = "",
+        }
     }
 
     vim.diagnostic.config(config)
@@ -82,11 +60,31 @@ M.on_attach = function(client, bufnr)
     -- keymaps
     require("utils").get_package("keymaps").lsp(bufnr)
 
-    -- client.offset_encoding = "utf-32"
-
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
 end
+
+-- local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+-- M.capabilities.textDocument.completion.completionItem = {
+--     documentationFormat = { "markdown", "plaintext" },
+--     snippetSupport = true,
+--     preselectSupport = true,
+--     insertReplaceSupport = true,
+--     labelDetailsSupport = true,
+--     deprecatedSupport = true,
+--     commitCharactersSupport = true,
+--     tagSupport = { valueSet = { 1 } },
+--     resolveSupport = {
+--         properties = {
+--             "documentation",
+--             "detail",
+--             "additionalTextEdits",
+--         },
+--     },
+-- }
 
 return M

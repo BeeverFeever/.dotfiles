@@ -1,6 +1,8 @@
 local handlers = require("lsp.handlers")
+
 local mason = require("utils").get_package("mason")
 local mason_lspconfig = require("utils").get_package("mason-lspconfig")
+
 local lspconfig = require("utils").get_package("lspconfig")
 local lspconfig_util = require("utils").get_package("lspconfig/util")
 

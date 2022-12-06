@@ -43,7 +43,7 @@ gitsigns.setup({
         enable = false,
     },
     -- keymapping
-    on_attach = {
-        require("mapping").gitsigns
-    },
+    on_attach = function ()
+        require("utils").get_package("keymaps").gitsigns()
+    end,
 })

@@ -1,5 +1,5 @@
 local M = {
-    winblend = 20,
+    winblend = 0,
     border_style = "single",
     border_chars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     icons = {

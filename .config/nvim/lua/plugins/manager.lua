@@ -10,7 +10,7 @@ packer.startup({
 
         -- git stuff
         use { "lewis6991/gitsigns.nvim",
-            ft = "gitcommit",
+            -- ft = "gitcommit",
             config = function()
                 require("plugins.configs.gitsigns")
             end,
@@ -52,9 +52,9 @@ packer.startup({
                 after = "nvim-cmp",
             },{
                 "dcampos/nvim-snippy",
-            },--[[ {
+            },{
                 "jose-elias-alvarez/null-ls.nvim",
-            }, ]]
+            },
         }
 
         -- misc plugins
@@ -70,11 +70,6 @@ packer.startup({
                     require("plugins.configs.comment")
                 end,
             },--[[ {
-                "j-hui/fidget.nvim",
-                config = function ()
-                    require("plugins.configs.fidget")
-                end
-            },{
                 "goolord/alpha-nvim",
                 config = function()
                     require "plugins.configs.alpha"
@@ -93,7 +88,7 @@ packer.startup({
                 end,
             },{
                 "nvim-treesitter/nvim-treesitter",
-                run = ":tsupdate",
+                run = ":TSUpdate",
                 config = function()
                     require("plugins.configs.treesitter")
                 end,
@@ -110,10 +105,9 @@ packer.startup({
         -- telescope stuffs
         use { {
                 "nvim-telescope/telescope.nvim",
-                branch = "0.1.x",
-                -- cmd = "Telescope",
+                -- branch = "0.1.x",
                 config = function()
-                    require "plugins.configs.telescope"
+                    require("plugins.configs.telescope")
                 end,
             },{
                 "BurntSushi/ripgrep",
@@ -142,32 +136,33 @@ packer.startup({
         -- colorschemes
         use { {
                 "rebelot/kanagawa.nvim",
-                config = function ()
-                    require("plugins.configs.colourschemes")
-                end,
+                -- config = function ()
+                --     require("plugins.configs.colourschemes").set_theme("kanagawa")
+                -- end,
             },{
                 "EdenEast/nightfox.nvim",
-                disable = true,
             },{
                 "tiagovla/tokyodark.nvim",
-                disable = true,
             },{
                 "kvrohit/mellow.nvim",
-                disable = true,
             },{
                 "yashguptaz/calvera-dark.nvim",
-                disable = true,
             },{
                 "shaunsingh/moonlight.nvim",
-                disable = true,
-            },
+            },{
+                -- TODO: configure this
+                "catppuccin/nvim",
+                -- config = function ()
+                --     require("plugins.configs.colourschemes").set_theme("catppuccin")
+                -- end
+            }
         }
     end,
 
-    config = {
-        display = {
-            open_fn = require("packer.util").float,
-            prompt_border = "single",
-        },
-    },
+    -- config = {
+    --     display = {
+    --         open_fn = require("packer.util").float,
+    --         prompt_border = "single",
+    --     },
+    -- },
 })

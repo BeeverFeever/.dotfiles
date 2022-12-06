@@ -20,6 +20,6 @@ bspc rule -a firefox desktop=^1
 # change from the 'X' cursor when hovering over background
 xsetroot -cursor_name left_ptr
 
-picom -b --experimental-backends --config $HOME/.config/picom/picom.conf &
+picom -b --config $HOME/.config/picom/picom.conf &
 nitrogen --set-zoom-fill --random --head=0 $HOME/wallpapers/ 
 nitrogen --set-zoom-fill --random --head=1 $HOME/wallpapers/ 

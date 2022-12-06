@@ -18,11 +18,8 @@ end
 
 return function()
     if not pcall(require, "packer") then
-	print("testing")
         download_packer()
-
         return true
     end
-
     return false
 end

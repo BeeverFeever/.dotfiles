@@ -20,7 +20,7 @@ local new_width = function()
     end
 end
 local new_height = function()
-    if (gheight / 2) < min_height then
+    if (gheight / 1.5) < min_height then
         return min_height
     else
         return math.floor(gheight / 1.5)
@@ -39,7 +39,8 @@ nvimtree.setup({
     create_in_closed_folder = true,
     disable_netrw = true,
     hijack_cursor = false,
-    hijack_netrw = true, hijack_unnamed_buffer_when_opening = false,
+    hijack_netrw = true,
+    hijack_unnamed_buffer_when_opening = false,
     ignore_buffer_on_setup = false,
     open_on_setup = false,
     open_on_setup_file = false,
@@ -215,7 +216,7 @@ nvimtree.setup({
             quit_on_open = true,
             resize_window = true,
             window_picker = {
-                enable = true,
+                enable = false,
                 chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
                 exclude = {
                     filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
@@ -253,4 +254,3 @@ nvimtree.setup({
         threshold = vim.log.levels.INFO,
     },
 })
-
