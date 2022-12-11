@@ -74,6 +74,30 @@ local function catppuccin(flavour)
     vim.cmd("colorscheme catppuccin")
 end
 
+-- local function gruvbox()
+--     local gruv = require("utils").get_package("gruvbox")
+
+--     gruv.setup({
+--         undercurl = true,
+--         underline = true,
+--         bold = true,
+--         italic = true,
+--         strikethrough = true,
+--         invert_selection = false,
+--         invert_signs = false,
+--         invert_tabline = false,
+--         invert_intend_guides = false,
+--         inverse = true, -- invert background for search, diffs, statuslines and errors
+--         contrast = "", -- can be "hard", "soft" or empty string
+--         palette_overrides = {},
+--         overrides = {},
+--         dim_inactive = false,
+--         transparent_mode = false,
+--     })
+
+--     vim.cmd("colorscheme gruvbox")
+-- end
+
 local M = {}
 
 M.set_theme = function(name, flavour)
@@ -81,6 +105,8 @@ M.set_theme = function(name, flavour)
         kanagawa()
     elseif name == "catppuccin" then
         catppuccin(flavour)
+    -- elseif name == "gruvbox" then
+    --     gruvbox()
     end
 end
 

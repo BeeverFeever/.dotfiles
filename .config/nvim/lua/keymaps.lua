@@ -34,7 +34,7 @@ local mappings = {
     { "v", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', default_opts },
 
     -- nvim tree
-    { "n", "<leader>t", "<cmd> NvimTreeToggle <CR>", default_opts },
+    { "n", "<leader>s", "<cmd> NvimTreeToggle <CR>", default_opts },
 
     -- move text around
     { "x", "<S-j>", ":m '>+1<CR>gv-gv", default_opts },

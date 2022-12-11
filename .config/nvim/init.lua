@@ -10,7 +10,8 @@ require("lsp")
 require("auto-cmds")
 
 -- for catppuccin provide a flavour as the second argument
-require("plugins.configs.colourschemes").set_theme("catppuccin", "mocha")
+-- require("plugins.configs.colourschemes").set_theme("gruvbox")
+-- vim.cmd("colorscheme gruvbox")
 
 -- idk why but this doesnt edit the hl group, it only works when being called in
 -- the nvim-tree config file. maybe it only works once nvim-tree has been

@@ -24,6 +24,21 @@ export EDITOR="/usr/bin/nvim"                           # making it point to thi
 export DATA="/media/data"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+# rwxrob's config
+export LESS="-FXR"
+export LESS_TERMCAP_mb="[35m" # magenta
+export LESS_TERMCAP_md="[33m" # yellow
+export LESS_TERMCAP_me="" # "0m"
+export LESS_TERMCAP_se="" # "0m"
+export LESS_TERMCAP_so="[34m" # blue
+export LESS_TERMCAP_ue="" # "0m"
+export LESS_TERMCAP_us="[4m" # underline
+
+if [[ -x /usr/bin/lesspipe ]]; then
+  export LESSOPEN="| /usr/bin/lesspipe %s";
+  export LESSCLOSE="/usr/bin/lesspipe %s %s";
+fi
+
 DISABLE_AUTO_TITLE="true"
 
  
@@ -39,27 +54,25 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 # 			aliases
 # -----------------------------------------------------
 
-fzfb() {
-    fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'
-}
+#alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+alias fzf='fzf --preview "less --use-color"'
 
 # git
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # constant use commands
-alias ls="lsd -AF"
-alias l="lsd -AF1"
-alias ll="lsd -AlF --total-size"
-alias lt="lsd --tree"
+# alias ls="lsd -AF"
+# alias l="lsd -AF1"
+# alias ll="lsd -AlF --total-size"
+# alias lt="lsd --tree"
 
 alias ..="cd ../"
 alias ...="cd ../../"
 
-alias shutn="sudo shutdown now"
+alias shutn="shutdown now"
 
 # neovim because im extra lzy lmao
 alias v="nvim"
-alias vn="$HOME/thirdparty/nvim-linux64/bin/nvim"
 
 alias data="cd /media/data/"
 

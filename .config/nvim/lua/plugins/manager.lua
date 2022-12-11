@@ -155,7 +155,23 @@ packer.startup({
                 -- config = function ()
                 --     require("plugins.configs.colourschemes").set_theme("catppuccin")
                 -- end
-            }
+            },{
+                "morhetz/gruvbox",
+            },
+        }
+
+        -- plugins that I am either trying or just 'other'
+        use { --{
+            -- "simrat29/symbols-outline.nvim",
+            -- config = function ()
+            --     require("plugins.configs.symbols-outline")
+            -- end
+            -- },
+            "~/projects/nvim-ide/",
+            branch = "better_logging",
+            config = function ()
+                require("plugins.configs.nvim-ide")
+            end,
         }
     end,
 
