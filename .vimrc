@@ -89,6 +89,8 @@ set icon
 set hlsearch
 set incsearch
 set linebreak
+set breakindent
+set showbreak="~>"
 
 " avoid most of the 'Hit Enter ...' messages
 set shortmess=aoOtTI

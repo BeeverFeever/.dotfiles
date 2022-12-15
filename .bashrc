@@ -21,11 +21,11 @@ _source_if() { [[ -r "$1" ]] && source "$1"; }
 #                           (also see envx)
 
 export USER="${USER:-$(whoami)}"
-export GITUSER="$USER"
-export REPOS="$HOME/Repos"
+export GITUSER="BeeverFeever"
+export REPOS="$HOME/projects"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dot"
-export SCRIPTS="$DOTFILES/scripts"
+export SCRIPTS="$HOME/scripts"
 export SNIPPETS="$DOTFILES/snippets"
 export HELP_BROWSER=lynx
 export DESKTOP="$HOME/Desktop"
@@ -46,11 +46,11 @@ export CLIP_DIR="$VIDEOS/Clips"
 export CLIP_DATA="$GHREPOS/cmd-clip/data"
 export CLIP_VOLUME=0
 export CLIP_SCREEN=0
-export TERM=xterm-256color
+export TERM=kitty
 export HRULEWIDTH=73
-export EDITOR=vi
-export VISUAL=vi
-export EDITOR_PREFIX=vi
+export EDITOR=vim
+export VISUAL="$EDITOR"
+export EDITOR_PREFIX=vim
 export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
 export GOPATH="$HOME/.local/share/go"
 export GOBIN="$HOME/.local/bin"
@@ -62,20 +62,13 @@ export CFLAGS="-Wall -Wextra -Werror -O0 -g -fsanitize=address -fno-omit-frame-p
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.service"
 
 export LESS="-FXR"
-export LESS_TERMCAP_mb="[35m" # magenta
-export LESS_TERMCAP_md="[33m" # yellow
-export LESS_TERMCAP_me="" # "0m"
-export LESS_TERMCAP_se="" # "0m"
-export LESS_TERMCAP_so="[34m" # blue
-export LESS_TERMCAP_ue="" # "0m"
-export LESS_TERMCAP_us="[4m"  # underline
-
-export ANSIBLE_CONFIG="$HOME/.config/ansible/config.ini"
-export ANSIBLE_INVENTORY="$HOME/.config/ansible/inventory.yaml"
-export ANSIBLE_LOAD_CALLBACK_PLUGINS=1
-#export ANSIBLE_STDOUT_CALLBACK=json
-
-#export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
+export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
+export LESS_TERMCAP_so=$'\e[1;3;37m'   # begin reverse video
+export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
+export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
+export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
+export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 
 [[ -d /.vim/spell ]] && export VIMSPELL=("$HOME/.vim/spell/*.add")
 
@@ -199,17 +192,12 @@ __ps1() {
   [[ $B == master || $B == main ]] && b="$r"
   [[ -n "$B" ]] && B="$g($b$B$g)"
 
-  short="$w$dir$B$p $P$x "
-  #short="$u\u$g$PROMPT_AT$h\h$g:$w$dir$B$p$P$x "
-  long="$g╔ $w$dir$B\n$g╚ $p$P$x "
-  double="$g╔ $w$dir\n$g║ $B\n$g╚ $p$P$x "
-  #long="$g╔ $u\u$g$PROMPT_AT$h\h$g:$w$dir$B\n$g╚ $p$P$x "
-  #double="$g╔ $u\u$g$PROMPT_AT$h\h$g:$w$dir\n$g║ $B\n$g╚ $p$P$x "
+  short="$u\u$g$PROMPT_AT$h\h$g:$w$dir$B$p$P$x "
+  long="$g╔ $u\u$g$PROMPT_AT$h\h$g:$w$dir$B\n$g╚ $p$P$x "
+  double="$g╔ $u\u$g$PROMPT_AT$h\h$g:$w$dir\n$g║ $B\n$g╚ $p$P$g$x "
 
   if (( ${#countme} > PROMPT_MAX )); then
     PS1="$double"
-  elif (( ${#countme} > PROMPT_LONG )); then
-    PS1="$long"
   else
     PS1="$long"
   fi
@@ -241,15 +229,11 @@ alias tree='tree -a'
 alias df='df -h'
 alias chmox='chmod +x'
 alias diff='diff --color'
-alias sshh='sshpass -f $HOME/.sshpass ssh '
 alias temp='cd $(mktemp -d)'
-alias view='vi -R' # which is usually linked to vim
+alias view='vim -R'
 alias clear='printf "\e[H\e[2J"'
 alias c='printf "\e[H\e[2J"'
-alias coin="clip '(yes|no)'"
 alias grep="pcregrep"
-alias iam=live
-alias neo="neo -D -c gold"
 alias more="less"
 alias kn="keg"
 
@@ -340,36 +324,18 @@ for i in "${owncomp[@]}"; do complete -C "$i" "$i"; done
 
 _have gh && . <(gh completion -s bash)
 _have pandoc && . <(pandoc --bash-completion)
-_have kubectl && . <(kubectl completion bash 2>/dev/null)
+#_have kubectl && . <(kubectl completion bash 2>/dev/null)
 #_have spotify && . <(spotify completion bash 2>/dev/null)
 #_have clusterctl && . <(clusterctl completion bash)
 _have k && complete -o default -F __start_kubectl k
 _have kind && . <(kind completion bash)
-_have kompose && . <(kompose completion bash)
-_have helm && . <(helm completion bash)
-_have minikube && . <(minikube completion bash)
-_have conftest && . <(conftest completion bash)
-_have mk && complete -o default -F __start_minikube mk
-_have podman && _source_if "$HOME/.local/share/podman/completion" # d
+#_have kompose && . <(kompose completion bash)
+#_have helm && . <(helm completion bash)
+#_have minikube && . <(minikube completion bash)
+#_have conftest && . <(conftest completion bash)
+#_have mk && complete -o default -F __start_minikube mk
+#_have podman && _source_if "$HOME/.local/share/podman/completion" # d
 _have docker && _source_if "$HOME/.local/share/docker/completion" # d
 _have docker-compose && complete -F _docker_compose dc # dc
 
-_have ansible && . <(register-python-argcomplete3 ansible)
-_have ansible-config && . <(register-python-argcomplete3 ansible-config)
-_have ansible-console && . <(register-python-argcomplete3 ansible-console)
-_have ansible-doc && . <(register-python-argcomplete3 ansible-doc)
-_have ansible-galaxy && . <(register-python-argcomplete3 ansible-galaxy)
-_have ansible-inventory && . <(register-python-argcomplete3 ansible-inventory)
-_have ansible-playbook && . <(register-python-argcomplete3 ansible-playbook)
-_have ansible-pull && . <(register-python-argcomplete3 ansible-pull)
-_have ansible-vault && . <(register-python-argcomplete3 ansible-vault)
 #_have ssh-agent && test -z "$SSH_AGENT_PID" && . <(ssh-agent)
-
-# -------------------- personalized configuration --------------------
-
-_source_if "$HOME/.bash_personal"
-_source_if "$HOME/.bash_private"
-_source_if "$HOME/.bash_work"
-
-_have terraform && complete -C /usr/bin/terraform terraform
-_have terraform && complete -C /usr/bin/terraform tf

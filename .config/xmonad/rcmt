@@ -1,6 +1,0 @@
-#!/bin/sh
-
-while IFS= read -r line; do
-  #echo "${line//1-#/''} $line"
-  sed -i "s/${1-#}/test" line
-done
