@@ -1,25 +1,37 @@
-local function kanagawa()
+local function kanagawa(flavour)
     local kana = require("utils").get_package("kanagawa")
 
     kana.setup({
+        compile = false,
         undercurl = true, -- enable undercurls
         commentStyle = { italic = true },
         functionStyle = { bold = true },
         keywordStyle = { italic = true },
         statementStyle = { bold = true },
         typeStyle = {},
-        variablebuiltinStyle = { italic = true },
-        specialReturn = true, -- special highlight for the return keyword
-        specialException = false, -- special highlight for exception handling keywords
         transparent = false, -- do not set background color
         dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-        globalStatus = false, -- adjust window separators highlight for laststatus=3
         terminalColors = true, -- define vim.g.terminal_color_{0,17}
-        colors = {},
-        overrides = {},
-        theme = "dragon" -- Load "default" theme or the experimental "light" theme
+        colors = {
+            theme = {
+                all = {
+                    ui = {
+                        bg_gutter = "none"
+                    }
+                }
+            }
+        },
+        overrides = function()
+            return {}
+        end,
+        theme = flavour,
+        background = {
+            dark = "dragon",
+            light = "lotus",
+        }
     })
 
+    -- vim.o.colorscheme = "kanagawa"
     vim.cmd("colorscheme kanagawa")
     require("custom-hl-groups").kanagawa_colours()
 end
@@ -74,29 +86,33 @@ local function catppuccin(flavour)
     vim.cmd("colorscheme catppuccin")
 end
 
--- local function gruvbox()
---     local gruv = require("utils").get_package("gruvbox")
+local function gruvbox()
+    local gruv = require("utils").get_package("gruvbox")
 
---     gruv.setup({
---         undercurl = true,
---         underline = true,
---         bold = true,
---         italic = true,
---         strikethrough = true,
---         invert_selection = false,
---         invert_signs = false,
---         invert_tabline = false,
---         invert_intend_guides = false,
---         inverse = true, -- invert background for search, diffs, statuslines and errors
---         contrast = "", -- can be "hard", "soft" or empty string
---         palette_overrides = {},
---         overrides = {},
---         dim_inactive = false,
---         transparent_mode = false,
---     })
+    gruv.setup({
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = true,
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_intend_guides = false,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = "", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = false,
+    })
 
---     vim.cmd("colorscheme gruvbox")
--- end
+    vim.cmd("colorscheme gruvbox")
+end
+
+local function gruberDarker()
+    vim.cmd("colorscheme GruberDarker")
+end
 
 local M = {}
 
@@ -105,8 +121,10 @@ M.set_theme = function(name, flavour)
         kanagawa()
     elseif name == "catppuccin" then
         catppuccin(flavour)
-    -- elseif name == "gruvbox" then
-    --     gruvbox()
+    elseif name == "gruberDarker" then
+        gruberDarker()
+    elseif name == "gruvbox" then
+        gruvbox()
     end
 end
 

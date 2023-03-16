@@ -3,14 +3,8 @@
 
 case $- in
 *i*) ;; # interactive
-*) return ;; 
+*) return ;;
 esac
-
-# ------------------------- distro detection -------------------------
-
-export DISTRO
-[[ $(uname -r) =~ Microsoft ]] && DISTRO=WSL2 #TODO distinguish WSL1
-#TODO add the rest
 
 # ---------------------- local utility functions ---------------------
 
@@ -21,67 +15,14 @@ _source_if() { [[ -r "$1" ]] && source "$1"; }
 #                           (also see envx)
 
 export USER="${USER:-$(whoami)}"
-export GITUSER="BeeverFeever"
-export REPOS="$HOME/projects"
-export GHREPOS="$REPOS/github.com/$GITUSER"
-export DOTFILES="$GHREPOS/dot"
-export SCRIPTS="$HOME/scripts"
-export SNIPPETS="$DOTFILES/snippets"
-export HELP_BROWSER=lynx
-export DESKTOP="$HOME/Desktop"
-export DOCUMENTS="$HOME/Documents"
-export DOWNLOADS="$HOME/Downloads"
-export TEMPLATES="$HOME/Templates"
-export PUBLIC="$HOME/Public"
-export PRIVATE="$HOME/Private"
-export PICTURES="$HOME/Pictures"
-export MUSIC="$HOME/Music"
-export VIDEOS="$HOME/Videos"
-export PDFS="$HOME/usb/pdfs"
-export VIRTUALMACHINES="$HOME/VirtualMachines"
-export WORKSPACES="$HOME/Workspaces" # container home dirs for mounting
-export ZETDIR="$GHREPOS/zet"
-export ZETTELCASTS="$VIDEOS/ZettelCasts"
-export CLIP_DIR="$VIDEOS/Clips"
-export CLIP_DATA="$GHREPOS/cmd-clip/data"
-export CLIP_VOLUME=0
-export CLIP_SCREEN=0
 export TERM=kitty
-export HRULEWIDTH=73
-export EDITOR=vim
+export EDITOR=nvim
 export VISUAL="$EDITOR"
 export EDITOR_PREFIX=vim
-export GOPRIVATE="github.com/$GITUSER/*,gitlab.com/$GITUSER/*"
 export GOPATH="$HOME/.local/share/go"
 export GOBIN="$HOME/.local/bin"
-export GOPROXY=direct
-export CGO_ENABLED=0
-export PYTHONDONTWRITEBYTECODE=2
-export LC_COLLATE=C
-export CFLAGS="-Wall -Wextra -Werror -O0 -g -fsanitize=address -fno-omit-frame-pointer -finstrument-functions"
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.service"
-
-export LESS="-FXR"
-export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
-export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
-export LESS_TERMCAP_so=$'\e[1;3;37m'   # begin reverse video
-export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
-export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
-export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
-export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 
 [[ -d /.vim/spell ]] && export VIMSPELL=("$HOME/.vim/spell/*.add")
-
-# -------------------------------- gpg -------------------------------
-
-export GPG_TTY=$(tty)
-
-# ------------------------------- pager ------------------------------
-
-if [[ -x /usr/bin/lesspipe ]]; then
-  export LESSOPEN="| /usr/bin/lesspipe %s";
-  export LESSCLOSE="/usr/bin/lesspipe %s %s";
-fi
 
 # ----------------------------- dircolors ----------------------------
 
@@ -95,52 +36,7 @@ fi
 
 # ------------------------------- path -------------------------------
 
-pathappend() {
-  declare arg
-  for arg in "$@"; do
-    test -d "$arg" || continue
-    PATH=${PATH//":$arg:"/:}
-    PATH=${PATH/#"$arg:"/}
-    PATH=${PATH/%":$arg"/}
-    export PATH="${PATH:+"$PATH:"}$arg"
-  done
-} && export -f pathappend
-
-pathprepend() {
-  for arg in "$@"; do
-    test -d "$arg" || continue
-    PATH=${PATH//:"$arg:"/:}
-    PATH=${PATH/#"$arg:"/}
-    PATH=${PATH/%":$arg"/}
-    export PATH="$arg${PATH:+":${PATH}"}"
-  done
-} && export -f pathprepend
-
-# remember last arg will be first in path
-pathprepend \
-  "$HOME/.local/bin" \
-  "$HOME/.nimble/bin" \
-  "$GHREPOS/cmd-"* \
-  /usr/local/go/bin \
-  /usr/local/opt/openjdk/bin \
-  /usr/local/bin \
-  "$SCRIPTS" 
-
-pathappend \
-  /usr/local/opt/coreutils/libexec/gnubin \
-  /usr/local/bin \
-  /usr/local/sbin \
-  /usr/local/games \
-  /usr/games \
-  /usr/sbin \
-  /usr/bin \
-  /snap/bin \
-  /sbin \
-  /bin
-
-# ------------------------------ cdpath ------------------------------
-
-export CDPATH=".:$GHREPOS:$DOTFILES:$REPOS:/media/$USER:$HOME"
+export PATH="$HOME/scripts:$HOME/.local/bin:$HOME/.emacs.d/bin/:$HOME/programs/neovim-bin/bin:$PATH"
 
 # ------------------------ bash shell options ------------------------
 
@@ -171,13 +67,9 @@ shopt -s histappend
 # --------------------------- smart prompt ---------------------------
 #                 (keeping in bashrc for portability)
 
-PROMPT_LONG=20
-PROMPT_MAX=95
-PROMPT_AT=@
-
 __ps1() {
-  local P='$' dir="${PWD##*/}" B countme short long double\
-    r='\[\e[31m\]' g='\[\e[30m\]' h='\[\e[34m\]' \
+  local P='$' dir="${PWD##*/}" B prompt\
+    r='\[\e[31m\]' gr='\[\e[32m\]' g='\[\e[30m\]' h='\[\e[34m\]' \
     u='\[\e[33m\]' p='\[\e[34m\]' w='\[\e[35m\]' \
     b='\[\e[36m\]' x='\[\e[0m\]'
 
@@ -187,155 +79,41 @@ __ps1() {
 
   B=$(git branch --show-current 2>/dev/null)
   [[ $dir = "$B" ]] && B=.
-  countme="$USER$PROMPT_AT:$dir($B)\$ "
 
   [[ $B == master || $B == main ]] && b="$r"
   [[ -n "$B" ]] && B="$g($b$B$g)"
 
-  short="$u\u$g$PROMPT_AT$h\h$g:$w$dir$B$p$P$x "
-  long="$g╔ $u\u$g$PROMPT_AT$h\h$g:$w$dir$B\n$g╚ $p$P$x "
-  double="$g╔ $u\u$g$PROMPT_AT$h\h$g:$w$dir\n$g║ $B\n$g╚ $p$P$g$x "
-
-  if (( ${#countme} > PROMPT_MAX )); then
-    PS1="$double"
-  else
-    PS1="$long"
-  fi
+  short="$u\u$g@$h\h$g:$w$dir$B$p$P$x "
+  long="$g╔ $u\u$g@$h\h$g:$w$dir$B\n$g╚ $p$P$x "
+  double="$g╔ $u\u$g@$H\h$g:$w$dir\n$g║ $B\n$g╚ $p$P$g$x "
+  prompt="$g╔ $w$PWD $h$B\n$g╚$gr 00¬$x "
+  PS1="$prompt"
 }
 
 PROMPT_COMMAND="__ps1"
-
-# ----------------------------- keyboard -----------------------------
-
-# only works if you have X and are using graphic Linux desktop
-
-#_have setxkbmap && test -n "$DISPLAY" && \
-#  setxkbmap -option caps:escape &>/dev/null
-
-# ------------------------------ aliases -----------------------------
-#      (use exec scripts instead, which work from vim and subprocs)
 
 unalias -a
 alias ip='ip -c'
 alias '?'=duck
 alias '??'=google
 alias '???'=bing
-alias dot='cd $DOTFILES'
-alias scripts='cd $SCRIPTS'
-alias snippets='cd $SNIPPETS'
 alias ls='ls -h --color=auto'
 alias free='free -h'
 alias tree='tree -a'
 alias df='df -h'
 alias chmox='chmod +x'
 alias diff='diff --color'
-alias temp='cd $(mktemp -d)'
 alias view='vim -R'
+alias vi="vim"
+alias nv="$HOME/programs/neovim-bin/bin/nvim"
 alias clear='printf "\e[H\e[2J"'
 alias c='printf "\e[H\e[2J"'
 alias grep="pcregrep"
 alias more="less"
-alias kn="keg"
-
 alias shutn="shutdown now"
-alias nv="$HOME/programs/neovim-bin/bin/nvim"
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias side="cd $HOME/projects/side/"
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-zet() {
-  KEG_CURRENT=zet keg "$@"
-} && export -f zet
-
-_have vim && alias vi=vim
-
-# ----------------------------- functions ----------------------------
-
-# lesscoloroff() {
-#   while IFS= read -r line; do
-#     unset ${line%%=*}
-#   done < <(env | grep LESS_TERM)
-# } && export -f lesscoloroff
-
-envx() {
-  local envfile="${1:-"$HOME/.env"}"
-  [[ ! -e "$envfile" ]] && echo "$envfile not found" && return 1
-  while IFS= read -r line; do
-    name=${line%%=*}
-    value=${line#*=}
-    [[ -z "${name}" || $name =~ ^# ]] && continue
-    export "$name"="$value"
-  done < "$envfile"
-} && export -f envx
-
-[[ -e "$HOME/.env" ]] && envx "$HOME/.env"
-
-new-from() {
-  local template="$1"
-  local name="$2"
-  ! _have gh && echo "gh command not found" && return 1
-  [[ -z "$name" ]] && echo "usage: $0 <name>" && return 1
-  [[ -z "$GHREPOS" ]] && echo "GHREPOS not set" && return 1
-  [[ ! -d "$GHREPOS" ]] && echo "Not found: $GHREPOS" && return 1
-  cd "$GHREPOS" || return 1
-  [[ -e "$name" ]] && echo "exists: $name" && return 1
-  gh repo create -p "$template" --public "$name"
-  gh repo clone "$name"
-  cd "$name" || return 1
-}
-
-new-bonzai() { new-from rwxrob/bonzai-example "$1"; }
-new-cmd() { new-from rwxrob/template-bash-command "cmd-$1"; }
-cdz () { cd $(zet get "$@"); }
-
-export -f new-from new-bonzai new-cmd
-
-clone() {
-  local repo="$1" user
-  local repo="${repo#https://github.com/}"
-  local repo="${repo#git@github.com:}"
-  if [[ $repo =~ / ]]; then
-    user="${repo%%/*}"
-  else
-    user="$GITUSER"
-    [[ -z "$user" ]] && user="$USER"
-  fi
-  local name="${repo##*/}"
-  local userd="$REPOS/github.com/$user"
-  local path="$userd/$name"
-  [[ -d "$path" ]] && cd "$path" && return
-  mkdir -p "$userd"
-  cd "$userd"
-  echo gh repo clone "$user/$name" -- --recurse-submodule
-  gh repo clone "$user/$name" -- --recurse-submodule
-  cd "$name"
-} && export -f clone
-
-# ------------- source external dependencies / completion ------------
-
-# for mac
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-owncomp=(
-  pdf md zet keg kn yt gl auth pomo config live iam sshkey ws x z clip
-  ./build build b ./k8sapp k8sapp ./setup ./cmd run ./run
-  foo ./foo cmds ./cmds z bonzai openapi
-)
-
-for i in "${owncomp[@]}"; do complete -C "$i" "$i"; done
-
-_have gh && . <(gh completion -s bash)
-_have pandoc && . <(pandoc --bash-completion)
-#_have kubectl && . <(kubectl completion bash 2>/dev/null)
-#_have spotify && . <(spotify completion bash 2>/dev/null)
-#_have clusterctl && . <(clusterctl completion bash)
-_have k && complete -o default -F __start_kubectl k
-_have kind && . <(kind completion bash)
-#_have kompose && . <(kompose completion bash)
-#_have helm && . <(helm completion bash)
-#_have minikube && . <(minikube completion bash)
-#_have conftest && . <(conftest completion bash)
-#_have mk && complete -o default -F __start_minikube mk
-#_have podman && _source_if "$HOME/.local/share/podman/completion" # d
-_have docker && _source_if "$HOME/.local/share/docker/completion" # d
-_have docker-compose && complete -F _docker_compose dc # dc
-
-#_have ssh-agent && test -z "$SSH_AGENT_PID" && . <(ssh-agent)
+eval "$(starship init bash)"
+neofetch

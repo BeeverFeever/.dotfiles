@@ -12,8 +12,10 @@ local download_packer = function()
 
     print(out)
     print("Downloading packer.nvim...")
+    if pcall(require, "packer") then
+        vim.cmd[["PackerSync"]]
+    end
     print("( You'll need to restart now )")
-    vim.cmd[[qa]]
 end
 
 return function()

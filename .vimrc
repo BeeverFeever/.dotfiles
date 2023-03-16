@@ -6,39 +6,32 @@ endif
 
 set nocompatible
 
+set cursorline
 "####################### Vi Compatible (~/.exrc) #######################
 
 " automatically indent new lines
 set autoindent
-
 " automatically write files when changing when multiple files open
 set autowrite
-
 " deactivate line numbers
 set nonumber
-
 " turn col and row position on in bottom right
 set ruler " see ruf for formatting
 
 " show command and insert mode
 set showmode
-
 set tabstop=2
 
 "#######################################################################
 
 " disable visual bell (also disable in .inputrc)
 set t_vb=
-
 let mapleader=","
-
 set softtabstop=2
 
 " mostly used with >> and <<
-set shiftwidth=2
-
+set shiftwidth=4
 set smartindent
-
 set smarttab
 
 if v:version >= 800
@@ -83,7 +76,7 @@ set nowritebackup
 set icon
 
 " center the cursor always on the screen
-"set scrolloff=999
+set scrolloff=20
 
 " highlight search hits
 set hlsearch
@@ -205,6 +198,7 @@ au FileType yaml hi yamlBlockMappingKey ctermfg=NONE
 au FileType yaml set sw=2
 au FileType bash set sw=2
 au FileType c set sw=4
+au FileType godoc set ft=go
 
 set cinoptions+=:0
 
@@ -223,6 +217,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     "Plug 'zah/nim.vim'
     Plug 'conradirwin/vim-bracketed-paste'
     "Plug 'morhetz/gruvbox'
+    Plug 'lilydjwg/colorizer',
     Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'rwxrob/vim-pandoc-syntax-simple'
@@ -236,7 +231,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   " golang
   let g:go_fmt_fail_silently = 0
-  let g:go_fmt_command = 'goimports'
+  "let g:go_fmt_command = 'goimports'
   let g:go_fmt_autosave = 1
   let g:go_gopls_enabled = 1
   let g:go_highlight_types = 1
@@ -320,7 +315,7 @@ au bufnewfile,bufRead *ssh/config set ft=sshconfig
 au bufnewfile,bufRead .dockerignore set ft=gitignore
 au bufnewfile,bufRead *gitconfig set ft=gitconfig
 au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
-au bufnewfile,bufRead *.go set spell spellcapcheck=0
+"au bufnewfile,bufRead *.go set spell spellcapcheck=0
 au bufnewfile,bufRead commands.yaml set spell
 
 "fix bork bash detection
@@ -372,8 +367,8 @@ nmap <leader>2 :set paste<CR>i
 " inoremap <right> <NOP>
 "
 " better use of arrow keys, number increment/decrement
-nnoremap <up> <C-a>
-nnoremap <down> <C-x>
+"nnoremap <up> <C-a>
+"nnoremap <down> <C-x>
 
 " Better page down and page up
 noremap <C-n> <C-d>
@@ -382,7 +377,6 @@ noremap <C-p> <C-b>
 " Set TMUX window name to name of file
 "au fileopened * !tmux rename-window TESTING
 
-" read personal/private vim configuration (keep last to override)
-set rtp^=~/.vimpersonal
-set rtp^=~/.vimprivate
-set rtp^=~/.vimwork
+"let g:hybrid_custom_term_colors = 1
+"let g:hybrid_reduced_contrast = 1
+colorscheme contra

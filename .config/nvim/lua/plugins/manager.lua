@@ -3,7 +3,6 @@ local packer = require("utils").get_package("packer")
 packer.startup({
     function(use)
         use { "wbthomason/packer.nvim" }
-        -- some random things that are like should be in every config
         use { "nvim-lua/plenary.nvim", module = "plenary" }
         use { "kyazdani42/nvim-web-devicons" }
 
@@ -82,7 +81,7 @@ packer.startup({
         -- file managing , picker etc
         use { {
                 "kyazdani42/nvim-tree.lua",
-                cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+                -- cmd = { "NvimTreeToggle", "NvimTreeFocus" },
                 config = function()
                     require("plugins.configs.nvimtree")
                 end,
@@ -157,22 +156,19 @@ packer.startup({
                 -- end
             },{
                 "morhetz/gruvbox",
+            },{
+                "blazkowolf/gruber-darker.nvim",
             },
         }
 
         -- plugins that I am either trying or just 'other'
-        use { --{
+        -- use { 
             -- "simrat29/symbols-outline.nvim",
             -- config = function ()
             --     require("plugins.configs.symbols-outline")
             -- end
             -- },
-            "~/projects/nvim-ide/",
-            branch = "better_logging",
-            config = function ()
-                require("plugins.configs.nvim-ide")
-            end,
-        }
+        -- }
     end,
 
     -- config = {

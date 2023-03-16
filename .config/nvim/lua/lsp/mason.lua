@@ -8,7 +8,7 @@ local lspconfig_util = require("utils").get_package("lspconfig/util")
 
 mason.setup()
 mason_lspconfig.setup({
-    ensure_installed = { "clangd", "sumneko_lua" },
+    ensure_installed = { "clangd" },
     automatic_installation = true,
 })
 
@@ -28,22 +28,22 @@ mason_lspconfig.setup_handlers {
     --         offset_encoding = "utf-32",
     --     })
     -- end,
-    ["sumneko_lua"] = function ()
-        lspconfig.sumneko_lua.setup {
-            capabilities = handlers.capabilities,
-            on_attach = handlers.on_attach,
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim" },
-                    },
-                    telemetry = {
-                        enable = false,
-                    },
-                },
-            },
-        }
-    end,
+    -- ["sumneko_lua"] = function ()
+    --     lspconfig.sumneko_lua.setup {
+    --         capabilities = handlers.capabilities,
+    --         on_attach = handlers.on_attach,
+    --         settings = {
+    --             Lua = {
+    --                 diagnostics = {
+    --                     globals = { "vim" },
+    --                 },
+    --                 telemetry = {
+    --                     enable = false,
+    --                 },
+    --             },
+    --         },
+    --     }
+    -- end,
     ["hls"] = function ()
         lspconfig.hls.setup({
             capabilities = handlers.capabilities,

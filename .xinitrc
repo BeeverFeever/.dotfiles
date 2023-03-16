@@ -10,4 +10,3 @@ fi
 [[ -f $HOME/.Xresources ]] && xrdb -merge -I$HOME $HOME/.Xresources
 
 dunst &
-urxvt -q -o -f &

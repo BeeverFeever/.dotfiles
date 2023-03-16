@@ -18,7 +18,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 #
-export PATH="/home/beever/.local/bin:/home/beever/programs/neovim-bin/bin:$PATH"
+export PATH="/home/beever/.local/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/lib/"
 export EDITOR="/usr/bin/nvim"                           # making it point to this path makes it so that i can use my config when using nvim as root usr
 export DATA="/media/data"
@@ -41,7 +41,7 @@ fi
 
 DISABLE_AUTO_TITLE="true"
 
- 
+
 #-----------------------------------------------------
 #		        plugins
 #-----------------------------------------------------
@@ -88,12 +88,10 @@ bindkey '^[[Z' autosuggest-accept
 
 bindkey '^H' backward-kill-word
 
+[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env
+
+
 # setup starship prompt
 eval "$(starship init zsh)"
-
 # autorun neofetch
 neofetch
-
-#[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env
-
-[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env

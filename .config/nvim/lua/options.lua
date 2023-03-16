@@ -10,7 +10,7 @@ opt.clipboard = "unnamedplus"
 opt.cursorline = true
 -- make the cursor stay as block in insert mode
 opt.guicursor = "i-ci-n-v-c-sm:block,ve:ver25,r-cr-o:hor20"
-opt.background = "dark"
+-- opt.background = "dark"
 opt.winblend = require("utils").get_package("my-globals").winblend
 
 opt.swapfile = false
@@ -40,7 +40,7 @@ g.loaded_netrwPlugin = 1
 -- opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true
-opt.termguicolors = false
+opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
 
