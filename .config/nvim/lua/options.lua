@@ -63,4 +63,4 @@ opt.showbreak = " ~>  "
 opt.textwidth = 80
 opt.scrolloff = 20
 
-opt.syntax = "on"
+-- opt.syntax = "on"

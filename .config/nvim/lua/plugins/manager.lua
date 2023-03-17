@@ -133,32 +133,8 @@ packer.startup({
         }
 
         -- colorschemes
-        use { {
-                "rebelot/kanagawa.nvim",
-                -- config = function ()
-                --     require("plugins.configs.colourschemes").set_theme("kanagawa")
-                -- end,
-            },{
-                "EdenEast/nightfox.nvim",
-            },{
-                "tiagovla/tokyodark.nvim",
-            },{
-                "kvrohit/mellow.nvim",
-            },{
-                "yashguptaz/calvera-dark.nvim",
-            },{
-                "shaunsingh/moonlight.nvim",
-            },{
-                -- TODO: configure this
-                "catppuccin/nvim",
-                -- config = function ()
-                --     require("plugins.configs.colourschemes").set_theme("catppuccin")
-                -- end
-            },{
-                "morhetz/gruvbox",
-            },{
-                "blazkowolf/gruber-darker.nvim",
-            },
+        use {
+            "rebelot/kanagawa.nvim",
         }
 
         -- plugins that I am either trying or just 'other'

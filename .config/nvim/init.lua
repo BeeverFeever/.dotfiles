@@ -9,11 +9,7 @@ require("lsp")
 
 require("auto-cmds")
 
--- for catppuccin provide a flavour as the second argument
--- require("plugins.configs.colourschemes").set_theme("gruvbox")
--- vim.cmd("colorscheme gruvbox")
--- require("plugins.configs.colourschemes").set_theme("gruberDarker")
-require("plugins.configs.colourschemes").set_theme("kanagawa") -- can be dragon, wave, lotus
+require("plugins.configs.colourschemes").kanagawa()
 
 -- idk why but this doesnt edit the hl group, it only works when being called in
 -- the nvim-tree config file. maybe it only works once nvim-tree has been

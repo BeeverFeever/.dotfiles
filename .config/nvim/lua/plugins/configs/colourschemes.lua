@@ -1,4 +1,6 @@
-local function kanagawa(flavour)
+local M = {}
+
+function M.kanagawa()
     local kana = require("utils").get_package("kanagawa")
 
     kana.setup({
@@ -8,124 +10,78 @@ local function kanagawa(flavour)
         functionStyle = { bold = true },
         keywordStyle = { italic = true },
         statementStyle = { bold = true },
-        typeStyle = {},
+        typeStyle = { bold = true },
         transparent = false, -- do not set background color
         dimInactive = false, -- dim inactive window `:h hl-NormalNC`
         terminalColors = true, -- define vim.g.terminal_color_{0,17}
         colors = {
             theme = {
+                wave = {
+                    ui = {
+                        bg = "#181616",
+                    },
+                },
                 all = {
                     ui = {
-                        bg_gutter = "none"
-                    }
-                }
-            }
+                        bg_gutter = "none",
+                    },
+                },
+            },
         },
-        overrides = function()
-            return {}
+        overrides = function(colors)
+            return {
+                PmenuSel = { bg = colors.palette.waveBlue2, fg = "NONE" },
+                Pmenu = { fg = colors.palette.fujiWhite, bg = colors.palette.waveBlue1 },
+
+                CmpItemAbbrDeprecated = { fg = colors.palette.katanaGray, bg = "NONE", strikethrough = true },
+                CmpItemAbbrMatch = { fg = colors.palette.katanaGray, bg = "NONE", bold = true },
+                CmpItemAbbrMatchFuzzy = { fg = colors.palette.katanaGray, bg = "NONE", bold = true },
+                CmpItemMenu = { fg = colors.palette.autumnYellow, bg = "NONE", italic = true },
+
+                CmpItemKindField = { fg = colors.palette.fujiWhite, bg = colors.palette.peachRed },
+                CmpItemKindProperty = { fg = colors.palette.fujiWhite, bg = colors.palette.peachRed },
+                CmpItemKindEvent = { fg = colors.palette.fujiWhite, bg = colors.palette.peachRed },
+
+                CmpItemKindText = { bg = colors.palette.springGreen, fg = colors.palette.fujiWhite },
+                CmpItemKindEnum = { bg = colors.palette.oniViolet, fg = colors.palette.fujiWhite },
+                CmpItemKindKeyword = { bg = colors.palette.oniViolet, fg = colors.palette.fujiWhite },
+
+                CmpItemKindConstant = { bg = colors.palette.surimiOrange, fg = colors.palette.fujiWhite },
+                CmpItemKindConstructor = { bg = colors.palette.surimiOrange, fg = colors.palette.fujiWhite },
+                CmpItemKindReference = { bg = colors.palette.surimiOrange, fg = colors.palette.fujiWhite },
+
+                CmpItemKindFunction = { bg = colors.palette.crystalBlue, fg = colors.palette.fujiWhite },
+                CmpItemKindStruct = { bg = colors.palette.boatYellow2, fg = colors.palette.fujiWhite },
+                CmpItemKindClass = { bg = colors.palette.boatYellow2, fg = colors.palette.fujiWhite },
+                CmpItemKindModule = { bg = colors.palette.boatYellow2, fg = colors.palette.fujiWhite },
+                CmpItemKindOperator = { bg = colors.palette.boatYellow2, fg = colors.palette.fujiWhite },
+
+                CmpItemKindVariable = { bg = colors.palette.waveAqua2, fg = colors.palette.fujiWhite },
+                CmpItemKindFile = { bg = colors.palette.waveAqua2, fg = colors.palette.fujiWhite },
+
+                CmpItemKindUnit = { bg = colors.palette.springBlue, fg = colors.palette.fujiWhite },
+                CmpItemKindSnippet = { bg = colors.palette.springBlue, fg = colors.palette.fujiWhite },
+                CmpItemKindFolder = { bg = colors.palette.springBlue, fg = colors.palette.fujiWhite },
+
+                CmpItemKindMethod = { bg = colors.palette.sakuraPink, fg = colors.palette.fujiWhite },
+                CmpItemKindValue = { bg = colors.palette.sakuraPink, fg = colors.palette.fujiWhite },
+                CmpItemKindEnumMember = { bg = colors.palette.sakuraPink, fg = colors.palette.fujiWhite },
+
+                CmpItemKindInterface = { bg = colors.palette.springViolet2, fg = colors.palette.fujiWhite },
+                CmpItemKindColor = { bg = colors.palette.springViolet2, fg = colors.palette.fujiWhite },
+                CmpItemKindTypeParameter = { bg = colors.palette.springViolet2, fg = colors.palette.fujiWhite },
+            }
         end,
-        theme = flavour,
+        theme = "wave",
         background = {
-            dark = "dragon",
+            dark = "wave",
             light = "lotus",
         }
     })
 
     -- vim.o.colorscheme = "kanagawa"
     vim.cmd("colorscheme kanagawa")
-    require("custom-hl-groups").kanagawa_colours()
-end
-
-local function catppuccin(flavour)
-    local cat = require("utils").get_package("catppuccin")
-
-    cat.setup({
-        flavour = flavour, -- latte, frappe, macchiato, mocha
-        -- background = { -- :h background
-        --     light = "latte",
-        --     dark = "mocha",
-        -- },
-        -- transparent_background = true,
-        -- term_colors = false,
-        -- dim_inactive = {
-        --     enabled = false,
-        --     shade = "dark",
-        --     percentage = 0.15,
-        -- },
-        -- no_italic = false, -- Force no italic
-        -- no_bold = false, -- Force no bold
-        -- styles = {
-        --     comments = { "italic" },
-        --     conditionals = { "italic" },
-        --     loops = {},
-        --     functions = { "bold" },
-        --     keywords = {},
-        --     strings = {},
-        --     variables = {},
-        --     numbers = {},
-        --     booleans = {},
-        --     properties = {},
-        --     types = {},
-        --     operators = {},
-        -- },
-        -- color_overrides = {},
-        -- custom_highlights = {},
-        -- integrations = {
-        --     cmp = true,
-        --     gitsigns = true,
-        --     nvimtree = true,
-        --     telescope = true,
-        --     markdown = true,
-        --     mason = true,
-        --     navic = true,
-        --     treesitter = true,
-        --     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-        -- },
-    })
-
-    vim.cmd("colorscheme catppuccin")
-end
-
-local function gruvbox()
-    local gruv = require("utils").get_package("gruvbox")
-
-    gruv.setup({
-        undercurl = true,
-        underline = true,
-        bold = true,
-        italic = true,
-        strikethrough = true,
-        invert_selection = false,
-        invert_signs = false,
-        invert_tabline = false,
-        invert_intend_guides = false,
-        inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = "", -- can be "hard", "soft" or empty string
-        palette_overrides = {},
-        overrides = {},
-        dim_inactive = false,
-        transparent_mode = false,
-    })
-
-    vim.cmd("colorscheme gruvbox")
-end
-
-local function gruberDarker()
-    vim.cmd("colorscheme GruberDarker")
-end
-
-local M = {}
-
-M.set_theme = function(name, flavour)
-    if name == "kanagawa" then
-        kanagawa()
-    elseif name == "catppuccin" then
-        catppuccin(flavour)
-    elseif name == "gruberDarker" then
-        gruberDarker()
-    elseif name == "gruvbox" then
-        gruvbox()
-    end
+    -- require("custom-hl-groups").kanagawa_colours()
 end
 
 return M
