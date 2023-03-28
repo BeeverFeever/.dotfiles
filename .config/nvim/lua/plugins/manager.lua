@@ -51,8 +51,6 @@ packer.startup({
                 after = "nvim-cmp",
             },{
                 "dcampos/nvim-snippy",
-            },{
-                "jose-elias-alvarez/null-ls.nvim",
             },
         }
 
@@ -68,14 +66,19 @@ packer.startup({
                 config = function()
                     require("plugins.configs.comment")
                 end,
-            },--[[ {
-                "goolord/alpha-nvim",
-                config = function()
-                    require "plugins.configs.alpha"
-                end,
-            },{ 
-                "famiu/bufdelete.nvim",
-            }, ]]
+            },{
+                "rebelot/heirline.nvim",
+                config = function ()
+                    require("plugins.configs.heirline")
+                end
+            },{
+                "mfussenegger/nvim-dap",
+            },{
+                "rcarriga/nvim-dap-ui",
+                config = function ()
+                    require("plugins.configs.dap-ui")
+                end
+            }
         }
 
         -- file managing , picker etc
@@ -91,14 +94,7 @@ packer.startup({
                 config = function()
                     require("plugins.configs.treesitter")
                 end,
-            },--[[ {
-                -- I'm undecided on this. just like with null-ls. Idk if I
-                -- really need it.
-                "mhartington/formatter.nvim",
-                config = function ()
-                    require("plugins.configs.formatter")
-                end, 
-            }, ]]
+            },
         }
 
         -- telescope stuffs
@@ -116,41 +112,17 @@ packer.startup({
             },
         }
 
-        -- breadcrumb stuff 
-        use { {
-                "SmiteshP/nvim-navic",
-                config = function ()
-                    require("plugins.configs.navic")
-                end,
-            },{
-                -- TODO: change this back once he merges the pr for navic integration
-                --"fgheng/winbar.nvim",
-                "BeeverFeever/winbar.nvim",
-                config = function ()
-                    require("plugins.configs.winbar")
-                end,
-            },
-        }
-
         -- colorschemes
         use {
             "rebelot/kanagawa.nvim",
         }
 
         -- plugins that I am either trying or just 'other'
-        -- use { 
-            -- "simrat29/symbols-outline.nvim",
-            -- config = function ()
-            --     require("plugins.configs.symbols-outline")
-            -- end
-            -- },
-        -- }
+        use {
+            "simrat39/symbols-outline.nvim",
+            config = function ()
+                require("plugins.configs.symbols-outline")
+            end
+        }
     end,
-
-    -- config = {
-    --     display = {
-    --         open_fn = require("packer.util").float,
-    --         prompt_border = "single",
-    --     },
-    -- },
 })

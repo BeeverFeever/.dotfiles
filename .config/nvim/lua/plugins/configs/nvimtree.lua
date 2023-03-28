@@ -1,6 +1,5 @@
 local nvimtree = require("utils").get_package("nvim-tree")
 local nvimtree_config = require("utils").get_package("nvim-tree.config")
-local nvimtree_api = require("utils").get_package("nvim-tree.api")
 local tree_cb = nvimtree_config.nvim_tree_callback
 
 local diagnostics_icons = require("utils").get_package("my-globals").diagnostics_icons
@@ -29,10 +28,18 @@ end
 local col = (gwidth / 2) - (new_width() / 2)
 local row = (gheight / 2) - (new_height() / 2)
 
--- make the title look nice, tbh this is kinda a bit hacky rn
--- TODO: maybe fix this. Find a way to alter the `FloatTitle` hl group a bit
--- nicer
-require("auto-cmds").nvim_tree(nvimtree_api, nvimtree_api.events.Event.TreeOpen)
+local function open_nvim_tree(data)
+    local directory = vim.fn.isdirectory(data.file) == 1
+    local real_file = vim.fn.filereadable(data.file) == 1
+    local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+    if not real_file or not no_name or not directory then
+        return
+    end
+
+    require("nvim-tree.api").tree.open()
+end
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 nvimtree.setup({
     auto_reload_on_write = true,
@@ -41,10 +48,6 @@ nvimtree.setup({
     hijack_cursor = false,
     hijack_netrw = true,
     hijack_unnamed_buffer_when_opening = false,
-    ignore_buffer_on_setup = false,
-    -- open_on_setup = false,
-    -- open_on_setup_file = false,
-    -- open_on_tab = false,
     ignore_buf_on_tab_change = {},
     sort_by = "name",
     root_dirs = {},
@@ -156,11 +159,6 @@ nvimtree.setup({
         update_root = false,
         ignore_list = {},
     },
-    ignore_ft_on_setup = {
-        "startify",
-        "dashboard",
-        "alpha",
-    },
     system_open = {
         cmd = "",
         args = {},
@@ -234,7 +232,7 @@ nvimtree.setup({
     },
     live_filter = {
         prefix = "(FILTER): ",
-        always_show_folders = false,
+        always_show_folders = true,
     },
     log = {
         enable = false,

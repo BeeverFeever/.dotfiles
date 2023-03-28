@@ -70,6 +70,8 @@ function M.kanagawa()
                 CmpItemKindInterface = { bg = colors.palette.springViolet2, fg = colors.palette.fujiWhite },
                 CmpItemKindColor = { bg = colors.palette.springViolet2, fg = colors.palette.fujiWhite },
                 CmpItemKindTypeParameter = { bg = colors.palette.springViolet2, fg = colors.palette.fujiWhite },
+
+                FloatTitle = { --[[ cterm = "bold" ,]] italic = true, fg = "#ff9e3b", bg = "#16161D" },
             }
         end,
         theme = "wave",

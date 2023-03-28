@@ -6,9 +6,6 @@ require("options")
 require("keymaps")
 require("plugins.manager")
 require("lsp")
-
-require("auto-cmds")
-
 require("plugins.configs.colourschemes").kanagawa()
 
 -- idk why but this doesnt edit the hl group, it only works when being called in
