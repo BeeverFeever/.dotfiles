@@ -4,9 +4,9 @@ end
 
 require("options")
 require("keymaps")
-require("plugins.manager")
+require("plugin-manager")
 require("lsp")
-require("plugins.configs.colourschemes").kanagawa()
+require("plugins.colourschemes").kanagawa()
 
 -- idk why but this doesnt edit the hl group, it only works when being called in
 -- the nvim-tree config file. maybe it only works once nvim-tree has been

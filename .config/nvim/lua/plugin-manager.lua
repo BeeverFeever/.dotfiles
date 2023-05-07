@@ -11,7 +11,7 @@ packer.startup({
         use { "lewis6991/gitsigns.nvim",
             -- ft = "gitcommit",
             config = function()
-                require("plugins.configs.gitsigns")
+                require("plugins.gitsigns")
             end,
         }
 
@@ -33,7 +33,7 @@ packer.startup({
         use { {
                 "hrsh7th/nvim-cmp",
                 config = function()
-                    require "plugins.configs.cmp"
+                    require "plugins.cmp"
                 end,
             },{
                 "hrsh7th/cmp-nvim-lsp",
@@ -59,24 +59,22 @@ packer.startup({
                 "windwp/nvim-autopairs",
                 after = "nvim-cmp",
                 config = function()
-                    require("plugins.configs.autopairs")
+                    require("plugins.autopairs")
                 end,
             },{"numToStr/Comment.nvim",
                 keys = { "gc", "gb" },
                 config = function()
-                    require("plugins.configs.comment")
+                    require("plugins.comment")
                 end,
             },{
                 "rebelot/heirline.nvim",
                 config = function ()
-                    require("plugins.configs.heirline")
+                    require("plugins.heirline")
                 end
             },{
-                "mfussenegger/nvim-dap",
-            },{
-                "rcarriga/nvim-dap-ui",
+                "folke/trouble.nvim",
                 config = function ()
-                    require("plugins.configs.dap-ui")
+                    require("plugins.trouble")
                 end
             }
         }
@@ -86,13 +84,13 @@ packer.startup({
                 "kyazdani42/nvim-tree.lua",
                 -- cmd = { "NvimTreeToggle", "NvimTreeFocus" },
                 config = function()
-                    require("plugins.configs.nvimtree")
+                    require("plugins.nvimtree")
                 end,
             },{
                 "nvim-treesitter/nvim-treesitter",
                 run = ":TSUpdate",
                 config = function()
-                    require("plugins.configs.treesitter")
+                    require("plugins.treesitter")
                 end,
             },
         }
@@ -102,7 +100,7 @@ packer.startup({
                 "nvim-telescope/telescope.nvim",
                 -- branch = "0.1.x",
                 config = function()
-                    require("plugins.configs.telescope")
+                    require("plugins.telescope")
                 end,
             },{
                 "BurntSushi/ripgrep",
@@ -115,14 +113,6 @@ packer.startup({
         -- colorschemes
         use {
             "rebelot/kanagawa.nvim",
-        }
-
-        -- plugins that I am either trying or just 'other'
-        use {
-            "simrat39/symbols-outline.nvim",
-            config = function ()
-                require("plugins.configs.symbols-outline")
-            end
         }
     end,
 })

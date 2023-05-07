@@ -24,6 +24,7 @@ function M.kanagawa()
                 all = {
                     ui = {
                         bg_gutter = "none",
+                        -- fg = "#54546D"
                     },
                 },
             },

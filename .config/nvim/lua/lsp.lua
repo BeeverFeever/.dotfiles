@@ -39,12 +39,12 @@ require("mason-lspconfig").setup_handlers({
 })
 
 -- setup diagnostics
-local icons = require("utils").get_package("my-globals").diagnostics_icons
+local icons = require("utils").get_package("my-globals").icons
 local signs = {
-    { name = "DiagnosticSignInfo", text = icons.info },
-    { name = "DiagnosticSignHint", text = icons.hint },
-    { name = "DiagnosticSignWarn", text = icons.warn },
-    { name = "DiagnosticSignError", text = icons.error },
+    { name = "DiagnosticSignInfo", text = icons.diagnostics.info },
+    { name = "DiagnosticSignHint", text = icons.diagnostics.hint },
+    { name = "DiagnosticSignWarn", text = icons.diagnostics.warn },
+    { name = "DiagnosticSignError", text = icons.diagnostics.error },
 }
 -- set the diagnostic icons
 for _, sign in ipairs(signs) do

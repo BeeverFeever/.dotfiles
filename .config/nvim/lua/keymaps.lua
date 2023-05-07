@@ -3,27 +3,30 @@ local default_opts = { noremap = true, silent = true }
 
 local mappings = {
     -- exit insert mode
-    { "i", "jk", "<ESC>", default_opts },
+    -- { "i", "jk", "<ESC>", default_opts },
 
     -- no highlights
     { "n", "<ESC>", "<cmd> noh <CR>", default_opts },
 
     -- switch between windows
-    { "n", "<A-h>", "<C-w>h", default_opts },
-    { "n", "<A-l>", "<C-w>l", default_opts },
-    { "n", "<A-j>", "<C-w>j", default_opts },
-    { "n", "<A-k>", "<C-w>k", default_opts },
+    -- { "n", "<A-h>", "<C-w>h", default_opts },
+    -- { "n", "<A-l>", "<C-w>l", default_opts },
+    -- { "n", "<A-j>", "<C-w>j", default_opts },
+    -- { "n", "<A-k>", "<C-w>k", default_opts },
+
+    { "n", "<leader>w", "<C-w>", default_opts },
 
     -- resize windows
     -- TODO: find a way to make these fucking logical becase these are just
     -- annoying to use
+    -- also i dont want to use the plugin because fuck more plugins
     { "n", "<A-S-k>", "<cmd>resize -2<CR>", default_opts },
     { "n", "<A-S-j>", "<cmd>resize +2<CR>", default_opts },
     { "n", "<A-S-l>", "<cmd>vertical resize -2<CR>", default_opts },
     { "n", "<A-S-h>", "<cmd>vertical resize +2<CR>", default_opts },
 
-    -- toggle numbers {with relative line numbers}
-    { "n", "<leader>n", '<cmd>lua vim.cmd("set rnu! nu!") <CR>', default_opts },
+    -- toggle numbers (with relative line numbers)
+    { "n", "<leader>n", '<cmd>set rnu! nu!<CR>', default_opts },
 
     -- use j and k to move through wrapped lines
     -- gotten from https://stackoverflow.com/questions/20975928/moving-the-cursor-through-long-soft-wrapped-lines-in-vim
@@ -34,7 +37,7 @@ local mappings = {
     { "v", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', default_opts },
 
     -- nvim tree
-    { "n", "<leader>s", "<cmd> NvimTreeToggle <CR>", default_opts },
+    { "n", "<leader>nt", "<cmd>NvimTreeToggle <CR>", default_opts },
 
     -- move text around
     { "x", "<S-j>", ":m '>+1<CR>gv-gv", default_opts },
@@ -50,10 +53,9 @@ M.diagnostics = function()
     local diagnostics_opts = { silent = true, noremap = true }
     local diagnostics_mappings = {
         { "n", "<space>e", vim.diagnostic.open_float, diagnostics_opts },
-        { "n", "[d", vim.diagnostic.goto_prev, diagnostics_opts },
         { "n", "]d", vim.diagnostic.goto_next, diagnostics_opts },
-        -- TODO: change this to be a plugin like trouble.nvim
-        { "n", "<space>q", vim.diagnostic.setloclist, diagnostics_opts },
+        { "n", "[d", vim.diagnostic.goto_prev, diagnostics_opts },
+        { "n", "<space>q", "<cmd>TroubleToggle<CR>", diagnostics_opts },
     }
     require("utils").set_keymaps(diagnostics_mappings)
 end
@@ -61,15 +63,15 @@ end
 M.lsp = function(bufnr)
     local lsp_opts = { silent = true, noremap = true, buffer = bufnr }
     local lsp_mappings = {
-        { "n", "gD", vim.lsp.buf.declaration, lsp_opts },
-        { "n", "gd", vim.lsp.buf.definition, lsp_opts },
-        { "n", "K", vim.lsp.buf.hover, lsp_opts },
-        { "n", "gi", vim.lsp.buf.implementation, lsp_opts },
-        { "n", "<C-k>", vim.lsp.buf.signature_help, lsp_opts },
-        { "n", "<space>D", vim.lsp.buf.type_definition, lsp_opts },
-        { "n", "<space>rn", vim.lsp.buf.rename, lsp_opts },
-        { "n", "<space>ca", vim.lsp.buf.code_action, lsp_opts },
-        { "n", "gr", vim.lsp.buf.references, lsp_opts },
+        { "n", "<space>lD", vim.lsp.buf.declaration, lsp_opts },
+        { "n", "<space>ld", vim.lsp.buf.definition, lsp_opts },
+        { "n", "<space>li", vim.lsp.buf.implementation, lsp_opts },
+        { "n", "<space>lk", vim.lsp.buf.hover, lsp_opts },
+        { "n", "<space>lK", vim.lsp.buf.signature_help, lsp_opts },
+        { "n", "<space>lt", vim.lsp.buf.type_definition, lsp_opts },
+        { "n", "<space>ln", vim.lsp.buf.rename, lsp_opts },
+        { "n", "<space>la", vim.lsp.buf.code_action, lsp_opts },
+        { "n", "<space>lr", vim.lsp.buf.references, lsp_opts },
         {
             "n",
             "<space>f",

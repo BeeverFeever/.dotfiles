@@ -108,12 +108,12 @@ alias vi="vim"
 alias nv="$HOME/programs/neovim-bin/bin/nvim"
 alias clear='printf "\e[H\e[2J"'
 alias c='printf "\e[H\e[2J"'
-alias grep="pcregrep"
 alias more="less"
 alias shutn="shutdown now"
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias side="cd $HOME/projects/side/"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias pacman='pacman --color auto'
 
 eval "$(starship init bash)"
 neofetch
