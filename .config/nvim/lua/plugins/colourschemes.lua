@@ -31,8 +31,10 @@ function M.kanagawa()
         },
         overrides = function(colors)
             return {
-                PmenuSel = { bg = colors.palette.waveBlue2, fg = "NONE" },
-                Pmenu = { fg = colors.palette.fujiWhite, bg = colors.palette.waveBlue1 },
+                Pmenu = { fg = colors.theme.ui.fg , bg = colors.theme.ui.bg },
+                PmenuSel = { fg = "NONE", bg = colors.theme.ui.bg_p2 },
+                PmenuSbar = { bg = colors.theme.ui.bg_m1 },
+                PmenuThumb = { bg = colors.theme.ui.bg_p2 },
 
                 CmpItemAbbrDeprecated = { fg = colors.palette.katanaGray, bg = "NONE", strikethrough = true },
                 CmpItemAbbrMatch = { fg = colors.palette.katanaGray, bg = "NONE", bold = true },

@@ -1,6 +1,4 @@
 local nvimtree = require("utils").get_package("nvim-tree")
-local nvimtree_config = require("utils").get_package("nvim-tree.config")
-local tree_cb = nvimtree_config.nvim_tree_callback
 
 -- local diagnostics_icons = require("utils").get_package("my-globals").diagnostics_icons
 local icons = require("utils").get_package("my-globals").icons

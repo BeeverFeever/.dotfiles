@@ -61,8 +61,7 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
-set -o vi
-shopt -s histappend
+# shopt -s histappend
 
 # --------------------------- smart prompt ---------------------------
 #                 (keeping in bashrc for portability)
@@ -95,9 +94,9 @@ PROMPT_COMMAND="__ps1"
 unalias -a
 alias ip='ip -c'
 alias '?'=duck
-alias '??'=google
-alias '???'=bing
+
 alias ls='ls -h --color=auto'
+
 alias free='free -h'
 alias tree='tree -a'
 alias df='df -h'
@@ -106,14 +105,16 @@ alias diff='diff --color'
 alias view='vim -R'
 alias vi="vim"
 alias nv="$HOME/programs/neovim-bin/bin/nvim"
-alias clear='printf "\e[H\e[2J"'
-alias c='printf "\e[H\e[2J"'
+# alias clear='printf "\e[H\e[2J"'
+# alias c='printf "\e[H\e[2J"'
 alias more="less"
 alias shutn="shutdown now"
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias side="cd $HOME/projects/side/"
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 alias pacman='pacman --color auto'
+alias pss='pacman -Ss'
+alias pqq='pacman -Qq'
+alias prns='pacman -Rns'
 
 eval "$(starship init bash)"
 neofetch
