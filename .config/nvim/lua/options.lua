@@ -10,8 +10,8 @@ opt.clipboard = "unnamedplus"
 opt.cursorline = true
 -- make the cursor stay as block in insert mode
 opt.guicursor = "i-ci-n-v-c-sm:block,ve:ver25,r-cr-o:hor20"
--- opt.background = "dark"
-opt.winblend = require("utils").get_package("my-globals").winblend
+opt.background = "dark"
+opt.winblend = settings.winblend
 
 opt.swapfile = false
 opt.fileencoding = "utf-8"

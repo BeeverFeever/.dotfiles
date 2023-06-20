@@ -1,4 +1,4 @@
-local treesitter = require("utils").get_package("nvim-treesitter.configs")
+local treesitter = utils.get_package("nvim-treesitter.configs")
 
 treesitter.setup({
     ensure_installed = {

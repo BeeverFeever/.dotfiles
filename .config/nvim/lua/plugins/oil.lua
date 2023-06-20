@@ -1,5 +1,4 @@
-local oil = require("utils").get_package("oil")
-local my_globals = require("my-globals")
+local oil = utils.get_package("oil")
 
 local gwidth = vim.api.nvim_list_uis()[1].width
 local gheight = vim.api.nvim_list_uis()[1].height
@@ -15,6 +14,7 @@ local new_width = function()
         return math.floor(gwidth / 2)
     end
 end
+
 local new_height = function()
     if (gheight / 1.5) < min_height then
         return min_height
@@ -22,6 +22,7 @@ local new_height = function()
         return math.floor(gheight / 1.5)
     end
 end
+
 local col = (gwidth / 2) - (new_width() / 2)
 local row = (gheight / 2) - (new_height() / 2)
 
@@ -29,18 +30,14 @@ oil.setup({
     -- Id is automatically added at the beginning, and name at the end
     -- See :help oil-columns
     columns = {
-        -- {"icon", default_file = my_globals.icons.lsp.File, directory = my_globals.icons.lsp.Folder},
         "permissions",
         "size",
-        -- "mtime",
     },
-
     -- Buffer-local options to use for oil buffers
     buf_options = {
         buflisted = true,
         bufhidden = "hide",
     },
-
     -- Window-local options to use for oil buffers
     win_options = {
         wrap = false,
@@ -52,7 +49,6 @@ oil.setup({
         conceallevel = 3,
         concealcursor = "nv",
     },
-
     -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`
     default_file_explorer = true,
     -- Restore window options to previous values when leaving an oil buffer
@@ -63,7 +59,6 @@ oil.setup({
     delete_to_trash = false,
     -- Selecting a new/moved/renamed file or directory will prompt you to save changes first
     prompt_save_on_select_new_entry = true,
-
     -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
     -- options with a `callback` (e.g. { callback = function() ... end, desc = "", nowait = true })
     -- Additionally, if it is a string that matches "actions.<name>",
@@ -85,7 +80,6 @@ oil.setup({
         ["~"] = "actions.tcd",
         ["g."] = "actions.toggle_hidden",
     },
-
     -- Set to false to disable all of the above keymaps
     use_default_keymaps = true,
     view_options = {
@@ -93,28 +87,26 @@ oil.setup({
         show_hidden = true,
         -- This function defines what is considered a "hidden" file
         is_hidden_file = function(name, bufnr)
-          return vim.startswith(name, ".")
+            return vim.startswith(name, ".")
         end,
         -- This function defines what will never be shown, even when `show_hidden` is set
         is_always_hidden = function(name, bufnr)
-          return false
+            return false
         end,
     },
-
     -- Configuration for the floating window in oil.open_float
     float = {
         -- Padding around the floating window
-        padding = 2,
-        max_width = 0,
-        max_height = 0,
-        border = my_globals.border_style,
+        padding = 0,
+        max_width = new_width(),
+        max_height = new_height(),
+        border = settings.border_style,
         win_options = {
-          winblend = my_globals.winblend,
-          -- width = col,
-          -- height = row,
+            winblend = settings.winblend,
+            -- width = col,
+            -- height = row,
         },
     },
-
     -- Configuration for the actions floating preview window
     preview = {
         -- Width dimensions can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
@@ -133,12 +125,11 @@ oil.setup({
         min_height = { 5, 0.1 },
         -- optionally define an integer/float for the exact height of the preview window
         height = nil,
-        border = my_globals.border_style,
+        border = settings.border_style,
         win_options = {
-          winblend = my_globals.winblend,
+            winblend = settings.winblend,
         },
     },
-
     -- Configuration for the floating progress window
     progress = {
         max_width = 0.9,
@@ -147,7 +138,7 @@ oil.setup({
         max_height = { 10, 0.9 },
         min_height = { 5, 0.1 },
         height = nil,
-        border = "rounded",
+        border = settings.border_style,
         minimized_border = "none",
         win_options = {
             winblend = 0,

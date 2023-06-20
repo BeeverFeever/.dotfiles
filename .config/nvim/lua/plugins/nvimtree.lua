@@ -1,7 +1,4 @@
-local nvimtree = require("utils").get_package("nvim-tree")
-
--- local diagnostics_icons = require("utils").get_package("my-globals").diagnostics_icons
-local icons = require("utils").get_package("my-globals").icons
+local nvimtree = utils.get_package("nvim-tree")
 
 local gwidth = vim.api.nvim_list_uis()[1].width
 local gheight = vim.api.nvim_list_uis()[1].height
@@ -179,7 +176,7 @@ local config = {
                     symlink = "",
                     symlink_open = "",
                 },
-                git = icons.git,
+                git = settings.icons.git,
             },
         },
         special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "makefile", "Makefile" },
@@ -203,10 +200,10 @@ local config = {
         show_on_dirs = true,
         debounce_delay = 50,
         icons = {
-            hint = icons.diagnostics.hint,
-            info = icons.diagnostics.info,
-            warning = icons.diagnostics.warn,
-            error = icons.diagnostics.error,
+            hint = settings.icons.diagnostics.hint,
+            info = settings.icons.diagnostics.info,
+            warning = settings.icons.diagnostics.warn,
+            error = settings.icons.diagnostics.error,
         },
     },
     filters = {

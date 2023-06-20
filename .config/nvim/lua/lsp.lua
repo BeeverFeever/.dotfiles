@@ -9,7 +9,7 @@ require("mason-lspconfig").setup({
 local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lsp_attach = function(client, bufnr)
     -- set the lsp keymaps
-    require("utils").get_package("keymaps").lsp(bufnr)
+    utils.get_package("keymaps").lsp(bufnr)
 end
 
 local lspconfig = require("lspconfig")
@@ -20,7 +20,7 @@ require("mason-lspconfig").setup_handlers({
             capabilites = lsp_capabilities,
         })
     end,
-    ["lua_ls"] = function ()
+    ["lua_ls"] = function()
         lspconfig.lua_ls.setup {
             on_attach = lsp_attach,
             capabilities = lsp_capabilities,
@@ -39,12 +39,11 @@ require("mason-lspconfig").setup_handlers({
 })
 
 -- setup diagnostics
-local icons = require("utils").get_package("my-globals").icons
 local signs = {
-    { name = "DiagnosticSignInfo", text = icons.diagnostics.info },
-    { name = "DiagnosticSignHint", text = icons.diagnostics.hint },
-    { name = "DiagnosticSignWarn", text = icons.diagnostics.warn },
-    { name = "DiagnosticSignError", text = icons.diagnostics.error },
+    { name = "DiagnosticSignInfo",  text = settings.icons.diagnostics.info },
+    { name = "DiagnosticSignHint",  text = settings.icons.diagnostics.hint },
+    { name = "DiagnosticSignWarn",  text = settings.icons.diagnostics.warn },
+    { name = "DiagnosticSignError", text = settings.icons.diagnostics.error },
 }
 -- set the diagnostic icons
 for _, sign in ipairs(signs) do
@@ -69,7 +68,7 @@ local config = {
     float = {
         focusable = true,
         style = "minimal",
-        border = require("utils").get_package("my-globals").border_style,
+        border = settings.border_style,
         source = "always",
         header = "",
         prefix = "",
@@ -86,4 +85,4 @@ vim.diagnostic.config(config)
 --     relative = "cursor",
 -- })
 
-require("utils").get_package("keymaps").diagnostics()
+utils.get_package("keymaps").diagnostics()

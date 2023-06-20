@@ -1,5 +1,5 @@
---local packer = require("utils").get_package("packer")
-local lazy = require("utils").get_package("lazy")
+--local packer = utils.get_package("packer")
+local lazy = utils.get_package("lazy")
 
 lazy.setup({
     "rebelot/kanagawa.nvim",
@@ -7,12 +7,12 @@ lazy.setup({
     "kyazdani42/nvim-web-devicons",
 
     -- git stuff
-    { "lewis6991/gitsigns.nvim",
-        -- ft = "gitcommit",
-        config = function()
-            require("plugins.gitsigns")
-        end,
-    },
+    -- { "lewis6991/gitsigns.nvim",
+    --     -- ft = "gitcommit",
+    --     config = function()
+    --         require("plugins.gitsigns")
+    --     end,
+    -- },
 
     -- lsp stuff
 
@@ -35,7 +35,6 @@ lazy.setup({
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
     "dcampos/nvim-snippy",
 
     -- misc plugins

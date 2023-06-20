@@ -1,10 +1,8 @@
-local snippy = require("utils").get_package("snippy")
-local cmp = require("utils").get_package("cmp")
+local snippy = utils.get_package("snippy")
+local cmp = utils.get_package("cmp")
 
-vim.opt.completeopt = "menuone,noselect"
+vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.pumheight = 20
-
-local icons = require("utils").get_package("my-globals").icons
 
 -- local has_words_before = function()
 --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -50,41 +48,37 @@ cmp.setup({
         end, { "i", "s", }),
     },
     formatting = {
-        fields = { "abbr", "menu", "kind" },
+        fields = { "abbr", "kind", "menu" },
         format = function(entry, vim_item)
-            vim_item.kind = string.format(" %s ", icons[vim_item.kind])
-            -- vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-            vim_item.menu = ({
-                snippy = "(Snip)",
-                nvim_lsp = "(Lsp)",
-                buffer = "(Buf)",
-                path = "(Path)"
-            })[entry.source.name]
+            -- have to set menu before kind as it references vim_item.kind when
+            -- it is a string not an icon
+            vim_item.menu = "(" .. (string.format("%s", vim_item.kind) or "") .. ")"
+            vim_item.kind = string.format(" %s", settings.icons.lsp[vim_item.kind])
+            -- vim_item.kind = string.format(" %s %s", settings.icons.lsp[vim_item.kind], vim_item.kind)
+            -- vim_item.menu = ({
+            --     snippy = "(Snip)",
+            --     nvim_lsp = "(Lsp)",
+            --     buffer = "(Buf)",
+            --     path = "(Path)"
+            -- })[entry.source.name]
             return vim_item
         end,
     },
     sources = {
         { name = "nvim_lsp" },
         { name = "snippy" },
-        { name = 'nvim_lsp_signature_help' },
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "path" },
     },
-    view = {
-        entries = "custom",
-    },
     window = {
         completion = {
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-            -- col_offset = 2,
-            -- side_padding = 1,
         },
-        documentation = {},
+        documentation = {
+            border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+        }
     },
-    experimental = {
-        ghost_text = false,
-    }
 })
 
 

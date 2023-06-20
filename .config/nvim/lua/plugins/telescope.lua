@@ -1,6 +1,5 @@
-local telescope = require("utils").get_package("telescope")
-local my_globals = require("utils").get_package("my-globals")
-local actions = require("utils").get_package("telescope.actions")
+local telescope = utils.get_package("telescope")
+local actions = utils.get_package("telescope.actions")
 
 telescope.setup({
     defaults = {
@@ -40,9 +39,9 @@ telescope.setup({
         path_display = { "truncate" },
         results_title = "Hmm show me what you got :)",
         prompt_title = "Search me :)",
-        winblend = my_globals.winblend,
+        winblend = settings.winblend,
         border = true,
-        borderchars = my_globals.border_chars,
+        borderchars = settings.border_chars,
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
         file_previewer = require("telescope.previewers").cat.new,
@@ -134,4 +133,4 @@ telescope.setup({
 -- load extensions
 telescope.load_extension("fzf")
 
-require("utils").get_package("keymaps").telescope()
+utils.get_package("keymaps").telescope()

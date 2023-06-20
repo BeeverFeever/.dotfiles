@@ -1,97 +1,64 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.cache/zsh/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-# End of lines configured by zsh-newuser-install
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-### End of Zinit's installer chunk
-#
-export PATH="/home/beever/.local/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/lib/"
 export EDITOR="/usr/bin/nvim"                           # making it point to this path makes it so that i can use my config when using nvim as root usr
 export DATA="/media/data"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# rwxrob's config
-export LESS="-FXR"
-export LESS_TERMCAP_mb="[35m" # magenta
-export LESS_TERMCAP_md="[33m" # yellow
-export LESS_TERMCAP_me="" # "0m"
-export LESS_TERMCAP_se="" # "0m"
-export LESS_TERMCAP_so="[34m" # blue
-export LESS_TERMCAP_ue="" # "0m"
-export LESS_TERMCAP_us="[4m" # underline
-
-if [[ -x /usr/bin/lesspipe ]]; then
-  export LESSOPEN="| /usr/bin/lesspipe %s";
-  export LESSCLOSE="/usr/bin/lesspipe %s %s";
-fi
+export PATH="$HOME/scripts:$HOME/.local/bin:$HOME/programs/neovim-bin/bin:$PATH"
 
 DISABLE_AUTO_TITLE="true"
 
 
-#-----------------------------------------------------
-#		        plugins
-#-----------------------------------------------------
 
-# some good plugins
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
 
-# -----------------------------------------------------
-# 			aliases
-# -----------------------------------------------------
+parse_git_dirty() {
+  git_status="$(git status 2> /dev/null)"
+  [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n "%F{green}·%f"
+  [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n "%F{yellow}·%f"
+  [[ "$git_status" =~ "Untracked files:" ]] && echo -n "%F{red}·%f"
+}
 
-#alias fzf='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+setopt prompt_subst
+
+NEWLINE=$'\n'
+
+autoload -Uz vcs_info # enable vcs_info
+precmd () { vcs_info } # always load before displaying the prompt
+zstyle ':vcs_info:git*' formats ' ↣ (%F{254}%b%F{245})' # format $vcs_info_msg_0_
+
+PS1='%F{254}%n%F{245} ↣ %F{153}%(5~|%-1~/⋯/%3~|%4~)%F{245}${vcs_info_msg_0_} $(parse_git_dirty)$NEWLINE%F{254}$%f '
+
+
+
+
+
+# make some things nicer
+alias ip='ip -c'
+alias free='free -h'
+alias diff='diff --color'
+alias df='df -h'
 alias fzf='fzf --preview "less --use-color"'
 
-# git
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-# constant use commands
-# alias ls="lsd -AF"
-# alias l="lsd -AF1"
-# alias ll="lsd -AlF --total-size"
-# alias lt="lsd --tree"
+# all inherit the parameters from base ls
+alias ls='ls -hF --color=auto --group-directories-first'
+alias la='ls -A'
+alias ll='ls -A -1'
+# if you want more info just add -l to any of these aliases
 
 alias ..="cd ../"
 alias ...="cd ../../"
-
-alias shutn="shutdown now"
-
-# neovim because im extra lzy lmao
-alias v="nvim"
-
+alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias data="cd /media/data/"
-
-#-----------------------------------------------------
-#		       keybings
-#----------------------------------------------------
-
-# set vim style keybinds
-# bindkey -v
-
-# zsh-autosuggestions
-bindkey '^[[Z' autosuggest-accept
+alias shutn="shutdown now"
+alias vi="nvim"
+alias pacman='pacman --color auto'
+alias pss="pacman -Ss"
+alias pqq='pacman -Qq'
 
 bindkey '^H' backward-kill-word
 
-[ -f "/home/beever/.ghcup/env" ] && source "/home/beever/.ghcup/env" # ghcup-env
-
-
-# setup starship prompt
-eval "$(starship init zsh)"
-# autorun neofetch
-neofetch
+# eval "$(starship init zsh)"
+pfetch

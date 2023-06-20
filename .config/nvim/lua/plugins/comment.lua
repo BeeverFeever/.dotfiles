@@ -1,4 +1,4 @@
-local nvim_comment = require("utils").get_package("Comment")
+local nvim_comment = utils.get_package("Comment")
 
 nvim_comment.setup {
     padding = true,

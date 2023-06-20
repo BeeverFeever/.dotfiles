@@ -1,5 +1,4 @@
-local sym = require("utils").get_package("symbols-outline")
-local globals = require("utils").get_package("my-globals")
+local sym = utils.get_package("symbols-outline")
 
 sym.setup({
     highlight_hovered_item = true,
@@ -33,7 +32,7 @@ sym.setup({
     },
     lsp_blacklist = {},
     symbol_blacklist = {},
-    symbols = globals.icons --[[ {
+    symbols = settings.icons --[[ {
         File = { icon = "", hl = "TSURI" },
         Module = { icon = "", hl = "TSNamespace" },
         Namespace = { icon = "", hl = "TSNamespace" },

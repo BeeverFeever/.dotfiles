@@ -22,21 +22,9 @@ export EDITOR_PREFIX=vim
 export GOPATH="$HOME/.local/share/go"
 export GOBIN="$HOME/.local/bin"
 
-[[ -d /.vim/spell ]] && export VIMSPELL=("$HOME/.vim/spell/*.add")
-
-# ----------------------------- dircolors ----------------------------
-
-if _have dircolors; then
-  if [[ -r "$HOME/.dircolors" ]]; then
-    eval "$(dircolors -b "$HOME/.dircolors")"
-  else
-    eval "$(dircolors -b)"
-  fi
-fi
-
 # ------------------------------- path -------------------------------
 
-export PATH="$HOME/scripts:$HOME/.local/bin:$HOME/.emacs.d/bin/:$HOME/programs/neovim-bin/bin:$PATH"
+export PATH="$HOME/scripts:$HOME/.local/bin:$HOME/programs/neovim-bin/bin:$PATH"
 
 # ------------------------ bash shell options ------------------------
 
@@ -105,8 +93,6 @@ alias diff='diff --color'
 alias view='vim -R'
 alias vi="vim"
 alias nv="$HOME/programs/neovim-bin/bin/nvim"
-# alias clear='printf "\e[H\e[2J"'
-# alias c='printf "\e[H\e[2J"'
 alias more="less"
 alias shutn="shutdown now"
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -114,7 +100,6 @@ alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias pacman='pacman --color auto'
 alias pss='pacman -Ss'
 alias pqq='pacman -Qq'
-alias prns='pacman -Rns'
 
 eval "$(starship init bash)"
-neofetch
+pfetch

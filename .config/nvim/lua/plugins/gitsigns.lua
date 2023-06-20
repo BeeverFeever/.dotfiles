@@ -1,5 +1,4 @@
-local gitsigns = require("utils").get_package("gitsigns")
-local settings = require("utils").get_package("my-globals")
+local gitsigns = utils.get_package("gitsigns")
 
 gitsigns.setup({
     signs = {
@@ -49,6 +48,6 @@ gitsigns.setup({
     },
     -- keymapping
     on_attach = function ()
-        require("utils").get_package("keymaps").gitsigns()
+        utils.get_package("keymaps").gitsigns()
     end,
 })
