@@ -1,17 +1,24 @@
-if require("first-run")() then
-    return
+-- Been adjusted from TJ's config
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "--single-branch",
+        "https://github.com/folke/lazy.nvim.git",
+        lazypath,
+    })
+
+    print("You probably most likely need to restart nvim now")
+    return true
 end
+vim.opt.runtimepath:prepend(lazypath)
 
 require("globals")
 require("options")
 require("keymaps")
 require("plugin-manager")
-require("lsp")
-require("plugins.colourschemes").kanagawa()
+require("plugins/lsp")
+-- override highlights last
 require("custom-highlights")
-
--- idk why but this doesnt edit the hl group, it only works when being called in
--- the nvim-tree config file. maybe it only works once nvim-tree has been
--- required?? but it should be at this point, if someone by any chance reads this and is
--- able to figure it out please tell me
--- require("utils").get_package("custom-hl-groups").float_titles()

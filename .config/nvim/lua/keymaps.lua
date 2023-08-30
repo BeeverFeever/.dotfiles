@@ -63,15 +63,16 @@ end
 M.lsp = function(bufnr)
     local lsp_opts = { silent = true, noremap = true, buffer = bufnr }
     local lsp_mappings = {
-        { "n", "<space>lD", vim.lsp.buf.declaration,     lsp_opts },
-        { "n", "<space>ld", vim.lsp.buf.definition,      lsp_opts },
-        { "n", "<space>lt", vim.lsp.buf.type_definition, lsp_opts },
-        { "n", "<space>li", vim.lsp.buf.implementation,  lsp_opts },
-        { "n", "<space>lk", vim.lsp.buf.hover,           lsp_opts },
-        { "n", "<space>lK", vim.lsp.buf.signature_help,  lsp_opts },
-        { "n", "<space>ln", vim.lsp.buf.rename,          lsp_opts },
-        { "n", "<space>la", vim.lsp.buf.code_action,     lsp_opts },
-        { "n", "<space>lr", vim.lsp.buf.references,      lsp_opts },
+        { "n",        "<space>lD", vim.lsp.buf.declaration,     lsp_opts },
+        { "n",        "<space>ld", vim.lsp.buf.definition,      lsp_opts },
+        { "n",        "<space>lt", vim.lsp.buf.type_definition, lsp_opts },
+        { "n",        "<space>li", vim.lsp.buf.implementation,  lsp_opts },
+        { "n",        "<space>lk", vim.lsp.buf.hover,           lsp_opts },
+        { "n",        "<space>lK", vim.lsp.buf.signature_help,  lsp_opts },
+        { "n",        "<space>ln", vim.lsp.buf.rename,          lsp_opts },
+        { "n",        "<space>la", vim.lsp.buf.code_action,     lsp_opts },
+        { "n",        "<space>lr", vim.lsp.buf.references,      lsp_opts },
+        { { "i", "n" }, "<C-h>",   vim.lsp.buf.signature_help,  lsp_opts }, -- this does override the original binding for <C-h> but i never use it(mainly because i didnt know it existed before now).
         {
             "n",
             "<space>f",
@@ -90,7 +91,6 @@ M.lsp = function(bufnr)
     utils.set_keymaps(lsp_mappings)
     -- utils.set_keymaps(lsp_mappings)
 end
-
 M.telescope = function()
     local built = require("telescope.builtin")
     local telescope_opts = { noremap = true, silent = true }
@@ -101,7 +101,7 @@ M.telescope = function()
         { "n", "<leader>fb", built.buffers,     telescope_opts },
         { "n", "<leader>fh", built.help_tags,   telescope_opts },
         { "n", "<leader>fo", built.oldfiles,    telescope_opts },
-        { "n", "<leader>tk", built.keymaps,     telescope_opts },
+        { "n", "<leader>fk", built.keymaps,     telescope_opts },
 
         -- git
         { "n", "<leader>cm", built.git_commits, telescope_opts },

@@ -11,9 +11,6 @@ utils.get_package = function(pkg_name)
 end
 
 utils.set_keymaps = function(map_table)
-    -- see if we just remove this part of this file from our brains then the
-    -- rest of the way i am doing keymapping looks fucking sexy as so from this comment downwards we are going
-    -- to completely forget about. :)
     for _, v in pairs(map_table) do
         vim.keymap.set(v[1], v[2], v[3], v[4])
     end
@@ -25,37 +22,37 @@ settings = {
     border_chars = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
     icons = {
         lsp = {
-            ["Class"] = " ",
-            ["Color"] = "󰏘 ",
-            ["Constant"] = "󰏿 ",
-            ["Constructor"] = " ",
-            ["Enum"] = " ",
-            ["EnumMember"] = " ",
-            ["Event"] = " ",
-            ["Field"] = "󰜢 ",
-            ["File"] = " ",
-            ["Folder"] = " ",
-            ["Function"] = "󰊕 ",
-            ["Interface"] = " ",
-            ["Keyword"] = "󰌋 ",
-            ["Method"] = "󰆧 ",
-            ["Module"] = " ",
-            ["Operator"] = "󰆕 ",
-            ["Property"] = " ",
-            ["Reference"] = " ",
-            ["Snippet"] = " ",
-            ["Struct"] = "󰙅 ",
-            ["Text"] = "󰉿 ",
-            ["TypeParameter"] = " ",
-            ["Unit"] = " ",
-            ["Value"] = "󰎠 ",
-            ["Variable"] = "󰀫 ",
+            ["Class"] = "",
+            ["Color"] = "󰏘",
+            ["Constant"] = "󰏿",
+            ["Constructor"] = "",
+            ["Enum"] = "",
+            ["EnumMember"] = "",
+            ["Event"] = "",
+            ["Field"] = "󰜢",
+            ["File"] = "",
+            ["Folder"] = "",
+            ["Function"] = "󰊕",
+            ["Interface"] = "",
+            ["Keyword"] = "󰌋",
+            ["Method"] = "󰆧",
+            ["Module"] = "",
+            ["Operator"] = "󰆕",
+            ["Property"] = "",
+            ["Reference"] = "",
+            ["Snippet"] = "",
+            ["Struct"] = "󰙅",
+            ["Text"] = "󰉿",
+            ["TypeParameter"] = "",
+            ["Unit"] = "",
+            ["Value"] = "󰎠",
+            ["Variable"] = "󰀫",
         },
         diagnostics = {
-            error = "",
-            warn = "",
-            hint = "",
-            info = "",
+            error = "E",
+            warn = "W",
+            hint = "H",
+            info = "I",
         },
         git = {
             added = "",
