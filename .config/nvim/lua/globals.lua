@@ -19,7 +19,8 @@ end
 settings = {
     winblend = 0,
     border_style = "single",
-    border_chars = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+    -- border_chars = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+    border_chars = { "/", "-", "\\", "|", "/", "-", "\\", "|" },
     icons = {
         lsp = {
             ["Class"] = "",

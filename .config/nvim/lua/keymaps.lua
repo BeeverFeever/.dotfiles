@@ -2,17 +2,14 @@ local M = {}
 local default_opts = { noremap = true, silent = true }
 
 local mappings = {
-    -- exit insert mode
-    -- { "i", "jk", "<ESC>", default_opts },
-
-    -- no highlights
-    -- { "n", "<ESC>", "<cmd> noh <CR>", default_opts },
+    { "n", "<leader>r", "<cmd>source ~/.config/nvim/init.lua<CR>", default_opts },
+    { "n", "<leader>o", "<cmd>30Lex<CR>", default_opts },
 
     -- switch between windows
-    -- { "n", "<A-h>", "<C-w>h", default_opts },
-    -- { "n", "<A-l>", "<C-w>l", default_opts },
-    -- { "n", "<A-j>", "<C-w>j", default_opts },
-    -- { "n", "<A-k>", "<C-w>k", default_opts },
+    { "n", "<A-h>", "<C-w>h", default_opts },
+    { "n", "<A-l>", "<C-w>l", default_opts },
+    { "n", "<A-j>", "<C-w>j", default_opts },
+    { "n", "<A-k>", "<C-w>k", default_opts },
 
     { "n", "<leader>w", "<C-w>",                         default_opts },
 
@@ -29,7 +26,7 @@ local mappings = {
     { "n", "<leader>n", '<cmd>set rnu! nu!<CR>',         default_opts },
 
     -- use j and k to move through wrapped lines
-    -- gotten from https://stackoverflow.com/questions/20975928/moving-the-cursor-through-long-soft-wrapped-lines-in-vim
+    -- from https://stackoverflow.com/questions/20975928/moving-the-cursor-through-long-soft-wrapped-lines-in-vim
     { "n", "k",         'v:count ? "k" : "gk"',          { silent = true, expr = true } },
     { "n", "j",         'v:count ? "j" : "gj"',          { silent = true, expr = true } },
 
@@ -37,7 +34,7 @@ local mappings = {
     { "v", "p",         'p:let @+=@0<CR>:let @"=@0<CR>', default_opts },
 
     -- nvim tree
-    { "n", "<leader>o", "<cmd>Oil --float<CR>",          default_opts },
+    -- { "n", "<leader>o", "<cmd>Oil --float<CR>",          default_opts },
 
     -- move text around
     { "x", "<S-j>",     ":m '>+1<CR>gv-gv",              default_opts },

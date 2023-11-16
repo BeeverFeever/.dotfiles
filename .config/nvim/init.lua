@@ -19,6 +19,4 @@ require("globals")
 require("options")
 require("keymaps")
 require("plugin-manager")
-require("plugins/lsp")
--- override highlights last
-require("custom-highlights")
+vim.cmd.colorscheme("contra")

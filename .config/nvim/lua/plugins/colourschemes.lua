@@ -78,7 +78,7 @@ function M.kanagawa()
         end,
     })
 
-    vim.cmd("colorscheme kanagawa")
+    -- vim.cmd("colorscheme kanagawa")
 end
 
 return {

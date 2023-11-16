@@ -2,9 +2,13 @@ local opt = vim.opt
 local g = vim.g
 
 g.mapleader = ' '
-g.maplocalleader = ' '
 
--- opt.laststatus = 3 -- global statusline
+g.netrw_banner = 0			-- gets rid of the annoying banner for netrw
+g.netrw_browse_split=4		-- open in prior window
+g.netrw_altv = 1			   -- change from left splitting to right splitting
+g.netrw_liststyle=3			-- tree style view in netrw
+
+opt.laststatus = 3 -- global statusline
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
@@ -16,14 +20,14 @@ opt.swapfile = false
 opt.fileencoding = "utf-8"
 
 -- Indenting
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
+opt.tabstop = 3
+opt.softtabstop = 3
+opt.shiftwidth = 3
 opt.expandtab = true
 opt.smartindent = true
 
 opt.smartcase = true
-opt.mouse = "a"
+-- opt.mouse = "a"
 
 -- Numbers
 opt.number = true
@@ -33,14 +37,11 @@ opt.numberwidth = 2
 -- disable nvim intro
 -- opt.shortmess:append "sI"
 
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-
 -- opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true
 opt.termguicolors = true
-opt.timeoutlen = 400
+opt.timeoutlen = 300 -- I am fast
 opt.undofile = true
 
 opt.breakindent = true
@@ -48,4 +49,4 @@ opt.linebreak = true
 opt.showbreak = " ~>  "
 
 opt.textwidth = 80
-opt.scrolloff = 20
+opt.scrolloff = 10

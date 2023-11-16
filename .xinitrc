@@ -9,6 +9,5 @@ fi
 
 [[ -f $HOME/.Xresources ]] && xrdb -merge -I$HOME $HOME/.Xresources
 
-xrandr --output DP-0 --pos 0x0 --output DP-2 --pos 2560x0
-setxkbmap -option caps:ctrl_modifier
+xrandr --output DP-0 --pos 0x0 --output DP-2 --pos 2560x0 &
 dunst &

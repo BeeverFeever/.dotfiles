@@ -17,7 +17,7 @@ alias df='df -h'
 
 alias ls='ls -h --color=auto --group-directories-first'
 alias la='ls -A'
-alias ll='ls -A1'
+alias ll='ls -A1l'
 
 alias ..="cd ../"
 alias ...="cd ../../"
@@ -52,8 +52,9 @@ precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 zstyle ':vcs_info:git:*' formats '(%b)'
 zstyle ':vcs_info:*' enable git
+[[ $(jobs) ]] && BGJOBS='*'
 NEWLINE=$'\n'
-PROMPT='%F{238}╔%F{default} %F{yellow}%n%F{default} %F{green}%(4~|%-1~/⋯/%3~|%4~)%F{default} %F{240}$vcs_info_msg_0_ $NEWLINE%F{238}╚%F{default}%F{238}═>%F{default} '
+PROMPT='%F{238}╔%F{default} %F{yellow}%n%F{default} %F{green}%(4~|%-1~/⋯/%3~|%4~)%F{default} %F{240}$vcs_info_msg_0_%F{blue}%(1j.*.)%F{default} $NEWLINE%F{238}╚%F{default}%F{238}═>%F{default} '
 
 
 # ------------------
@@ -94,5 +95,7 @@ autoload -Uz compinit
 compinit
 
 # ocaml related
-eval $(opam env)
-pfetch
+# if [[ $(uname) != "Darwin" ]] {
+#     eval $(opam env)
+#     pfetch
+# }

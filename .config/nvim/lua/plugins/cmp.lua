@@ -11,14 +11,23 @@ return {
         "dcampos/cmp-snippy",
         "dcampos/nvim-snippy",
     },
-    config = function()
+    opts = function()
         local snippy = utils.get_package("snippy")
         local cmp = utils.get_package("cmp")
 
-        vim.opt.completeopt = "menu,menuone,noselect"
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
+        })
+        cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = { { name = 'buffer' } },
+        })
+
+        vim.opt.completeopt = "menuone,noselect"
         vim.opt.pumheight = 20
 
-        cmp.setup({
+        return {
             snippet = {
                 expand = function(args)
                     snippy.expand_snippet(args.body)
@@ -57,19 +66,9 @@ return {
                 end, { "i", "s", }),
             },
             formatting = {
-                fields = { --[[ "kind", ]] "abbr", "menu" },
+                fields = { "abbr", "menu" },
                 format = function(entry, vim_item)
-                    -- have to set menu before kind as it references vim_item.kind when
-                    -- it is a string not an icon
                     vim_item.menu = "(" .. (string.format("%s", vim_item.kind) or "") .. ")"
-                    -- vim_item.kind = " " .. settings.icons.lsp[vim_item.kind] .. " "
-                    -- vim_item.kind = string.format(" %s %s", settings.icons.lsp[vim_item.kind], vim_item.kind)
-                    -- vim_item.menu = ({
-                    --     snippy = "(Snip)",
-                    --     nvim_lsp = "(Lsp)",
-                    --     buffer = "(Buf)",
-                    --     path = "(Path)"
-                    -- })[entry.source.name]
                     return vim_item
                 end,
             },
@@ -90,16 +89,6 @@ return {
                     border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
                 }
             },
-        })
-
-        cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
-        })
-
-        cmp.setup.cmdline('/', {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = { { name = 'buffer' } },
-        })
+        }
     end,
 }
