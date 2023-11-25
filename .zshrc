@@ -39,22 +39,20 @@ function clone {
 #       Prompt
 # ------------------
 
-# git_status() {
-#   git_status="$(git status 2> /dev/null)"
-#   [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n "%F{green}·%f"
-#   [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n "%F{yellow}·%f"
-#   [[ "$git_status" =~ "Untracked files:" ]] && echo -n "%F{red}·%f"
-# }
-
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 zstyle ':vcs_info:git:*' formats '(%b)'
 zstyle ':vcs_info:*' enable git
-[[ $(jobs) ]] && BGJOBS='*'
+
 NEWLINE=$'\n'
-PROMPT='%F{238}╔%F{default} %F{yellow}%n%F{default} %F{green}%(4~|%-1~/⋯/%3~|%4~)%F{default} %F{240}$vcs_info_msg_0_%F{blue}%(1j.*.)%F{default} $NEWLINE%F{238}╚%F{default}%F{238}═>%F{default} '
+HIGHBLACK=$'%{\e[0;90m%}'
+GREEN=$'%{\e[0;32m%}'
+YELLOW=$'%{\e[0;33m%}'
+BLUE=$'%{\e[0;34m%}'
+
+PROMPT='$HIGHBLACK╔ $YELLOW%n $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$BLUE%(1j.*.) $NEWLINE$HIGHBLACK╚═>%F{default} '
 
 
 # ------------------
@@ -85,6 +83,8 @@ export GROFF_NO_SGR=1
 # -------------------   
 #   Initialisations  
 # -------------------
+
+test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 if [[ -d ~/.zsh/plugins/fast-syntax-highlighting ]] then
     source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
