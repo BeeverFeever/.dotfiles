@@ -84,8 +84,6 @@ export GROFF_NO_SGR=1
 #   Initialisations
 # -------------------
 
-test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
-
 if [[ -d ~/.zsh/plugins/fast-syntax-highlighting ]] then
     source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 fi

@@ -1,0 +1,32 @@
+set default-bg "#1F1F28" #00
+set default-fg "#DCD7BA" #01
+
+set statusbar-bg "#202020" #01
+set statusbar-fg "#16161D" #04
+
+set inputbar-bg "#1F1F28" #00 currently not used
+set inputbar-fg "#DCD7BA" #02
+
+set notification-error-bg "#E82424" #08
+set notification-error-fg "#DCD7BA" #00
+
+set notification-warning-bg "#FF9E3B" #08
+set notification-warning-fg "#DCD7BA" #00
+
+set highlight-color "#C0A36E" #0A
+set highlight-active-color "#E6C384" #0D
+
+set completion-highlight-fg "#151515" #02
+set completion-highlight-bg "#90A959" #0C
+
+set completion-bg "#303030" #02
+set completion-fg "#E0E0E0" #0C
+
+set notification-bg "#90A959" #0B
+set notification-fg "#151515" #00
+
+set recolor "true"
+set recolor-lightcolor "#1F1F28" #00
+set recolor-darkcolor "#DCD7BA" #06
+set recolor-reverse-video "true"
+set recolor-keephue "true"
