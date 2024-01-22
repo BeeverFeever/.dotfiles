@@ -46,17 +46,17 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' formats '(%b)'
 zstyle ':vcs_info:*' enable git
 
-NEWLINE=$'\n'
 HIGHBLACK=$'%{\e[0;90m%}'
 GREEN=$'%{\e[0;32m%}'
 YELLOW=$'%{\e[0;33m%}'
 BLUE=$'%{\e[0;34m%}'
 
-PROMPT='$HIGHBLACK╔ $YELLOW%n $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$BLUE%(1j.*.) $NEWLINE$HIGHBLACK╚═>%F{default} '
-
+#PROMPT='$HIGHBLACK╔ $YELLOW%n $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$BLUE%(1j.*.) $NEWLINE$HIGHBLACK╚═>%F{default} '
+#PROMPT='$BLUE%(1j.*.)$HIGHBLACK [$YELLOW%n$HIGHBLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$HIGHBLACK><> '
+PROMPT='$BLUE%(1j.*.)$HIGHBLACK [$YELLOW%B%n$HIGHBLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$HIGHBLACK(.,.%) '
 
 # ------------------
-#      Env Vars     
+#      Env Vars
 # ------------------
 
 export LD_LIBRARY_PATH="/usr/local/lib/"
@@ -80,8 +80,8 @@ export LESS_TERMCAP_mh=$(tput dim)
 export GROFF_NO_SGR=1
 
 
-# -------------------   
-#   Initialisations  
+# -------------------
+#   Initialisations
 # -------------------
 
 test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
