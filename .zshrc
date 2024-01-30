@@ -50,10 +50,11 @@ HIGHBLACK=$'%{\e[0;90m%}'
 GREEN=$'%{\e[0;32m%}'
 YELLOW=$'%{\e[0;33m%}'
 BLUE=$'%{\e[0;34m%}'
+# for some reason i cant have [ straight after a colour so here it is in
+# a variable and now it works
+BRACKET='['
 
-#PROMPT='$HIGHBLACK╔ $YELLOW%n $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$BLUE%(1j.*.) $NEWLINE$HIGHBLACK╚═>%F{default} '
-#PROMPT='$BLUE%(1j.*.)$HIGHBLACK [$YELLOW%n$HIGHBLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$HIGHBLACK><> '
-PROMPT='$BLUE%(1j.*.)$HIGHBLACK [$YELLOW%B%n$HIGHBLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$HIGHBLACK(.,.%) '
+PROMPT='$HIGHBLACK$BRACKET$YELLOW%B%n$HIGHBLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$BLUE%(1j.*.)$HIGHBLACK(.,.%) '
 
 # ------------------
 #      Env Vars
