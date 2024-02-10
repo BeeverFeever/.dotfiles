@@ -1,0 +1,1 @@
+        0xc0000b "xwininfo -root -tree | grep pulsemixer >temp.txt": ("kitty" "kitty")  2540x1384+2+0  +10+26
