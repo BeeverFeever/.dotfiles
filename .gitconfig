@@ -1,0 +1,9 @@
+[user]
+	email = scottyadam6@gmail.com
+	name = BeeverFeever
+[init]
+	defaultBranch = master
+[alias]
+	st = status
+	ci = commit
+	A = add -A
