@@ -26,6 +26,8 @@ alias shutn="shutdown now"
 alias pss="pacman -Ss"
 alias pqq='pacman -Qq'
 
+alias zbr='zig build run'
+
 
 # -------------------
 #      Functions
@@ -46,7 +48,7 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' formats '(%b)'
 zstyle ':vcs_info:*' enable git
 
-HIGHBLACK=$'%{\e[0;90m%}'
+BLACK=$'%{\e[0;0m\e[38;5;237m%}'
 GREEN=$'%{\e[0;32m%}'
 YELLOW=$'%{\e[0;33m%}'
 BLUE=$'%{\e[0;34m%}'
@@ -54,7 +56,7 @@ BLUE=$'%{\e[0;34m%}'
 # a variable and now it works
 BRACKET='['
 
-PROMPT='$HIGHBLACK$BRACKET$YELLOW%B%n$HIGHBLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $HIGHBLACK$vcs_info_msg_0_$BLUE%(1j.*.)$HIGHBLACK(.,.%) '
+PROMPT='$BLACK$BRACKET$YELLOW%B%n$BLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $BLACK$vcs_info_msg_0_$BLUE%(1j.*.)$BLACK(.,.%) '
 
 # ------------------
 #      Env Vars
