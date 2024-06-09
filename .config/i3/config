@@ -145,6 +145,7 @@ bindsym 0xffc9 exec pulsemixer --change-volume +5
 for_window [class="Sxiv"] floating enable
 for_window [class="qemu-system-x86_64"] floating enable
 for_window [class="feh"]  floating enable
+for_window [class="voxel engine"] floating enable
 
 # kanagawa colours
 set $fg #DCD7BA

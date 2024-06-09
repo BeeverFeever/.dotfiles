@@ -1,4 +1,4 @@
-Xcursor.theme: phinger-cursors
+Xcursor.theme: phinger-cursors-dark
 Xcursor.size: 24
 
 Xft.dpi: 92x93
@@ -8,23 +8,6 @@ Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.rgba: rgba
 Xft.lcdfilter: lcddefault
-
-#define base00 #2d2d2d
-#define base01 #f2777a
-#define base02 #99cc99
-#define base03 #d2a853
-#define base04 #6699cc
-#define base05 #cc99cc
-#define base06 #66cccc
-#define base07 #d3d0c8
-#define base08 #515151
-#define base09 #ff5f63
-#define base0A #94ea94
-#define base0B #f0b643
-#define base0C #59a2ea
-#define base0D #ea94ea
-#define base0E #59eaea
-#define base0F #f2f0ec
 
 *.foreground:   base07
 *.background:   base00
