@@ -1,4 +1,4 @@
-include ./themes/kanagawa-dragon.conf
+include ./themes/kanagawa.conf
 
 # font_family Victor Mono Medium Nerd Font
 # bold_font Victor Mono Bold Nerd Font Complete
@@ -54,4 +54,3 @@ map ctrl+shift+n        previous_tab
 map ctrl+shift+m        next_tab
 
 map ctrl+shift+o        next_layout
-
