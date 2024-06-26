@@ -29,7 +29,7 @@ input * {
     click_method clickfinger
 }
 
-seat seat0 xcursor_theme phinger-cursors
+seat seat0 xcursor_theme phinger-cursors-white-borders-dark
 
 ### Idle configuration
 exec swayidle -w \
