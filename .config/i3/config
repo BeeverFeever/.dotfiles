@@ -146,53 +146,25 @@ for_window [class="Sxiv"] floating enable
 for_window [class="qemu-system-x86_64"] floating enable
 for_window [class="feh"]  floating enable
 for_window [class="voxel engine"] floating enable
+for_window [class="Tk"] floating enable
 
-# kanagawa colours
-set $fg #DCD7BA
-set $bg #1F1F28
-set $red #C34043
-set $green #76946A
-set $yellow #FF9E3B
-set $blue #7E9CD8
-set $purple #938AA9
-set $aqua #6A9589
-set $gray #717C7C
-
-client.focused $yellow $bg $fg $yellow $yellow
-
-# green gruvbox
-# class                 border|backgr|text|indicator|child_border
-#client.focused          $yellow $purple $darkgray $purple $darkgray
-#client.focused_inactive $yellow $darkgray $yellow $purple $darkgray
-#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-#client.urgent           $red $red $white $red $red
-
-# blue gruvbox
-# class                 border|backgr|text|indicator|child_border
-# client.focused          $blue $blue $darkgray $purple $darkgray
-# client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-# client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-# client.urgent           $red $red $white $red $red
-
-# hopefully this makes bar and windows look pretti
 bar {
-  status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
-  position bottom
-  tray_padding 10
+  status_command i3status -c $HOME/.config/i3/i3status.conf
+  position top
   #separator_symbol "::"
-  colors {
-    # bg of bar
-    background          $bg
-    # text of statusline
-    statusline          $blue
-    separator           $purple
-
-    # format ---------> border    background  text
-    focused_workspace   $gray     $gray       $fg
-    active_workspace    $gray     $gray       $fg
-    inactive_workspace  $bg       $bg         $fg
-    urgent_workspace    $red      $red        $bg
-  }
+  # colors {
+  #   # bg of bar
+  #   background          $bg
+  #   # text of statusline
+  #   statusline          $blue
+  #   separator           $purple
+  #
+  #   # format ---------> border    background  text
+  #   focused_workspace   $gray     $gray       $fg
+  #   active_workspace    $gray     $gray       $fg
+  #   inactive_workspace  $bg       $bg         $fg
+  #   urgent_workspace    $red      $red        $bg
+  # }
 }
 
 # lovely backgrounds

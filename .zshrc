@@ -1,6 +1,6 @@
 HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt share_history
 setopt append_history
 setopt inc_append_history
@@ -41,6 +41,7 @@ function clone {
 #       Prompt
 # ------------------
 
+# git info (built into zsh)
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -65,23 +66,7 @@ PROMPT='$BLACK$BRACKET$YELLOW%B%n$BLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $BLACK$vcs
 export LD_LIBRARY_PATH="/usr/local/lib/"
 export EDITOR='nvim'
 export PATH="$HOME/scripts:$HOME/.local/bin:$HOME/programs/neovim-bin/bin:$PATH"
-
-# for the most part nice colours for man pages
-# https://unix.stackexchange.com/questions/119/colors-in-man-pages/329092#329092
-# export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
-export LESS="-Fr"
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
-export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3) # yellow
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-export LESS_TERMCAP_us=$(tput bold)
-export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
-# for some reason this is needed no clue why
-export GROFF_NO_SGR=1
-
+export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
 
 # -------------------
 #   Initialisations
@@ -95,8 +80,5 @@ fi
 autoload -Uz compinit
 compinit
 
-# ocaml related
-# if [[ $(uname) != "Darwin" ]] {
-#     eval $(opam env)
-#     pfetch
-# }
+# fzf integration
+source <(fzf --zsh)
