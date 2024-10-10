@@ -57,7 +57,7 @@ BLUE=$'%{\e[0;34m%}'
 # a variable and now it works
 BRACKET='['
 
-PROMPT='$BLACK$BRACKET$YELLOW%B%n$BLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $BLACK$vcs_info_msg_0_$BLUE%(1j.*.)$BLACK(.,.%) '
+PROMPT='$BLACK$BRACKET$YELLOW%B%n$BLACK@$GREEN%m$BLACK] $GREEN%(4~|%-1~/.../%3~|%4~) $BLACK$vcs_info_msg_0_$BLUE%(1j.*.)$BLACK(.,.%) '
 
 # ------------------
 #      Env Vars
