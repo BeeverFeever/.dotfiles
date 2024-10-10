@@ -16,9 +16,6 @@ tiling_drag modifier titlebar
 # stop the cursor from teleporting to focused window
 mouse_warping none
 
-#hide_edge_borders none
-default_border pixel 1
-
 # start a terminal
 bindsym $mod+Return exec kitty
 
@@ -150,7 +147,7 @@ for_window [class="Tk"] floating enable
 
 bar {
   status_command i3status -c $HOME/.config/i3/i3status.conf
-  position top
+  position bottom
   #separator_symbol "::"
   # colors {
   #   # bg of bar
