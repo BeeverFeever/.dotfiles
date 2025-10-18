@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cat ~/.zsh_history | fzf | wl-copy

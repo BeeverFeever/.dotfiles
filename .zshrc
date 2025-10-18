@@ -1,7 +1,7 @@
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt share_history
+# setopt share_history
 setopt append_history
 setopt inc_append_history
 
@@ -14,6 +14,7 @@ alias ip='ip -c'
 alias free='free -h'
 alias diff='diff --color'
 alias df='df -h'
+alias du='du -hd0'
 
 alias ls='ls -h --color=auto --group-directories-first'
 alias la='ls -A'
@@ -24,10 +25,12 @@ alias ...="cd ../../"
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias shutn="shutdown now"
 alias pss="pacman -Ss"
-alias pqq='pacman -Qq'
 
 alias zbr='zig build run'
 
+alias systeminstalldate="stat / | awk '/Birth: /{print $2 " " substr($3,1,5)}'"
+
+alias py='python3'
 
 # -------------------
 #      Functions

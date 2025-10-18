@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+name="$(basename $(pwd))"
+
+echo """const std = @import(\"std\");
+
+pub fn build(b: *std.Build) void {
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
+
+    const exe = b.addExecutable(.{
+        .name = \"$name\",
+        .root_source_file = b.path(\"src/main.zig\"),
+        .target = target,
+        .optimize = optimize,
+    });
+
+    b.installArtifact(exe);
+
+    _ = b.step(\"run\", \"Run the program\").dependOn(&b.addRunArtifact(exe).step);
+}""" > build.zig
+
+echo """.{
+    .name = \"$name\",
+    .version = \"0.0.0\",
+    .dependencies = .{},
+    .paths = .{
+        \"build.zig\",
+        \"build.zig.zon\",
+        \"src\",
+    },
+}""" > build.zig.zon
+
+mkdir -p src
+
+echo """const std = @import(\"std\");
+const stdout = std.io.getStdOut().writer();
+
+pub fn main() !void {
+    try stdout.print(\"hello world\", .{});
+}""" > src/main.zig

@@ -11,3 +11,4 @@ fi
 
 xrandr --output DP-0 --pos 0x0 --output DP-2 --pos 2560x0 &
 dunst &
+picom &

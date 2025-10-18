@@ -1,0 +1,83 @@
+@define-color bg    #1F1F28; 
+@define-color fg    #DCD7BA; 
+@define-color blk   #16161D; 
+@define-color red   #C34043; 
+@define-color grn   #76946A; 
+@define-color sprgrn #98BB6C;
+@define-color ylw   #FF9E3B; 
+@define-color blu   #7E9CD8; 
+@define-color mag   #957FB8; 
+@define-color cyn   #658594; 
+@define-color pnk   #D27E99;
+@define-color brblk #444b6a; 
+@define-color white #ffffff; 
+
+* {
+   font-family: "ComicCodeLigatures", monospace;
+   font-size: 13px;
+   font-weight: bold;
+   border-radius: 0px;
+   border: none;
+   box-shadow: none;
+   padding-top: 1px;
+   min-height: 0;
+}
+
+window#waybar {
+   background-color: @bg;
+   color: @fg;
+}
+
+#workspaces button {
+   color: @cyn;
+   padding: 0 3px;
+   margin: 0;
+}
+#workspaces button.active {
+   border-bottom: 3px solid @blu;
+}
+#workspaces button.urgent {
+   background-color: @red;
+   color: @fg;
+}
+
+#window {
+   color: @sprgrn;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#wireplumber {
+   padding: 0px 5px;
+}
+
+#tray menu {
+   background-color: #223249;
+   color: @fg;
+   border-radius: 5px;
+   border: @blk;
+   padding: 5px;
+}
+
+#wireplumber {
+   color: @ylw;
+}
+
+#clock {
+   color: @cyn;
+}
+
+#battery {
+   color: @sprgrn;
+}
+
+#memory {
+   color: @mag;
+}
+
+#cpu {
+   color: @grn;
+}

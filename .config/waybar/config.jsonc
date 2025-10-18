@@ -1,0 +1,65 @@
+{
+   "layer": "top", 
+   "position": "top", 
+   "height": 25, 
+
+   // Choose the order of the modules
+   "modules-left": [
+      "custom/spacing",
+      "hyprland/workspaces",
+      "custom/spacing",
+      "hyprland/window"
+   ],
+   "modules-center": [
+      "clock"
+   ],
+   "modules-right": [
+      "wireplumber",
+      "battery",
+      "cpu",
+      "memory",
+      "tray",
+      "custom/spacing"
+   ],
+
+   "hyprland/workspaces": {
+      "format": "{name}"
+   },
+   "hyprland/window" : {
+      "max-length": 40,
+      "seperate-outputs": false
+   },
+   "tray": {
+      "icon-size": 14,
+      "spacing": 10
+   },
+   "clock": {
+      "format": "{:%d %b %H:%M}"
+   },
+   "cpu": {
+      "format": "CPU: {usage}%",
+      "tooltip": false
+   },
+   "memory": {
+      "format": "Mem: {used}Gb"
+   },
+   "battery": {
+      "states": {
+         "good": 95,
+         "warning": 30,
+         "critical": 15
+      },
+      "format": "Bat: {capacity}% {icon} {time}",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "Bat {capacity}%",
+      "format-time": "{H}:{M}",
+      "format-icons": ["", "", "", "", ""]
+   },
+   "wireplumber": {
+      "format": "Vol: {volume}%",
+      "format-muted": "Vol: 󰝟"
+   },
+   "custom/spacing": {
+      "format": " "
+   }
+}

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+id="$(xinput list | grep 'Pen stylus' | sed -E 's/.*id=([^\t]+).*/\1/')"
+xinput map-to-output $id DP-0

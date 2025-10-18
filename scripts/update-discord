@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# this is one fucking cursed frankenstein of a bash script
+# but then again, aren't they all???
+
+number=$(sudo cat /opt/discord/resources/build_info.json | grep -Eo '([2-9]+)' | tail -1)
+sudo sed -i "s/$number/$((++number))/" /opt/discord/resources/build_info.json
